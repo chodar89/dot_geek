@@ -1,0 +1,2 @@
+# DOT GEEK
+So this is my fourth and last project for CodeInstitute. It is e-commerce website for geeks but not only. Potiential customers will find a products from famous retro and legendary games, films, cartoons or comics.
