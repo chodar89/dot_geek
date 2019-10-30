@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{% static 'css/all.css' %}">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <title>DOT GEEK</title>
+</head>
+<body>
+    {% block content %}
+    {% endblock %}
+    <!-- jQuery -->
+    <script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+    <!-- Bootstrap -->
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>
