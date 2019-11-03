@@ -9,9 +9,13 @@
     <link rel="stylesheet" href="{% static 'css/all.css' %}">
     <!-- Bootstrap -->
     <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <title>DOT GEEK</title>
 </head>
 <body>
+    <!-- Navbar -->
+    {% include 'partials/_navbar.html' %}
     {% block content %}
     {% endblock %}
     <!-- jQuery -->
