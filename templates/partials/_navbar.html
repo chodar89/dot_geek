@@ -10,7 +10,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
         <a class="navbar-brand" href="{% url 'index' %}">
-            <img src="{% static 'img/dotgeek_white.png' %}" class="logo" alt="">
+            <img src="{% static 'img/logo/dotgeek_white.png' %}" class="logo" alt="dotGEEK">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
             aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -19,14 +19,14 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home
+                    <a class="nav-link" href="#">HOME
                         <span class="sr-only">(current)</span>
                     </a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Shop By Category
+                        SHOP BY CATEGORY
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="#">Toys</a>
@@ -38,7 +38,7 @@
                 <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Shop By Brand
+                            SHOP BY BRAND
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <a class="dropdown-item" href="#">Marvel</a>
@@ -48,15 +48,12 @@
                         </div>
                     </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Services</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
+                    <a class="nav-link" href="#">CONTACT</a>
                 </li>
             </ul>
+        </div>
+        <div class="nav-mario">
+            <img src="{% static 'img/castle_mario.png' %}" alt="">
         </div>
     </div>
 </nav>
