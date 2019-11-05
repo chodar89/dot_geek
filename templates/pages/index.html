@@ -10,24 +10,21 @@
         </ol>
         <div class="carousel-inner" role="listbox">
             <!-- Slide Carusel Img in Header -->
-            <div class="carousel-item active"
-                style="background-image: url('{% static "img/mario.jpg" %}')">
+            <div class="carousel-item active" style="background-image: url('{% static "img/mario.jpg" %}')">
                 <div class="carousel-caption d-none d-md-block">
                     <h3 class="display-4">Mario Bros</h3>
                     <p class="lead">Check our new Mario collection</p>
                 </div>
             </div>
             <!-- Slide Two - Set the background image for this slide in the line below -->
-            <div class="carousel-item" 
-                style="background-image: url('{% static "img/iron-man.jpg" %}')">
+            <div class="carousel-item" style="background-image: url('{% static "img/iron-man.jpg" %}')">
                 <div class="carousel-caption d-none d-md-block">
                     <h3 class="display-4">Be an Iron Man</h3>
                     <p class="lead">New action figures</p>
                 </div>
             </div>
             <!-- Slide Three - Set the background image for this slide in the line below -->
-            <div class="carousel-item"
-               style="background-image: url('{% static "img/lego.jpg" %}')">
+            <div class="carousel-item" style="background-image: url('{% static "img/lego.jpg" %}')">
                 <div class="carousel-caption d-none d-md-block">
                     <h3 class="display-4">Where is my Lego?</h3>
                     <p class="lead">Special edition Lego</p>
@@ -44,5 +41,34 @@
         </a>
     </div>
 </header>
-    <h1 style="height:100vh;">Home Page</h1>
+<h1 style="height:100vh;">Home Page</h1>
+<!-- New In -->
+<div class="card-deck">
+    <div class="card">
+        <img class="card-img-top" src="..." alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional
+                content. This content is a little bit longer.</p>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        </div>
+    </div>
+    <div class="card">
+        <img class="card-img-top" src="..." alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        </div>
+    </div>
+    <div class="card">
+        <img class="card-img-top" src="..." alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
+                content. This card has even longer content than the first to show that equal height action.</p>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        </div>
+    </div>
+</div>
 {% endblock %}
