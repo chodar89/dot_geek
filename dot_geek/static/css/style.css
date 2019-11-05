@@ -34,6 +34,8 @@ body {
   background-color: var(--main-yellow);
   height: 25px;
   width: 100%;
+  position: fixed;
+  z-index: 2;
 }
 
 .fixed-top {
@@ -41,6 +43,9 @@ body {
 }
 
 /* Home Carusel Images */
+.carousel{
+  z-index: 1;
+}
 .carousel-item {
   height: 40vh;
   min-height: 350px;
@@ -59,4 +64,67 @@ body {
 
 .carousel-item p {
   font-family: 'Barlow Condensed', sans-serif;
+}
+
+/* Footer */
+
+footer {
+  height: 280px;
+  background-color: var(--main-orange);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.footer-top-line {
+  height: 25px;
+  background-color: var(--main-yellow);
+}
+
+.logo-line {
+  background-image: url('../img/logo/dotgeekline.jpg');
+  background-size: contain;
+  background-repeat: repeat-x;
+  height: 50px;
+}
+
+.footer-bottom-line {
+  height: 20px;
+  background-color: var(--main-white);
+  text-align: center;
+}
+
+.footer-bottom-line p {
+  margin: 0px;
+  font-weight: bold;
+  color: var(--main-dark);
+}
+
+footer {
+  font-family: 'Barlow Condensed', sans-serif;
+  color: var(--main-white);
+}
+
+.footer-middle {
+  display: flex;
+  justify-content: space-around;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.social-media > i,
+.pay-with > i {
+  margin: 6px;
+}
+
+.divider {
+  height: 132px;
+  margin-top: 10px;
+  border-right: 2px solid var(--main-white);
+  border-left: 2px solid var(--main-white);
+}
+
+.address {
+  text-align: left;
+  font-size: 1rem;
 }
