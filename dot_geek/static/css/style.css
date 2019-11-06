@@ -7,23 +7,44 @@
   --main-yellow: #f5cb5c;
   --main-white: #fafbfb;
 }
-/* Main */
+/* Main & Button and Badges */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
 body {
   font-family: 'Noto Sans TC', sans-serif;
   background: var(--main-white);
 }
 
-/* Navbar */
+.badge-secondary {
+  background-color: var(--main-orange);
+  color: var(--main-white);
+}
 
+.btn-secondary {
+  background-color: var(--main-dark);
+  border-color: var(--main-dark);
+  color: var(--main-white);
+}
+
+/* Navbar */
 .navbar {
-  height: 70px;
+  min-height: 120px;
+}
+
+nav > .container {
+  padding-top: 30px;
+  padding-bottom: 14px;
 }
 
 .logo {
-  width: 100px;
+  width: 135px;
   position: absolute;
-  top: 0px;
+  top: 25px;
 }
 
 .bg-dark {
@@ -34,13 +55,19 @@ body {
   background-color: var(--main-yellow);
   height: 25px;
   width: 100%;
-  position: fixed;
-  z-index: 2;
+  z-index: 1050;
 }
 
-.fixed-top {
-  top: 25px;
+.navbar-collapse {
+  margin-top: 20px;
 }
+
+.navbar-toggler {
+  margin-top: 20px;
+}
+
+/* Index Page */
+
 
 /* Home Carusel Images */
 .carousel{
@@ -74,6 +101,7 @@ footer {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  margin-top: 50px;
 }
 
 .footer-top-line {

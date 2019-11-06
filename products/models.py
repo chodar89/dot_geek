@@ -16,7 +16,11 @@ class SizeChart(models.Model):
 class Product(models.Model):
     type_code = models.ForeignKey(ProductType, on_delete=models.DO_NOTHING)
     name = models.CharField(max_length=200)
+    brand = models.TextField(max_length=100, blank=True)
+    character = models.TextField(max_length=100, blank=True)
+    series = models.TextField(max_length=100, blank=True)
     description = models.TextField()
+    short_description = models.TextField(max_length=180, blank=True)
     buys = models.IntegerField(default=0, validators=[MinValueValidator(0)])
     price = models.DecimalField(max_digits=4, decimal_places=2)
     size = models.ForeignKey(SizeChart, on_delete=models.DO_NOTHING, default=11)
