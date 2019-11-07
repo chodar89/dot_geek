@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css?family=Barlow+Condensed:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|Lobster|Noto+Sans+TC:100,300,400,500,700,900&display=swap');
+#header {
+  background-color: #242423;
+  font-family: 'Barlow Condensed', sans-serif;
+  letter-spacing: 1.5px;
+}
+
+#user-tools {
+    letter-spacing: 1px;
+    font-size: 1rem;
+}
+
+#admin-text {
+    text-transform: uppercase!important;
+    font-size: 2rem;
+    font-weight: 600;
+    position: relative;
+    top: 12px;
+    left: 20px;
+    color: #f5cb5c;
+}
+
+.admin-top-bar {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    background-color: #f5cb5c;
+    width: 100%;
+    height: 15px;
+}
+
+div.breadcrumbs {
+    background-color: #ed6a5a;
+    color: #242423;
+    font-weight: 500;
+}
+
+.module caption, .module h2 {
+    background-color: #ed6a5a;
+}
+
+a:link {
+    color: #ed6a5a;
+}
+
+a:visited {
+    color: #242423;
+}
