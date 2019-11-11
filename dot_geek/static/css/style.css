@@ -33,7 +33,7 @@ body {
 
 /* Navbar */
 .navbar {
-  min-height: 120px;
+  padding: 0 1rem;
 }
 
 nav > .container {
@@ -42,7 +42,7 @@ nav > .container {
 }
 
 .logo {
-  width: 135px;
+  width: 115px;
   position: absolute;
   top: 25px;
 }
@@ -56,14 +56,47 @@ nav > .container {
   height: 25px;
   width: 100%;
   z-index: 1050;
+  display: flex;
+  justify-content: space-between;
+}
+
+.top-mid-nav {
+  font-weight: 600;
+  margin-left: 75px;
+}
+
+.login-register {
+  display: flex;
+  flex-direction: row;
+  color: var(--main-dark);
+}
+
+.login-register a {
+  color: var(--main-dark);
+  padding: 0;
+  margin-right: 17px;
+  font-weight: 800;
+  transition: 0.5s ease-in-out;
+}
+
+.login-register a:hover {
+  color: var(--main-grey);
+}
+
+.pacman {
+  height: 24px;
+  margin-bottom: 4px;
+  margin-left: 10px;
 }
 
 .navbar-collapse {
-  margin-top: 20px;
+  margin-top: 18px;
+  margin-bottom: 10px;
 }
 
 .navbar-toggler {
-  margin-top: 20px;
+  margin-top: 18px;
+  padding-bottom: 10px;
 }
 
 /* Index Page */
@@ -75,7 +108,7 @@ nav > .container {
 }
 .carousel-item {
   height: 40vh;
-  min-height: 350px;
+  min-height: 420px;
   background: no-repeat center center scroll;
   -webkit-background-size: cover;
   -moz-background-size: cover;
