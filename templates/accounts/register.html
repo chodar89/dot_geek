@@ -1,4 +1,60 @@
-{% extends 'base.html' %}
-{% block content %}
-<h1>Register</h1>
+{% extends 'base.html' %} {% block content %}
+<section id="register">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                <div class="card card-register-login">
+                    <div class="card-header">
+                        <i class="fas fa-user-plus"></i> &nbsp;Register
+                    </div>
+                    <form class="text-center border border-light p-5" action="#" method="POST">
+                        {% csrf_token %}
+                        <div class="form-row">
+                            <div class="col form-group text-left">
+                                <!-- First name -->
+                                <label for="first_name">First Name</label>
+                                <input type="text" name="firs_name" class="form-control" required>
+                            </div>
+                            <div class="col form-group text-left">
+                                <!-- Last name -->
+                                <label for="last_name">Last Name</label>
+                                <input type="text" name="last_name" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col form-group text-left">
+                                <!-- Login -->
+                                <label for="first_name">Login</label>
+                                <input type="login" name="login" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col form-group text-left">
+                                <!-- Email -->
+                                <label for="first_name">Email</label>
+                                <input type="email" name="email" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col form-group text-left">
+                                <!-- Password -->
+                                <label for="password">Password</label>
+                                <input type="password" name="password" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col form-group text-left">
+                                <!-- Password Confirm -->
+                                <label for="password2">Confirm Password</label>
+                                <input type="password" name="password2" class="form-control" required>
+                            </div>
+                        </div>
+                        <input type="submit" value="Register" class="btn btn-secondary btn-block">
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock %}

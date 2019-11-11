@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+<!-- Carusel -->
 <header>
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
@@ -43,56 +44,57 @@
 </header>
 <h1>Home Page</h1>
 <!-- New In -->
-<div class="container">
-    <div class="card-deck">
-        <div class="card">
-            <img class="card-img-top" src="{% static 'img/products/popvinyl/dustin.png' %}" alt="Card image cap">
-            <div class="card-img-overlay">
-                <h2>
-                    <div class="badge badge-secondary">£9,99</div>
-                </h2>
-            </div>
-            <div class="card-body d-flex flex-column">
-                <h5 class="card-title">Dustin Pop! Vinyl</h5>
-                <hr>
-                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional
-                    content. This content is a little bit longer.</p>
-                <hr>
-                <a href="#" class="mt-auto btn btn-secondary btn-block">ADD TO CART</a>
-            </div>
-        </div>
-        <div class="card">
-            <img class="card-img-top" src="{% static 'img/products/popvinyl/eleven.jpg' %}" alt="Card image cap">
-            <div class="card-img-overlay">
-                    <h2>
-                        <div class="badge badge-secondary">£9,99</div>
-                    </h2>
-            </div>
-            <div class="card-body d-flex flex-column">
-                <h5 class="card-title">Eleven Pop! Vinyl</h5>
-                <hr>
-                <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-                <hr>
-                <a href="#" class="mt-auto btn btn-secondary btn-block align-self-end">ADD TO CART</a>
-            </div>
-        </div>
-        <div class="card">
-            <img class="card-img-top" src="{% static 'img/products/popvinyl/johnwick.jpg' %}" alt="Card image cap">
-            <div class="card-img-overlay">
+<section id="new-in">
+    <div class="container">
+        <div class="card-deck">
+            <div class="card">
+                <img class="card-img-top" src="{% static 'img/products/popvinyl/dustin.png' %}" alt="Card image cap">
+                <div class="card-img-overlay">
                     <h2>
                         <div class="badge badge-secondary">£9,99</div>
                     </h2>
                 </div>
-            <div class="card-body d-flex flex-column">
-                <h5 class="card-title">John Wick Pop! Vinyl</h5>
-                <hr>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                    content. This card has even longer content than the first to show that equal height action.</p>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Dustin Pop! Vinyl</h5>
+                    <hr>
+                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional
+                        content. This content is a little bit longer.</p>
                     <hr>
                     <a href="#" class="mt-auto btn btn-secondary btn-block">ADD TO CART</a>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img-top" src="{% static 'img/products/popvinyl/eleven.jpg' %}" alt="Card image cap">
+                <div class="card-img-overlay">
+                        <h2>
+                            <div class="badge badge-secondary">£9,99</div>
+                        </h2>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Eleven Pop! Vinyl</h5>
+                    <hr>
+                    <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+                    <hr>
+                    <a href="#" class="mt-auto btn btn-secondary btn-block align-self-end">ADD TO CART</a>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img-top" src="{% static 'img/products/popvinyl/johnwick.jpg' %}" alt="Card image cap">
+                <div class="card-img-overlay">
+                        <h2>
+                            <div class="badge badge-secondary">£9,99</div>
+                        </h2>
+                    </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">John Wick Pop! Vinyl</h5>
+                    <hr>
+                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
+                        content. This card has even longer content than the first to show that equal height action.</p>
+                        <hr>
+                        <a href="#" class="mt-auto btn btn-secondary btn-block">ADD TO CART</a>
+                </div>
             </div>
         </div>
     </div>
-</div>
-
+</section>
 {% endblock %}

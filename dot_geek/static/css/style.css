@@ -53,7 +53,7 @@ nav > .container {
 
 .top-nav {
   background-color: var(--main-yellow);
-  height: 25px;
+  height: 27px;
   width: 100%;
   z-index: 1050;
   display: flex;
@@ -125,6 +125,28 @@ nav > .container {
 .carousel-item p {
   font-family: 'Barlow Condensed', sans-serif;
 }
+/* Login / Register */
+
+.card-header {
+  text-align: center;
+  background-color: var(--main-orange);
+  color: var(--main-white);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.card-register-login {
+  margin-top: 95px;
+  background-color: var(--main-white);
+}
+
+#login .container,
+#register .container {
+  margin-top: 95px;
+  min-height: calc(100vh - 388px);
+}
 
 /* Footer */
 
@@ -138,8 +160,14 @@ footer {
 }
 
 .footer-top-line {
-  height: 25px;
+  height: 27px;
   background-color: var(--main-yellow);
+  text-align: end;
+}
+
+.pacman_run {
+  height: 24px;
+  margin-right: 10px;
 }
 
 .logo-line {
