@@ -142,8 +142,7 @@ nav > .container {
   background-color: var(--main-white);
 }
 
-#login .container,
-#register .container {
+.reg-log-form {
   margin-top: 95px;
   min-height: calc(100vh - 388px);
 }
