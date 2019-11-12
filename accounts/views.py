@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from django.contrib import messages
+from django.contrib import messages, auth
 from django.contrib.auth.models import User
 
 def register(request):
@@ -36,7 +36,18 @@ def register(request):
 
 def login(request):
     if request.method == 'POST':
-        return
+        uname = request.POST['uname']
+        password = request.POST['password']
+
+        user = auth.authenticate(username=uname, password=password)
+        # If use in databse log in if not return a message
+        if user is not None:
+            auth.login(request, user)
+            messages.success(request, 'You are logged in!')
+            return redirect('index')
+        else:
+            messages.error(request, 'Wrong password or/and login')
+            return redirect('login')
     return render(request, 'accounts/login.html')
 
 def logout(request):
