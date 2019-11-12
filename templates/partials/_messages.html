@@ -6,6 +6,8 @@
             <strong>
                 {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
                     Error:
+                {% elif message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                    Hooray! 
                 {% else %}
                     {{ message.tags|title }}
                 {% endif %}

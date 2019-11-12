@@ -10,6 +10,7 @@
                     </div>
                     <form class="text-center border border-light p-5" action="#" method="POST">
                         {% csrf_token %}
+                        {% include 'partials/_messages.html' %}
                         <div class="form-row">
                             <div class="col form-group text-left">
                                 <!-- Login -->
