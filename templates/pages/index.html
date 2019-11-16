@@ -3,44 +3,48 @@
 {% block content %}
 <!-- Carusel -->
 <header>
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-        </ol>
-        <div class="carousel-inner" role="listbox">
-            <!-- Slide Carusel Img in Header -->
-            <div class="carousel-item active" style="background-image: url('{% static "img/mario.jpg" %}')">
-                <div class="carousel-caption d-none d-md-block">
-                    <h3 class="display-4">Mario Bros</h3>
-                    <p class="lead">Check our new Mario collection</p>
-                </div>
+    {% if carousels %}
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                {% for carousel in carousels %}
+                    {% if carousel.first %}
+                    <li data-target="#carouselExampleIndicators" data-slide-to=" {{ forloop.counter }}" 
+                    class="d-none"></li>
+                    {% else %}
+                    
+                    <li data-target="#carouselExampleIndicators" data-slide-to=" {{ forloop.counter }}" 
+                    class=""></li>
+                    {% endif %}
+                {% endfor %}
+            </ol>
+            <div class="carousel-inner" role="listbox">
+                <!-- Slide Carusel Img in Header -->
+                {% for carousel in carousels %}
+                    <div 
+                        {% if carousel.first %}        
+                            class="carousel-item active"
+                        {% else %}
+                            class="carousel-item"
+                        {% endif %}
+                        style="background-image: url({{ carousel.image.url }})" alt="carousel-image">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h3 class="display-4">{{ carousel.heading }}</h3>
+                            <p class="lead">{{ carousel.paragraph }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
             </div>
-            <!-- Slide Two - Set the background image for this slide in the line below -->
-            <div class="carousel-item" style="background-image: url('{% static "img/iron-man.jpg" %}')">
-                <div class="carousel-caption d-none d-md-block">
-                    <h3 class="display-4">Be an Iron Man</h3>
-                    <p class="lead">New action figures</p>
-                </div>
-            </div>
-            <!-- Slide Three - Set the background image for this slide in the line below -->
-            <div class="carousel-item" style="background-image: url('{% static "img/lego.jpg" %}')">
-                <div class="carousel-caption d-none d-md-block">
-                    <h3 class="display-4">Where is my Lego?</h3>
-                    <p class="lead">Special edition Lego</p>
-                </div>
-            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
         </div>
-        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
-    </div>
+    {% endif %}
 </header>
 <h1>Home Page</h1>
 <!-- New In -->
