@@ -8,22 +8,28 @@ class ProductType(models.Model):
     def __str__(self):
         return self.product_type
 
+class ProductBrand(models.Model):
+    product_brand = models.CharField(max_length=150)
+    description = models.TextField(blank=True)
+    def __str__(self):
+        return self.product_brand
+
 class SizeChart(models.Model):
     size = models.CharField(max_length=10)
     def __str__(self):
         return self.size
 
 class Product(models.Model):
-    type_code = models.ForeignKey(ProductType, on_delete=models.DO_NOTHING)
+    type_code = models.ForeignKey(ProductType, blank=True ,null=True, on_delete=models.SET_NULL)
     name = models.CharField(max_length=200)
-    brand = models.TextField(max_length=100, blank=True)
+    brand = models.ForeignKey(ProductBrand,blank=True, null=True, on_delete=models.SET_NULL)
     character = models.TextField(max_length=100, blank=True)
     series = models.TextField(max_length=100, blank=True)
-    description = models.TextField()
+    description = models.TextField(max_length=500, blank=True)
     short_description = models.TextField(max_length=180, blank=True)
     buys = models.IntegerField(default=0, validators=[MinValueValidator(0)])
     price = models.DecimalField(max_digits=4, decimal_places=2)
-    size = models.ForeignKey(SizeChart, on_delete=models.DO_NOTHING, default=11)
+    size = models.ForeignKey(SizeChart,blank=True, null=True, on_delete=models.SET_NULL)
     stock = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(9999)])
     photo_main = models.ImageField(upload_to='photos')
     photo_1 = models.ImageField(upload_to='photos', blank=True)
