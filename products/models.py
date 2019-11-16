@@ -3,16 +3,16 @@ from datetime import datetime
 from django.core.validators import MaxValueValidator, MinValueValidator
 
 class ProductType(models.Model):
-    product_type = models.CharField(max_length=150)
+    types = models.CharField(max_length=150)
     description = models.TextField(blank=True)
     def __str__(self):
-        return self.product_type
+        return self.types
 
 class ProductBrand(models.Model):
-    product_brand = models.CharField(max_length=150)
+    brands = models.CharField(max_length=150)
     description = models.TextField(blank=True)
     def __str__(self):
-        return self.product_brand
+        return self.brands
 
 class SizeChart(models.Model):
     size = models.CharField(max_length=10)
@@ -20,7 +20,7 @@ class SizeChart(models.Model):
         return self.size
 
 class Product(models.Model):
-    type_code = models.ForeignKey(ProductType, blank=True ,null=True, on_delete=models.SET_NULL)
+    product_type = models.ForeignKey(ProductType, blank=True ,null=True, on_delete=models.SET_NULL)
     name = models.CharField(max_length=200)
     brand = models.ForeignKey(ProductBrand,blank=True, null=True, on_delete=models.SET_NULL)
     character = models.TextField(max_length=100, blank=True)
@@ -29,7 +29,7 @@ class Product(models.Model):
     short_description = models.TextField(max_length=180, blank=True)
     buys = models.IntegerField(default=0, validators=[MinValueValidator(0)])
     price = models.DecimalField(max_digits=4, decimal_places=2)
-    size = models.ForeignKey(SizeChart,blank=True, null=True, on_delete=models.SET_NULL)
+    size = models.ForeignKey(SizeChart, blank=True, null=True, on_delete=models.SET_NULL)
     stock = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(9999)])
     photo_main = models.ImageField(upload_to='photos')
     photo_1 = models.ImageField(upload_to='photos', blank=True)
