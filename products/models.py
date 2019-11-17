@@ -29,7 +29,7 @@ class Product(models.Model):
     short_description = models.TextField(max_length=180, blank=True)
     buys = models.IntegerField(default=0, validators=[MinValueValidator(0)])
     price = models.DecimalField(max_digits=4, decimal_places=2)
-    size = models.ManyToManyField(SizeChart, blank=True, null=True)
+    size = models.ManyToManyField(SizeChart, blank=True)
     stock = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(9999)])
     stock_xs = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(9999)])
     stock_m = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(9999)])

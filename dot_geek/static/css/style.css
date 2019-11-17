@@ -101,11 +101,25 @@ nav > .container {
 
 /* Index Page */
 
+.heading-paragraph {
+  color: var(--main-dark);
+  font-family: 'Lobster', cursive;
+  font-size: 3.5rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin: 45px 0;
+  background-color: var(--main-yellow);
+}
 
 /* Home Carusel Images */
 .carousel{
   z-index: 1;
 }
+
+#carouselExampleIndicators {
+  margin-top: 80px;
+}
+
 .carousel-item {
   height: 40vh;
   min-height: 420px;

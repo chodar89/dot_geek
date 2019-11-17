@@ -2,4 +2,8 @@ from django.contrib import admin
 
 from .models import IndexCarousel
 
-admin.site.register(IndexCarousel)
+class CarouselAdmin(admin.ModelAdmin):
+    list_display = ('id', 'heading', 'paragraph', 'first')
+    list_editable = ('first',)
+
+admin.site.register(IndexCarousel, CarouselAdmin)
