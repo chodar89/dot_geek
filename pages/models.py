@@ -1,6 +1,6 @@
 from django.db import models
 
-from exclusivebooleanfield.fields import ExclusiveBooleanField
+from exclusivebooleanfield import ExclusiveBooleanField
 
 class IndexCarousel(models.Model):
     image = models.ImageField(upload_to='photos/carousel')

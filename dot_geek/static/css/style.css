@@ -31,6 +31,38 @@ body {
   color: var(--main-white);
 }
 
+/* Product Cards */
+
+.card {
+  height: 39rem;
+  width: 18rem;
+}
+
+.card-title {
+  min-height: 55px;
+  margin-bottom: 0;
+}
+
+.card-img-top {
+  min-height: 286px;
+  max-height: 286px;
+}
+
+.card-text {
+  min-height: 96px;
+  margin: 0;
+  font-size: 13px;
+}
+
+.hr-card {
+  border-top: 2px solid var(--main-yellow);
+  margin: 0.3rem 0;
+}
+
+.card-body select {
+  margin-top: 8px;
+}
+
 /* Navbar */
 .navbar {
   padding: 0 1rem;

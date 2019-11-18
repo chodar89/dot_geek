@@ -4,97 +4,128 @@
 <!-- Carusel -->
 <header>
     {% if carousels %}
-        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-            <!-- <ol class="carousel-indicators">
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <!-- <ol class="carousel-indicators">
                 {% for carousel in carousels %}
                     <li data-target="#carouselExampleIndicators" data-slide-to=" {{ forloop.counter }}" 
                     class=""></li>
                 {% endfor %}
             </ol> -->
-            <div class="carousel-inner" role="listbox">
-                <!-- Slide Carusel Img in Header -->
-                {% for carousel in carousels %}
-                    <div 
-                        {% if carousel.first %}        
-                           id="first" class="carousel-item active"
-                        {% else %}
-                            id="rest-carousel" class="carousel-item"
-                        {% endif %}
-                        style="background-image: url({{ carousel.image.url }})" alt="carousel-image">
-                        <div class="carousel-caption d-none d-md-block">
-                            <h3 class="display-4">{{ carousel.heading }}</h3>
-                            <p class="lead">{{ carousel.paragraph }}</p>
-                        </div>
-                    </div>
-                {% endfor %}
+        <div class="carousel-inner" role="listbox">
+            <!-- Slide Carusel Img in Header -->
+            {% for carousel in carousels %}
+            <div {% if carousel.first %} id="first" class="carousel-item active" {% else %} id="rest-carousel"
+                class="carousel-item" {% endif %} style="background-image: url({{ carousel.image.url }})"
+                alt="carousel-image">
+                <div class="carousel-caption d-none d-md-block">
+                    <h3 class="display-4">{{ carousel.heading }}</h3>
+                    <p class="lead">{{ carousel.paragraph }}</p>
+                </div>
             </div>
-            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
+            {% endfor %}
         </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
     {% endif %}
 </header>
 
 <!-- Bestseller -->
 
-<section id="new-in">
+<section id="bestseller">
     <div class="text-center">
-        <p class="heading-paragraph" >Bestseller</p>
+        <p class="heading-paragraph">Bestseller</p>
     </div>
     <div class="container">
         <div class="card-deck">
-            <div class="card">
-                <img class="card-img-top" src="{% static 'img/products/popvinyl/dustin.png' %}" alt="Card image cap">
-                <div class="card-img-overlay">
-                    <h2>
-                        <div class="badge badge-secondary">£9,99</div>
-                    </h2>
-                </div>
-                <div class="card-body d-flex flex-column">
-                    <h5 class="card-title">Dustin Pop! Vinyl</h5>
-                    <hr>
-                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional
-                        content. This content is a little bit longer.</p>
-                    <hr>
-                    <a href="#" class="mt-auto btn btn-secondary btn-block">ADD TO CART</a>
-                </div>
-            </div>
-            <div class="card">
-                <img class="card-img-top" src="{% static 'img/products/popvinyl/eleven.jpg' %}" alt="Card image cap">
-                <div class="card-img-overlay">
-                        <h2>
-                            <div class="badge badge-secondary">£9,99</div>
-                        </h2>
-                </div>
-                <div class="card-body d-flex flex-column">
-                    <h5 class="card-title">Eleven Pop! Vinyl</h5>
-                    <hr>
-                    <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-                    <hr>
-                    <a href="#" class="mt-auto btn btn-secondary btn-block align-self-end">ADD TO CART</a>
-                </div>
-            </div>
-            <div class="card">
-                <img class="card-img-top" src="{% static 'img/products/popvinyl/johnwick.jpg' %}" alt="Card image cap">
-                <div class="card-img-overlay">
-                        <h2>
-                            <div class="badge badge-secondary">£9,99</div>
-                        </h2>
+            {% for product in bestseller %}
+            <div class="col-auto mb-3">
+                <div class="card">
+                    <img class="card-img-top" src="{{ product.photo_main.url }}" alt="Card image cap">
+                    <div class="card-img-overlay">
+                        {% if product.product_type.types == "Clothes" %}
+                            {% if product.total_cloths_stock == 0 %}
+                                <h2>
+                                    <div class="badge badge-secondary">SOLD OUT!</div>
+                                </h2>
+                            {% else %}
+                                <h2>
+                                    <div class="badge badge-secondary">£{{ product.price}}</div>
+                                </h2>
+                            {% endif %}
+                        {% elif product.stock == 0 %}
+                            <h2>
+                                <div class="badge badge-secondary">SOLD OUT!</div>
+                            </h2>
+                        {% else %}
+                            <h2>
+                                <div class="badge badge-secondary">£{{ product.price }}</div>
+                            </h2>
+                        {% endif %}
                     </div>
-                <div class="card-body d-flex flex-column">
-                    <h5 class="card-title">John Wick Pop! Vinyl</h5>
-                    <hr>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                        content. This card has even longer content than the first to show that equal height action.</p>
-                        <hr>
-                        <a href="#" class="mt-auto btn btn-secondary btn-block">ADD TO CART</a>
+                    <div class="card-body d-flex flex-column">
+                        <h6 class="card-title">{{ product.name }}</h6>
+                        <hr class="hr-card">
+                        <p class="card-text">{{ product.short_description }}</p>
+                        <hr class="hr-card">
+                        <form action="#" method="POST">
+                                {% csrf_token %}
+                                {% if product.product_type.types == "Clothes" %}
+                                <div class="form-row">
+                                    <div class="col form-group text-left">
+                                        <!-- Qunatity -->
+                                        <label for="first_name">Qunatity</label>
+                                        <input type="number" min="1" max="99" name="first_name" class="form-control" value="1" required>
+                                    </div>
+                                    <div class="col form-group text-left">
+                                        <!-- Size -->
+                                        <span>Size</span>
+                                        <select class="browser-default custom-select">
+                                            <option value="" disabled selected>Pick size</option>
+                                            {% for size in size_chart %}
+                                                <option value="{{size.id}}" 
+                                                {% if product.stock_xs == 0 and size.size == 'XS' %}
+                                                    disabled
+                                                {% elif product.stock_s == 0 and size.size == 'S' %}
+                                                    disabled
+                                                {% elif product.stock_m == 0 and size.size == 'M' %}
+                                                    disabled
+                                                {% elif product.stock_l == 0 and size.size == 'L' %}
+                                                    disabled
+                                                {% elif product.stock_xl == 0 and size.size == 'XL' %}
+                                                    disabled
+                                                {% elif product.stock_xxl == 0 and size.size == 'XXL' %}
+                                                    disabled
+                                                {% elif product.stock_XXXL == 0 and size.size == 'XXXL' %}
+                                                    disabled
+                                                {% else %}
+                                                {% endif %}
+                                                >{{size.size}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                                {% else %}
+                                <div class="form-row">
+                                    <div class="col form-group text-left">
+                                        <!-- Qunatity -->
+                                        <label for="first_name">Qunatity</label>
+                                        <input type="number" min="1" max="99" name="first_name" class="form-control" value="1" required>
+                                    </div>
+                                </div>
+                                {% endif %}
+                                <a href="#" class="mt-auto btn btn-secondary btn-block">ADD TO CART</a>
+                            </form>
+                    </div>
                 </div>
             </div>
+            {% endfor %}
         </div>
     </div>
 </section>
@@ -103,57 +134,92 @@
 
 <section id="new-in">
     <div class="text-center">
-        <p class="heading-paragraph" >New In</p>
+        <p class="heading-paragraph">New In</p>
     </div>
-    <div class="container">
-        <div class="card-deck">
-            <div class="card">
-                <img class="card-img-top" src="{% static 'img/products/popvinyl/dustin.png' %}" alt="Card image cap">
-                <div class="card-img-overlay">
-                    <h2>
-                        <div class="badge badge-secondary">£9,99</div>
-                    </h2>
-                </div>
-                <div class="card-body d-flex flex-column">
-                    <h5 class="card-title">Dustin Pop! Vinyl</h5>
-                    <hr>
-                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional
-                        content. This content is a little bit longer.</p>
-                    <hr>
-                    <a href="#" class="mt-auto btn btn-secondary btn-block">ADD TO CART</a>
-                </div>
-            </div>
-            <div class="card">
-                <img class="card-img-top" src="{% static 'img/products/popvinyl/eleven.jpg' %}" alt="Card image cap">
-                <div class="card-img-overlay">
-                        <h2>
-                            <div class="badge badge-secondary">£9,99</div>
-                        </h2>
-                </div>
-                <div class="card-body d-flex flex-column">
-                    <h5 class="card-title">Eleven Pop! Vinyl</h5>
-                    <hr>
-                    <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-                    <hr>
-                    <a href="#" class="mt-auto btn btn-secondary btn-block align-self-end">ADD TO CART</a>
-                </div>
-            </div>
-            <div class="card">
-                <img class="card-img-top" src="{% static 'img/products/popvinyl/johnwick.jpg' %}" alt="Card image cap">
-                <div class="card-img-overlay">
-                        <h2>
-                            <div class="badge badge-secondary">£9,99</div>
-                        </h2>
+    <div class="container-fluid mt-4">
+        <div class="row justify-content-center">
+            {% for product in new_in %}
+            <div class="col-auto mb-3">
+                <div class="card">
+                    <img class="card-img-top" src="{{ product.photo_main.url }}" alt="Card image cap">
+                    <div class="card-img-overlay">
+                        {% if product.product_type.types == "Clothes" %}
+                            {% if product.total_cloths_stock == 0 %}
+                                <h2>
+                                    <div class="badge badge-secondary">SOLD OUT!</div>
+                                </h2>
+                            {% else %}
+                                <h2>
+                                    <div class="badge badge-secondary">£{{ product.price}}</div>
+                                </h2>
+                            {% endif %}
+                        {% elif product.stock == 0 %}
+                            <h2>
+                                <div class="badge badge-secondary">SOLD OUT!</div>
+                            </h2>
+                        {% else %}
+                            <h2>
+                                <div class="badge badge-secondary">£{{ product.price }}</div>
+                            </h2>
+                        {% endif %}
                     </div>
-                <div class="card-body d-flex flex-column">
-                    <h5 class="card-title">John Wick Pop! Vinyl</h5>
-                    <hr>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                        content. This card has even longer content than the first to show that equal height action.</p>
-                        <hr>
-                        <a href="#" class="mt-auto btn btn-secondary btn-block">ADD TO CART</a>
+                    <div class="card-body d-flex flex-column">
+                        <h6 class="card-title">{{ product.name }}</h6>
+                        <hr class="hr-card">
+                        <p class="card-text">{{ product.short_description }}</p>
+                        <hr class="hr-card">
+                        <form action="#" method="POST">
+                            {% csrf_token %}
+                            {% if product.product_type.types == "Clothes" %}
+                            <div class="form-row">
+                                <div class="col form-group text-left">
+                                    <!-- Qunatity -->
+                                    <label for="first_name">Qunatity</label>
+                                    <input type="number" min="1" max="99" name="first_name" class="form-control" value="1" required>
+                                </div>
+                                <div class="col form-group text-left">
+                                    <!-- Size -->
+                                    <span>Size</span>
+                                    <select class="browser-default custom-select">
+                                        <option value="" disabled selected>Pick size</option>
+                                        {% for size in size_chart %}
+                                            <option value="{{size.id}}" 
+                                            {% if product.stock_xs == 0 and size.size == 'XS' %}
+                                                disabled
+                                            {% elif product.stock_s == 0 and size.size == 'S' %}
+                                                disabled
+                                            {% elif product.stock_m == 0 and size.size == 'M' %}
+                                                disabled
+                                            {% elif product.stock_l == 0 and size.size == 'L' %}
+                                                disabled
+                                            {% elif product.stock_xl == 0 and size.size == 'XL' %}
+                                                disabled
+                                            {% elif product.stock_xxl == 0 and size.size == 'XXL' %}
+                                                disabled
+                                            {% elif product.stock_XXXL == 0 and size.size == 'XXXL' %}
+                                                disabled
+                                            {% else %}
+                                            {% endif %}
+                                            >{{size.size}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            {% else %}
+                            <div class="form-row">
+                                <div class="col form-group text-left">
+                                    <!-- Qunatity -->
+                                    <label for="first_name">Qunatity</label>
+                                    <input type="number" min="1" max="99" name="first_name" class="form-control" value="1" required>
+                                </div>
+                            </div>
+                            {% endif %}
+                            <a href="#" class="mt-auto btn btn-secondary btn-block">ADD TO CART</a>
+                        </form>
+                    </div>
                 </div>
             </div>
+            {% endfor %}
         </div>
     </div>
 </section>

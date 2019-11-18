@@ -2,6 +2,8 @@ from django.db import models
 from datetime import datetime
 from django.core.validators import MaxValueValidator, MinValueValidator
 
+from django.db.models import Sum
+
 class ProductType(models.Model):
     types = models.CharField(max_length=150)
     description = models.TextField(blank=True)
@@ -21,7 +23,7 @@ class SizeChart(models.Model):
 
 class Product(models.Model):
     product_type = models.ForeignKey(ProductType, blank=True ,null=True, on_delete=models.SET_NULL)
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=70)
     brand = models.ForeignKey(ProductBrand,blank=True, null=True, on_delete=models.SET_NULL)
     character = models.TextField(max_length=100, blank=True)
     series = models.TextField(max_length=100, blank=True)
@@ -32,11 +34,15 @@ class Product(models.Model):
     size = models.ManyToManyField(SizeChart, blank=True)
     stock = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(9999)])
     stock_xs = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(9999)])
+    stock_s = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(9999)])
     stock_m = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(9999)])
     stock_l = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(9999)])
     stock_xl = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(9999)])
     stock_xxl = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(9999)])
     stock_xxxl = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(9999)])
+    @property
+    def total_cloths_stock(self):
+        return self.stock_xs + self.stock_s + self.stock_m + self.stock_l + self.stock_xl + self.stock_xxl + self.stock_xxxl
     photo_main = models.ImageField(upload_to='photos')
     photo_1 = models.ImageField(upload_to='photos', blank=True)
     photo_2 = models.ImageField(upload_to='photos', blank=True)
