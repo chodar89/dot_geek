@@ -12,7 +12,7 @@ def index(request):
 
     new_in = all_products.order_by('-id')[:12]
 
-    bestseller = all_products.order_by('-buys')[:8]
+    bestseller = all_products.order_by('-buys')[:6]
 
     size_chart = SizeChart.objects.all()
 

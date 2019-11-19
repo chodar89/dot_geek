@@ -7,7 +7,7 @@
   --main-yellow: #f5cb5c;
   --main-white: #fafbfb;
 }
-/* Main & Button and Badges */
+/* Main & Button, Badges and backgrounds */
 
 * {
   box-sizing: border-box;
@@ -18,6 +18,13 @@
 body {
   font-family: 'Noto Sans TC', sans-serif;
   background: var(--main-white);
+}
+
+.sky-bg {
+  background-image: url('../img/sky.png');
+  background-size: contain;
+  background-repeat: repeat-x;
+  height: 300px;
 }
 
 .badge-secondary {
@@ -134,13 +141,19 @@ nav > .container {
 /* Index Page */
 
 .heading-paragraph {
-  color: var(--main-dark);
+  color: var(--main-yellow);
   font-family: 'Lobster', cursive;
   font-size: 3.5rem;
-  font-weight: 600;
   letter-spacing: 1px;
   margin: 45px 0;
-  background-color: var(--main-yellow);
+  background-color: var(--main-dark);
+  padding: 0 80px;
+}
+
+#bestsellers,
+#new-in {
+  position: relative;
+  top: -230px;
 }
 
 /* Home Carusel Images */
@@ -204,10 +217,40 @@ footer {
   margin-top: 50px;
 }
 
+.pipe-wrapper {
+  position: relative;
+  width: 100%;
+  height: 0;
+}
+
+.pipe-mario-plant {
+  position: absolute;
+  background-image: url(../img/pipe_mario_plant.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 473px;
+  width: 499px;
+  top: -462px;
+  left: 54px;
+}
+
+.pipe-plant {
+  position: absolute;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url(../img/pipe_plant.png);
+  height: 530px;
+  width: 162px;
+  top: -294px;
+  right: 51px;
+}
+
 .footer-top-line {
   height: 27px;
   background-color: var(--main-yellow);
   text-align: end;
+  position: relative;
+  top: -25px;
 }
 
 .pacman_run {
