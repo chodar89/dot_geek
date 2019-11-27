@@ -59,6 +59,10 @@ body {
   color: var(--main-white);
 }
 
+.message-container {
+  margin: 15px;
+}
+
 /* All Products */
 
 
