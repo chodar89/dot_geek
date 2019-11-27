@@ -7,7 +7,7 @@
   --main-yellow: #f5cb5c;
   --main-white: #fafbfb;
 }
-/* Main & Button, Badges and backgrounds */
+/* Main Layout, Body & Button, Badges and backgrounds */
 
 * {
   box-sizing: border-box;
@@ -20,11 +20,32 @@ body {
   background: var(--main-white);
 }
 
+#contact, #all-products, #login,
+#register {
+  min-height: calc(100vh - 388px);
+}
+
+#bestseller, #new-in {
+  min-height: calc(50vh - 194px);
+}
+
+#all-products, #contact {
+  margin-top: 112px;
+}
+
+.sky-wrapper {
+  position: relative;
+  width: 100%;
+  height: 0;
+}
+
 .sky-bg {
+  position: absolute;
   background-image: url('../img/sky.png');
   background-size: contain;
   background-repeat: repeat-x;
-  height: 300px;
+  height: 320px;
+  width: 100%;
 }
 
 .badge-secondary {
@@ -38,9 +59,14 @@ body {
   color: var(--main-white);
 }
 
+/* All Products */
+
+
+/* Contact */
+
 /* Product Cards */
 
-.card {
+.product-card {
   height: 39rem;
   width: 18rem;
 }
@@ -148,12 +174,7 @@ nav > .container {
   margin: 45px 0;
   background-color: var(--main-dark);
   padding: 0 80px;
-}
-
-#bestsellers,
-#new-in {
-  position: relative;
-  top: -230px;
+  z-index: 10;
 }
 
 /* Home Carusel Images */
@@ -202,8 +223,7 @@ nav > .container {
 }
 
 .reg-log-form {
-  margin-top: 95px;
-  min-height: calc(100vh - 388px);
+  margin-top: 112px;
 }
 
 /* Footer */

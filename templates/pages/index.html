@@ -36,9 +36,7 @@
     {% endif %}
 </header>
 
-<section id="sky">
-    <div class="sky-bg"></div>
-</section>
+{% include "partials/_sky.html" %}
 
 <!-- Bestsellers -->
 <section id="bestsellers">
@@ -49,7 +47,7 @@
         <div class="row justify-content-center">
             {% for product in bestseller %}
             <div class="col-auto mb-3">
-                <div class="card">
+                <div class="card product-card">
                     <img class="card-img-top" src="{{ product.photo_main.url }}" alt="Card image cap">
                     <div class="card-img-overlay">
                         {% if product.product_type.types == "Clothes" %}
@@ -143,7 +141,7 @@
         <div class="row justify-content-center">
             {% for product in new_in %}
             <div class="col-auto mb-3">
-                <div class="card">
+                <div class="card product-card">
                     <img class="card-img-top" src="{{ product.photo_main.url }}" alt="Card image cap">
                     <div class="card-img-overlay">
                         {% if product.product_type.types == "Clothes" %}
