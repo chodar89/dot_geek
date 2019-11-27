@@ -7,12 +7,14 @@ from django.db.models import Sum
 class ProductType(models.Model):
     types = models.CharField(max_length=150)
     description = models.TextField(blank=True)
+    is_in_navbar_menu = models.BooleanField(default=True)
     def __str__(self):
         return self.types
 
 class ProductBrand(models.Model):
     brands = models.CharField(max_length=150)
     description = models.TextField(blank=True)
+    is_in_navbar_menu = models.BooleanField(default=True)
     def __str__(self):
         return self.brands
 

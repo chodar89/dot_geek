@@ -52,10 +52,9 @@
                         SHOP BY CATEGORY
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">Toys</a>
-                        <a class="dropdown-item" href="#">Figures</a>
-                        <a class="dropdown-item" href="#">Accessories</a>
-                        <a class="dropdown-item" href="#">Clothing</a>
+                        {% for category in nav_menu_category %}
+                            <a class="dropdown-item" href="#">{{ category.types }}</a>
+                        {% endfor %}
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -64,10 +63,9 @@
                             SHOP BY BRAND
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="#">Marvel</a>
-                            <a class="dropdown-item" href="#">DC Comics</a>
-                            <a class="dropdown-item" href="#">Star Wars</a>
-                            <a class="dropdown-item" href="#">Disney</a>
+                            {% for brand in nav_menu_brands %}
+                                <a class="dropdown-item" href="#">{{ brand.brands }}</a>
+                            {% endfor %}
                         </div>
                     </li>
                 <li class="nav-item">

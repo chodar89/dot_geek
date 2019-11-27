@@ -11,11 +11,13 @@ class ProductAdmin(admin.ModelAdmin):
     list_per_page = 50
 
 class BrandAdmin(admin.ModelAdmin):
-    list_display = ('id', 'brands', 'description')
+    list_display = ('id', 'brands', 'description', 'is_in_navbar_menu')
+    list_editable = ('is_in_navbar_menu',)
     list_display_links = ('id', 'brands')
 
 class TypeAdmin(admin.ModelAdmin):
-    list_display = ('id', 'types', 'description')
+    list_display = ('id', 'types', 'description', 'is_in_navbar_menu')
+    list_editable = ('is_in_navbar_menu',)
     list_display_links = ('id', 'types')
 
 admin.site.register(Product, ProductAdmin)
