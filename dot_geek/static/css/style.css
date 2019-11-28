@@ -239,10 +239,16 @@ nav > .container {
 }
 
 .card-hyperlink {
-  z-index: 1010;
+  z-index: 5;
   cursor: pointer;
   text-decoration: none;
   color: var(--main-dark);
+}
+
+.card-img-overlay {
+  z-index: 6;
+  width: 0;
+  height: 0;
 }
 
 .card-hyperlink:hover {
