@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+
 from .models import Product, ProductBrand, ProductType, SizeChart
 
 # Create your views here.
@@ -14,8 +15,12 @@ def all_products(request):
     }
     return render(request, 'products/all_products.html', context)
 
-def product(request):
-    return render(request, 'products/product.html')
+def product(request, product_id):
 
-def search(request):
-    return render(request, 'products/products.html')
+    product = get_object_or_404(Product, pk=product_id)
+
+    context = {
+        'product': product
+    }
+
+    return render(request, 'products/product.html', context)

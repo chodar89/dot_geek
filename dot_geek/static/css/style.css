@@ -20,17 +20,14 @@ body {
   background: var(--main-white);
 }
 
-#contact, #all-products, #login,
-#register {
-  min-height: calc(100vh - 388px);
-}
-
 #bestseller, #new-in {
   min-height: calc(50vh - 194px);
 }
 
-#all-products, #contact {
+#all-products, #contact, #single-product,
+#register, #login  {
   margin-top: 112px;
+  min-height: calc(100vh - 388px);
 }
 
 .sky-wrapper {
@@ -61,43 +58,6 @@ body {
 
 .message-container {
   margin: 15px;
-}
-
-/* All Products */
-
-
-/* Contact */
-
-/* Product Cards */
-
-.product-card {
-  height: 39rem;
-  width: 18rem;
-}
-
-.card-title {
-  min-height: 55px;
-  margin-bottom: 0;
-}
-
-.card-img-top {
-  min-height: 286px;
-  max-height: 286px;
-}
-
-.card-text {
-  min-height: 96px;
-  margin: 0;
-  font-size: 13px;
-}
-
-.hr-card {
-  border-top: 2px solid var(--main-yellow);
-  margin: 0.3rem 0;
-}
-
-.card-body select {
-  margin-top: 8px;
 }
 
 /* Navbar */
@@ -209,6 +169,83 @@ nav > .container {
 .carousel-item p {
   font-family: 'Barlow Condensed', sans-serif;
 }
+
+/* All Products */
+
+/* Product */
+
+.img-container {
+  margin-top: 25px;
+}
+
+.img-container  img {
+  border: solid 1px var(--main-dark);
+  border-radius: 3px;
+}
+
+.product-info > ul {
+  width: 100%;
+}
+
+.product-name-p {
+  font-family: 'Lobster', sans-serif;
+  font-size: 2rem;
+  letter-spacing: 1px;
+  color: var(--main-dark);
+}
+
+.fixed-card {
+  position: fixed;
+  width: 300px;
+  z-index: 10;
+}
+
+/* Contact */
+
+/* Product Cards */
+
+.product-card {
+  height: 39rem;
+  width: 18rem;
+}
+
+.card-title {
+  min-height: 55px;
+  margin-bottom: 0;
+}
+
+.card-img-top {
+  min-height: 286px;
+  max-height: 286px;
+}
+
+.card-text {
+  min-height: 96px;
+  margin: 0;
+  font-size: 13px;
+}
+
+.hr-card {
+  border-top: 2px solid var(--main-yellow);
+  margin: 0.3rem 0;
+}
+
+.card-body select {
+  margin-top: 8px;
+}
+
+.card-hyperlink {
+  z-index: 1010;
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--main-dark);
+}
+
+.card-hyperlink:hover {
+  color: var(--main-grey);
+  text-decoration: none;
+}
+
 /* Login / Register */
 
 .card-header {
@@ -224,10 +261,6 @@ nav > .container {
 .card-register-login {
   margin-top: 95px;
   background-color: var(--main-white);
-}
-
-.reg-log-form {
-  margin-top: 112px;
 }
 
 /* Footer */
@@ -328,4 +361,13 @@ footer {
 .address {
   text-align: left;
   font-size: 1rem;
+}
+
+/* Media Query */
+
+@media (max-width: 992px) {
+  #all-products, #contact, #single-product,
+  #register, #login  {
+  margin-top: 108px;
+}
 }

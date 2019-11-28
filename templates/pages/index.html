@@ -51,7 +51,9 @@
             {% for product in bestseller %}
             <div class="col-auto mb-3">
                 <div class="card product-card">
-                    <img class="card-img-top" src="{{ product.photo_main.url }}" alt="Card image cap">
+                    <a href="{% url 'product' product.id %}" class="card-hyperlink">
+                        <img class="card-img-top" src="{{ product.photo_main.url }}" alt="Card image cap">
+                    </a>
                     <div class="card-img-overlay">
                         {% if product.product_type.types == "Clothes" %}
                             {% if product.total_cloths_stock == 0 %}
@@ -74,7 +76,9 @@
                         {% endif %}
                     </div>
                     <div class="card-body d-flex flex-column">
-                        <h6 class="card-title">{{ product.name }}</h6>
+                        <a href="{% url 'product' product.id %}" class="card-hyperlink">
+                            <h6 class="card-title">{{ product.name }}</h6>
+                        </a>
                         <hr class="hr-card">
                         <p class="card-text">{{ product.short_description }}</p>
                         <hr class="hr-card">
@@ -145,7 +149,9 @@
             {% for product in new_in %}
             <div class="col-auto mb-3">
                 <div class="card product-card">
-                    <img class="card-img-top" src="{{ product.photo_main.url }}" alt="Card image cap">
+                    <a href="{% url 'product' product.id %}" class="card-hyperlink">
+                        <img class="card-img-top" src="{{ product.photo_main.url }}" alt="Card image cap">
+                    </a>
                     <div class="card-img-overlay">
                         {% if product.product_type.types == "Clothes" %}
                             {% if product.total_cloths_stock == 0 %}
@@ -168,7 +174,9 @@
                         {% endif %}
                     </div>
                     <div class="card-body d-flex flex-column">
-                        <h6 class="card-title">{{ product.name }}</h6>
+                        <a href="{% url 'product' product.id %}" class="card-hyperlink">
+                            <h6 class="card-title">{{ product.name }}</h6>
+                        </a>
                         <hr class="hr-card">
                         <p class="card-text">{{ product.short_description }}</p>
                         <hr class="hr-card">
