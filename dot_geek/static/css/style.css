@@ -34,6 +34,7 @@ body {
   position: relative;
   width: 100%;
   height: 0;
+  z-index: -2;
 }
 
 .sky-bg {
@@ -172,6 +173,10 @@ nav > .container {
 
 /* All Products */
 
+#all-products > div.container {
+  margin-top: 100px;
+} 
+
 /* Product */
 
 .img-container {
@@ -197,7 +202,6 @@ nav > .container {
 .fixed-card {
   position: fixed;
   width: 300px;
-  z-index: 10;
 }
 
 /* Contact */
@@ -278,6 +282,7 @@ footer {
   position: relative;
   width: 100%;
   height: 0;
+  z-index: -2;
 }
 
 .pipe-mario-plant {

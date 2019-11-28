@@ -1,1 +1,9 @@
-<h1>Dashboard</h1>
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} | Dashboard {% endblock %}
+{% block content %}
+<section id="contact">
+    {% include "partials/_sky.html" %}
+    <h1 class="text-center">Dashboard</h1>
+</section>
+{% endblock %}
