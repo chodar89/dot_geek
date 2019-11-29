@@ -1,0 +1,43 @@
+<div class="card search-form-div">
+    <div class="card-header">
+        <i class="fas fa-search"></i> &nbsp;Search
+    </div>
+    <form action="{% url 'search' %}">
+        <div class="form-row d-flex justify-content-center">
+            <div class="col-md-3 mb-3 mt-3 ml-3">
+                <label class="sr-only">Keywords</label>
+                <input type="text" placeholder="Search keywords" name="keywords" class="form-control">
+            </div>
+            <div class="col-md-3 mb-3 mt-3">
+                <label class="sr-only">Brand</label>
+                <select name="brand" class="form-control">
+                    <option selected="true" disabled="disabled">All Brands</option>
+                    {% for brand in get_brands %}
+                        <option value="{{brand.id}}">{{brand.brands}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-3 mb-3 mt-3 mr-3">
+                <label class="sr-only">Categories</label>
+                <select name="type" class="form-control">
+                    <option selected="true" disabled="disabled">All Categories</option>
+                    {% for type in get_types %}
+                        <option value="{{type.id}}">{{type.types}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-4 mb-3">
+
+            </div>
+            <div class="col-md-4 mb-3">
+
+            </div>
+            <div class="col-md-4 mb-3">
+
+            </div>
+        </div> 
+        <button type="submit" class="btn btn-secondary btn-block btn-search"><i class="fas fa-search"></i> SEARCH</button>
+    </form>
+</div>

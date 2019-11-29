@@ -256,6 +256,20 @@ nav > .container {
   text-decoration: none;
 }
 
+/* Search */
+
+.search-form-div {
+  width: 80%;
+  margin: auto;
+  margin-bottom: 70px;
+}
+
+.btn-search {
+  width: 200px;
+  margin: auto;
+  margin-bottom: 10px;
+}
+
 /* Login / Register */
 
 .card-header {
