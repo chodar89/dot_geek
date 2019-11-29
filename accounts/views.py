@@ -3,6 +3,7 @@ from django.contrib import messages, auth
 from django.contrib.auth.models import User
 
 def register(request):
+    """ Register function that check user name and email is it unique """
     if request.method == 'POST':
         # Get values from registration form
         first_name = request.POST['first_name']
@@ -35,6 +36,7 @@ def register(request):
     return render(request, 'accounts/register.html')
 
 def login(request):
+    """ Login user authentication """
     if request.method == 'POST':
         uname = request.POST['uname']
         password = request.POST['password']
@@ -51,10 +53,12 @@ def login(request):
     return render(request, 'accounts/login.html')
 
 def logout(request):
+    """ Simple logout """
     if request.method == 'POST':
         auth.logout(request)
         messages.success(request, 'You are logged out')
     return redirect('index')
 
 def dashboard(request):
+    """ User dahsboard page """
     return render(request, 'accounts/dashboard.html')
