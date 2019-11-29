@@ -25,7 +25,7 @@ body {
 }
 
 #all-products, #contact, #single-product,
-#register, #login  {
+#register, #login, #search  {
   margin-top: 112px;
   min-height: calc(100vh - 388px);
 }
@@ -260,6 +260,7 @@ nav > .container {
 
 .search-form-div {
   width: 80%;
+  max-width: 918px;
   margin: auto;
   margin-bottom: 70px;
 }
@@ -268,6 +269,12 @@ nav > .container {
   width: 200px;
   margin: auto;
   margin-bottom: 10px;
+}
+
+.keyword-div {
+  position: relative;
+  left: -18px;
+  padding: 0px;
 }
 
 /* Login / Register */

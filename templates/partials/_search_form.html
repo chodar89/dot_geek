@@ -4,10 +4,12 @@
     </div>
     <form action="{% url 'search' %}">
         <div class="form-row d-flex justify-content-center">
-            <div class="col-md-3 mb-3 mt-3 ml-3">
+            <div class="col-md-9 mb-3 mt-3 ml-3 keyword-div">
                 <label class="sr-only">Keywords</label>
-                <input type="text" placeholder="Search keywords" name="keywords" class="form-control">
+                <input type="text" placeholder="Search e.g.(series, character or item name)" name="keywords" class="form-control">
             </div>
+        </div>
+        <div class="form-row d-flex justify-content-center">
             <div class="col-md-3 mb-3 mt-3">
                 <label class="sr-only">Brand</label>
                 <select name="brand" class="form-control">
@@ -24,6 +26,17 @@
                     {% for type in get_types %}
                         <option value="{{type.id}}">{{type.types}}</option>
                     {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-3 mb-3 mt-3 mr-3">
+                <label class="sr-only">Price range</label>
+                <select name="price-range" class="form-control">
+                    <option selected="true" disabled="disabled">Price range:</option>
+                    <option value="0-10">Up to £10</option>
+                    <option value="10-20">£10-£20</option>
+                    <option value="20-30">£20-£30</option>
+                    <option value="40-50">£40-£50</option>
+                    <option value="50+">Over £50</option>
                 </select>
             </div>
         </div>
