@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render
 from django.db.models import Q
 
 from products.models import ProductBrand, ProductType, Product, SizeChart
