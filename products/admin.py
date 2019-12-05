@@ -8,7 +8,9 @@ class ProductAdmin(admin.ModelAdmin):
     list_filter = ('product_type', 'brand')
     list_editable = ('is_for_sale', 'stock')
     search_fields = ('name', 'description', 'series', 'character', 'short_description')
+    readonly_fields = ('created_at',)
     list_per_page = 50
+
 
 class BrandAdmin(admin.ModelAdmin):
     list_display = ('id', 'brands', 'description', 'is_in_navbar_menu')
