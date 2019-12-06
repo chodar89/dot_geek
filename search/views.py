@@ -69,14 +69,18 @@ def search(request):
 def navbar_brand(request, brand_id):
     """ Get all products with brand id from dropdown navbar """
 
-    # Get all filtered products ordered by(newest first)
-    search_products = Product.objects.all().filter(is_for_sale=True).filter(brand=brand_id).order_by('-created_at')
-
     get_brands = ProductBrand.objects.all()
 
     get_types = ProductType.objects.all()
 
     size_chart = SizeChart.objects.all()
+
+    get_nav_brand_name = get_brands.filter(id=brand_id).values('brand_name')
+
+    # Get all filtered products ordered by(newest first)
+    search_products = Product.objects.all().filter(
+        is_for_sale=True).filter(Q(brand=brand_id)|
+                                 Q(series__icontains=get_nav_brand_name)).order_by('-created_at')
 
     context = {
         "get_brands": get_brands,

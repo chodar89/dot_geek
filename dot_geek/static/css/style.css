@@ -211,6 +211,7 @@ nav > .container {
 .product-card {
   height: 39rem;
   width: 18rem;
+  overflow: hidden;
 }
 
 .card-title {
@@ -219,8 +220,9 @@ nav > .container {
 }
 
 .card-img-top {
-  min-height: 286px;
-  max-height: 286px;
+  min-height: 235px;
+  max-height: 235px;
+  width: auto;
 }
 
 .card-text {
@@ -243,6 +245,8 @@ nav > .container {
   cursor: pointer;
   text-decoration: none;
   color: var(--main-dark);
+  display: flex;
+  justify-content: center;
 }
 
 .card-img-overlay {

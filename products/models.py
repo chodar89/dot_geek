@@ -1,5 +1,4 @@
 from django.db import models
-from datetime import datetime
 from django.core.validators import MaxValueValidator, MinValueValidator
 
 
@@ -14,7 +13,7 @@ class ProductType(models.Model):
 
 class ProductBrand(models.Model):
     """ Product brands model with option to show in the dropdown nav bar """
-    brands = models.CharField(max_length=150)
+    brand_name = models.CharField(max_length=150)
     description = models.TextField(blank=True)
     is_in_navbar_menu = models.BooleanField(default=True)
     def __str__(self):
@@ -36,7 +35,7 @@ class Product(models.Model):
     description = models.TextField(max_length=500, blank=True)
     short_description = models.TextField(max_length=180, blank=True)
     buys = models.IntegerField(default=0, validators=[MinValueValidator(0)])
-    price = models.DecimalField(max_digits=4, decimal_places=2)
+    price = models.DecimalField(max_digits=5, decimal_places=2)
     stock = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(9999)])
     stock_xs = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(9999)])
     stock_s = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(9999)])

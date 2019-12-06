@@ -76,7 +76,7 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             {% for brand in nav_menu_brands %}
-                                <a class="dropdown-item" href="{% url 'navbar_brand' brand.id %}">{{ brand.brands }}</a>
+                                <a class="dropdown-item" href="{% url 'navbar_brand' brand.id %}">{{ brand.brand_name }}</a>
                             {% endfor %}
                         </div>
                     </li>

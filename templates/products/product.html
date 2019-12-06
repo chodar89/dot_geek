@@ -8,8 +8,10 @@
         <div class="row img-container">
             <div class="col-md-6 offset-md-2">
                 <!-- Main Image -->
-                <img src="{{ product.photo_main.url }}" alt="Main product photo" class="img-fluid rounded mb-3">
-                <!-- Mini gallery from LightBox -->
+                <a href="{{ product.photo_main.url }}" data-lightbox="home-images">
+                    <img src="{{ product.photo_main.url }}" alt="Main product photo" class="img-fluid rounded mb-3">
+                </a>
+                <!-- Mini gallery with LightBox -->
                 <div class="row">
                     {% if product.photo_1 %}
                     <div class="col-md-4">
