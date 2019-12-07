@@ -11,4 +11,4 @@ def test_context(request):
         "nav_menu_category": nav_menu_category,
     }
 
-    return (context)
+    return context
