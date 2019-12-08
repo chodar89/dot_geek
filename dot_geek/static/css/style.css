@@ -213,7 +213,7 @@ nav > .container {
   margin-right: 21px;
 }
 
-.cart-product-img > img {
+.cart-product-img > a > img {
   width: 80px;
   margin-right: 21px;
 }
@@ -225,6 +225,16 @@ nav > .container {
 .product-cart-title {
   width: 60%;
   text-align: left;
+}
+
+.product-cart-title > a {
+  text-decoration: none;
+  color: var(--main-dark);
+  transition: 0.2s ease-in-out;
+}
+
+.product-cart-title > a:hover {
+  color: var(--main-orange);
 }
 
 .total-cart {

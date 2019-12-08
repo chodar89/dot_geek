@@ -15,10 +15,13 @@
                         {% for item in cart_items %}
                             <div class="cart-product d-flex justify-content-between">
                                 <div class="cart-product-img">
-                                    <img src="{{ item.product.photo_main.url }}" alt="Product photo">
+                                    <a href="{% url 'product' item.product.id %}" class="">
+                                        <img src="{{ item.product.photo_main.url }}" alt="Product photo">
+                                    </a>
                                 </div>
                                 <div class="product-cart-title">
-                                    {{ item.product.name }}
+                                    <a href="{% url 'product' item.product.id %}" class="">{{ item.product.name }}
+                                    </a>
                                 </div>
                                 <div class="product-cart-price">
                                     £{{ item.product.price }} x {{ item.quantity}}
