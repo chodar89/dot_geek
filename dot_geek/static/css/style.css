@@ -204,6 +204,34 @@ nav > .container {
   width: 300px;
 }
 
+/* Cart */
+
+.cart-product-img {
+  height: 50px;
+  width: 80px!important;
+  overflow: hidden;
+  margin-right: 21px;
+}
+
+.cart-product-img > img {
+  width: 80px;
+  margin-right: 21px;
+}
+
+.product-cart-price {
+  margin-left: 15px;
+}
+
+.product-cart-title {
+  width: 60%;
+  text-align: left;
+}
+
+.total-cart {
+  text-align: end;
+  font-weight: 600;
+}
+
 /* Contact */
 
 /* Product Cards */

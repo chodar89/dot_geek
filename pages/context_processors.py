@@ -1,6 +1,6 @@
 from products.models import ProductBrand, ProductType
 
-def test_context(request):
+def get_brands_types_for_navbar(request):
 
     nav_menu_brands = ProductBrand.objects.all().filter(is_in_navbar_menu=True)
 

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} | Cart {% endblock %}
+{% block content %}
+{% include "partials/_sky.html" %}
+<section id="login">
+    <div class="container cart-home">
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                <div class="card card-register-login">
+                    <div class="card-header">
+                        <i class="fas fa-shopping-cart"></i> &nbsp;SHOPPING CART
+                    </div>
+                    <div class="card-body">
+                        {% for item in cart_items %}
+                            <div class="cart-product d-flex justify-content-between">
+                                <div class="cart-product-img">
+                                    <img src="{{ item.product.photo_main.url }}" alt="Product photo">
+                                </div>
+                                <div class="product-cart-title">
+                                    {{ item.product.name }}
+                                </div>
+                                <div class="product-cart-price">
+                                    £{{ item.product.price }} x {{ item.quantity}}
+                                </div>
+                            </div>
+                            <hr>
+                        {% endfor %}
+                        <div class="total-cart d-flex flex-column"> 
+                            <p> Items: {{ counter }}</p>
+                            <p>Total: £{{ total }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

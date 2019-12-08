@@ -17,7 +17,7 @@ class ProductBrand(models.Model):
     description = models.TextField(blank=True)
     is_in_navbar_menu = models.BooleanField(default=True)
     def __str__(self):
-        return self.brands
+        return self.brand_name
 
 class SizeChart(models.Model):
     """ Size chart for clothes """
