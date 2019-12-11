@@ -30,43 +30,46 @@ def add_to_cart(request, product_id):
     """
     Add product to cart view
     """
-    product = Product.objects.get(id=product_id)
-    user_id = _get_user_or_none(request)
-    session_cart_id = _cart_id(request)
-    print("user +")
-    print(user_id)
-    try:
-        # Check if cart already exists in database
-        if user_id:
-            cart = Cart.objects.get(user=user_id)
-            # CartItem.objects.filter(cart__cart_id=session_cart_id).update(cart=cart.id)
-        else:
-            cart = Cart.objects.get(cart_id=session_cart_id)
-    except Cart.DoesNotExist:
-        # Insert data to DB
-        if user_id:
-            cart = Cart.objects.create(
-                cart_id=session_cart_id,
-                user=User(id=user_id)
-                )
-        else:
-            cart = Cart.objects.create(
-                cart_id=session_cart_id,
-                )
-        cart.save()
-    try:
-        # Try to check if item is in cart and rise quantity
-        cart_item = CartItem.objects.get(product=product, cart=cart)
-        cart_item.quantity += 1
-        cart_item.save()
-    except CartItem.DoesNotExist:
-        # Insert item to DB
-        cart_item = CartItem.objects.create(
-            product=product,
-            quantity=1,
-            cart=cart
-        )
-        cart_item.save()
+    if request.method == 'POST':
+        item_qnty = int(request.POST.get('quantity'))
+        size = request.POST.get('size')
+        product = Product.objects.get(id=product_id)
+        user_id = _get_user_or_none(request)
+        session_cart_id = _cart_id(request)
+        print("user +")
+        print(user_id)
+        try:
+            # Check if cart already exists in database
+            if user_id:
+                cart = Cart.objects.get(user=user_id)
+                # CartItem.objects.filter(cart__cart_id=session_cart_id).update(cart=cart.id)
+            else:
+                cart = Cart.objects.get(cart_id=session_cart_id)
+        except Cart.DoesNotExist:
+            # Insert data to DB
+            if user_id:
+                cart = Cart.objects.create(
+                    cart_id=session_cart_id,
+                    user=User(id=user_id)
+                    )
+            else:
+                cart = Cart.objects.create(
+                    cart_id=session_cart_id,
+                    )
+            cart.save()
+        try:
+            # Try to check if item is in cart and rise quantity
+            cart_item = CartItem.objects.get(product=product, cart=cart)
+            cart_item.quantity += item_qnty
+            cart_item.save()
+        except CartItem.DoesNotExist:
+            # Insert item to DB
+            cart_item = CartItem.objects.create(
+                product=product,
+                quantity=item_qnty,
+                cart=cart
+            )
+            cart_item.save()
     return redirect('cart_details')
 
 def cart_details(request):

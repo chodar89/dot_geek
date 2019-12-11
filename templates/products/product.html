@@ -61,12 +61,16 @@
                         <li class="list-group-item">
                             <i class="fas fa-cubes"></i> Stock: 
                             <span class="float-right"> 
-                                {% if product.stock > 99 %}
-                                    99+
-                                {% elif product.stock == 0 %}
+                                {% if product.total_stock > 99 %}
+                                    Horde
+                                {% elif product.total_stock > 50 %}
+                                    Lots
+                                {% elif product.total_stock > 10 %}
+                                    Many
+                                {% elif product.total_stock > 0 %}
+                                    Several
+                                {% elif product.total_stock == 0 %}
                                     OUT OF STOCK
-                                {% else %}
-                                    {{ product.stock }}
                                 {% endif %}
                             </span>
                         </li>
@@ -95,65 +99,22 @@
                             <span>
                                 <i class="fas fa-cubes"></i> Stock: 
                             </span>
-                            <span>
-                                {% if product.stock > 99 %}
-                                    99+
-                                {% elif product.stock == 0 %}
+                            <span class="float-right"> 
+                                {% if product.total_stock > 99 %}
+                                    Horde
+                                {% elif product.total_stock > 50 %}
+                                    Lots
+                                {% elif product.total_stock > 10 %}
+                                    Many
+                                {% elif product.total_stock > 0 %}
+                                    Several
+                                {% elif product.total_stock == 0 %}
                                     OUT OF STOCK
-                                {% else %}
-                                    {{ product.stock }}
                                 {% endif %}
                             </span>
                         </div>
                         <hr class="hr-card">
-                        <form action="#" method="POST">
-                            {% csrf_token %}
-                            {% if product.product_type.types == "Clothes" %}
-                            <div class="form-row">
-                                <div class="col form-group text-left">
-                                    <!-- Qunatity -->
-                                    <label for="first_name">Qunatity</label>
-                                    <input type="number" min="1" max="99" name="first_name" class="form-control" value="1" required>
-                                </div>
-                                <div class="col form-group text-left">
-                                    <!-- Size -->
-                                    <span>Size</span>
-                                    <select class="browser-default custom-select">
-                                        <option value="" disabled selected>Pick size</option>
-                                        {% for size in size_chart %}
-                                            <option value="{{size.id}}" 
-                                            {% if product.stock_xs == 0 and size.size == 'XS' %}
-                                                disabled
-                                            {% elif product.stock_s == 0 and size.size == 'S' %}
-                                                disabled
-                                            {% elif product.stock_m == 0 and size.size == 'M' %}
-                                                disabled
-                                            {% elif product.stock_l == 0 and size.size == 'L' %}
-                                                disabled
-                                            {% elif product.stock_xl == 0 and size.size == 'XL' %}
-                                                disabled
-                                            {% elif product.stock_xxl == 0 and size.size == 'XXL' %}
-                                                disabled
-                                            {% elif product.stock_XXXL == 0 and size.size == 'XXXL' %}
-                                                disabled
-                                            {% else %}
-                                            {% endif %}
-                                            >{{size.size}}</option>
-                                        {% endfor %}
-                                    </select>
-                                </div>
-                            </div>
-                            {% else %}
-                            <div class="form-row">
-                                <div class="col form-group text-left">
-                                    <!-- Qunatity -->
-                                    <label for="first_name">Qunatity</label>
-                                    <input type="number" min="1" max="99" name="first_name" class="form-control" value="1" required>
-                                </div>
-                            </div>
-                            {% endif %}
-                            <a href="{% url 'add_to_cart' product.id %}" class="mt-auto btn btn-secondary btn-block">ADD TO CART</a>
-                        </form>
+                        {% include 'partials/_card_buy_form.html' %}
                     </div>
                 </div>
             </div>

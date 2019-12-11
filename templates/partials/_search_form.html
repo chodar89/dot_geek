@@ -3,6 +3,7 @@
         <i class="fas fa-search"></i> &nbsp;Search
     </div>
     <form action="{% url 'search' %}">
+        {% csrf_token %}
         <div class="form-row d-flex justify-content-center">
             <div class="col-md-9 mb-3 mt-3 ml-3 keyword-div">
                 <label class="sr-only">Keywords</label>

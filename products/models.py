@@ -37,6 +37,7 @@ class Product(models.Model):
     buys = models.IntegerField(default=0, validators=[MinValueValidator(0)])
     price = models.DecimalField(max_digits=5, decimal_places=2)
     stock = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(9999)])
+    apply_sizes = models.BooleanField(default=False)
     stock_xs = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(9999)])
     stock_s = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(9999)])
     stock_m = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(9999)])
@@ -46,8 +47,8 @@ class Product(models.Model):
     stock_xxxl = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(9999)])
     # Add all sizes stock and pass it as property
     @property
-    def total_cloths_stock(self):
-        return self.stock_xs + self.stock_s + self.stock_m + self.stock_l + self.stock_xl + self.stock_xxl + self.stock_xxxl
+    def total_stock(self):
+        return  self.stock + self.stock_xs + self.stock_s + self.stock_m + self.stock_l + self.stock_xl + self.stock_xxl + self.stock_xxxl
     photo_main = models.ImageField(upload_to='photos/products/%Y/%m/%d')
     photo_1 = models.ImageField(upload_to='photos/products/%Y/%m/%d', blank=True)
     photo_2 = models.ImageField(upload_to='photos/products/%Y/%m/%d', blank=True)

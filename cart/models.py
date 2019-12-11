@@ -1,6 +1,6 @@
 from django.db import models
 
-from products.models import Product
+from products.models import Product, SizeChart
 from django.contrib.auth.models import User
 
 
@@ -19,6 +19,7 @@ class CartItem(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
     quantity = models.IntegerField()
+    item_size = models.ForeignKey(SizeChart, blank=True, null=True, on_delete=models.CASCADE)
     active = models.BooleanField(default=True)
 
     def sub_total(self):
