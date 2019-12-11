@@ -1,13 +1,13 @@
 language: python # => 1
     python: # => 2
-      - "3.7.5"
+      - 3.7.5
     services: # => 3
-      - posfresql
+      - postgresql
     env: # => 4
-      -DJANGO=1.8 DB=posfresql
+      - DJANGO=3.0 DB=postgresql
     install: # => 5
       - pip install -r requirements.txt
     before_script: # => 6
-      - psql -c 'create database ledenbestand;' -U postgres
+      - psql -c 'create database dot_geek_test;' -U postgres
     script: # => 7
       - python manage.py test
