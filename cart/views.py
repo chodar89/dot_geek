@@ -34,6 +34,8 @@ def add_to_cart(request, product_id):
         item_qnty = int(request.POST.get('quantity'))
         size = request.POST.get('size')
         product = Product.objects.get(id=product_id)
+        if item_qnty > product.stock:
+            item_qnty = product.stock
         user_id = _get_user_or_none(request)
         session_cart_id = _cart_id(request)
         print("user +")

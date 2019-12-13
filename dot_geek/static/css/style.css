@@ -15,6 +15,10 @@
   padding: 0;
 }
 
+.btn {
+  border-radius: 0 !important;
+}
+
 body {
   font-family: 'Noto Sans TC', sans-serif;
   background: var(--main-white);
@@ -242,6 +246,57 @@ nav > .container {
   font-weight: 600;
 }
 
+.stripe-button-el {
+  width: 100% !important;
+  margin-bottom: 10px;
+  border-radius: 0 !important;
+  background-image: none !important;
+  background-color: var(--main-dark) !important;
+  font-family: 'Noto Sans TC', sans-serif !important;
+  text-transform: uppercase;
+  transition: 0.2s ease-in-out;
+}
+
+.stripe-button-el span {
+  background-image: none !important;
+  background-color: var(--main-dark) !important;
+  font-family: 'Noto Sans TC', sans-serif !important;
+  font-size: 17px !important;
+  font-weight: normal !important;
+  height: 38px !important;
+  line-height: 34px !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  letter-spacing: 1px;
+  transition: 0.2s ease-in-out;
+}
+
+.stripe-button-el:hover,
+.stripe-button-el span:hover {
+  background-color: var(--main-grey) !important;
+}
+
+
+#continue-btn {
+  background-color: var(--main-white);
+  color: var(--main-dark);
+  border: solid 2px;
+  font-weight: 600;
+  transition: 0.2s ease-in-out;
+}
+
+#continue-btn:hover {
+  background-color: var(--main-dark) !important;
+  color: var(--main-white) !important;
+  border: solid 2px var(--main-dark);
+}
+
+.fa-gifts {
+  font-size: 4rem;
+  margin-right: 60px;
+  color: #ed6a5a;
+}
+
 /* Contact */
 
 /* Product Cards */
@@ -331,7 +386,9 @@ nav > .container {
   letter-spacing: 1px;
 }
 
-.card-register-login {
+.card-register-login,
+.card-cart,
+.card-checkout {
   margin-top: 95px;
   background-color: var(--main-white);
 }

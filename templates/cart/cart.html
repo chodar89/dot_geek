@@ -6,8 +6,8 @@
 <section id="login">
     <div class="container cart-home">
         <div class="row">
-            <div class="col-md-8 mx-auto">
-                <div class="card card-register-login">
+            <div class="col-md-7 mx-auto">
+                <div class="card card-cart">
                     <div class="card-header">
                         <i class="fas fa-shopping-cart"></i> &nbsp;SHOPPING CART
                     </div>
@@ -25,14 +25,49 @@
                                 </div>
                                 <div class="product-cart-price">
                                     £{{ item.product.price }} x {{ item.quantity}}
+                                    {{ only_left }}
                                 </div>
                             </div>
                             <hr>
                         {% endfor %}
-                        <div class="total-cart d-flex flex-column"> 
-                            <p> Items: {{ counter }}</p>
-                            <p>Total: £{{ total }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5 mx-auto">
+                <div class="card card-checkout">
+                    <div class="card-header">
+                        <i class="far fa-credit-card"></i> &nbsp;CHECKOUT
+                    </div>
+                    <div class="card-body">
+                        <div>
+                            <p>Please review your shopping cart items beofre proceeding with the order payment.</p>
                         </div>
+                        <hr>
+                        <div class="d-flex justify-content-between">
+                            <div class="font-weight-bold">
+                                <p>Items: {{ counter }}</p>
+                                <p>Total: £{{ total }}</p>
+                            </div>
+                            <i class="fas fa-gifts"></i>
+                        </div>
+                        <hr>
+                        <form action="" method="POST">
+                            {% csrf_token %}
+                          <script
+                            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                            data-key="{{ data_key }}"
+                            data-amount="{{ stripe_total }}"
+                            data-name="Dot Geek Shop"
+                            data-description="{{ description }}"
+                            data-image="{% static 'img/logo/dotgeek_black.png' %}"
+                            data-locale="auto"
+                            data-currency="gbp"
+                            data-shipping-address="true"
+                            data-billing-address="true"
+                            data-zip-code="true">
+                          </script>
+                        </form>
+                        <a href="{% url 'all_products' %}" id="continue-btn" class="btn btn-secondary btn-block ">CONTINUE SHOPPING</a>
                     </div>
                 </div>
             </div>
