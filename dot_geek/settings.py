@@ -73,7 +73,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'products.context_processors.get_brands_types_for_navbar',
-                'cart.context_processors.cart_details',
+                'cart.context_processors.item_counter',
             ],
         },
     },

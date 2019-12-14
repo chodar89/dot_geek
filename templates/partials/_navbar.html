@@ -90,13 +90,13 @@
                     <a class="nav-link" href="{% url 'contact' %}">CONTACT</a>
                 </li>
                 <li
-                    {% if counter != 0 %}
+                    {% if item_count != 0 %}
                         class="nav-item active"
                     {% else %}
                         class="nav-item"
                     {% endif %}
                     >
-                    <a class="nav-link" href="{% url 'cart_details' %}"><i class="fas fa-shopping-cart"></i> {{  counter  }}</a>
+                    <a class="nav-link" href="{% url 'cart_details' %}"><i class="fas fa-shopping-cart"></i> {{  item_count  }}</a>
                 </li>
             </ul>
         </div>

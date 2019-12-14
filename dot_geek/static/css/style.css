@@ -224,6 +224,11 @@ nav > .container {
 
 .product-cart-price {
   margin-left: 15px;
+  min-width: 70px;
+}
+
+.product-cart-price i {
+  font-size: 20px;
 }
 
 .product-cart-title {
@@ -294,7 +299,29 @@ nav > .container {
 .fa-gifts {
   font-size: 4rem;
   margin-right: 60px;
-  color: #ed6a5a;
+  color: var(--main-orange);
+}
+
+.fa-window-close {
+  color: var(--main-orange);
+  transition: ease-in-out 0.2s;
+}
+
+.fa-window-close:hover {
+  color: #ff0000;
+  cursor: pointer;
+}
+
+.fa-minus-square,
+.fa-plus-square {
+  color: var(--main-grey);
+  transition: 0.2s ease-in-out;
+}
+
+.fa-minus-square:hover,
+.fa-plus-square:hover {
+  cursor: pointer;
+  color: var(--main-dark);
 }
 
 /* Contact */
