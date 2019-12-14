@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Q
 
-from products.models import Product
+from products.models import Product, SizeChart
 from .models import Cart, CartItem
 from django.contrib.auth.models import User
 
@@ -25,21 +25,24 @@ def _cart_id(request):
         print('New Cart Id')
     return cart_id
 
+# def _check_clothing_stock(size, stock):
+#     if size == 
 
 def add_to_cart(request, product_id):
     """
     Add product to cart view
     """
     if request.method == 'POST':
-        item_qnty = int(request.POST.get('quantity'))
-        size = request.POST.get('size')
+        # Get item qnty and size from product card panel form
+        get_item_qnty = int(request.POST.get('quantity'))
+        get_item_size = request.POST.get('size')
+        try:
+            size = SizeChart.objects.get(id=get_item_size)
+        except ObjectDoesNotExist:
+            size = None
         product = Product.objects.get(id=product_id)
-        if item_qnty > product.stock:
-            item_qnty = product.stock
         user_id = _get_user_or_none(request)
         session_cart_id = _cart_id(request)
-        print("user +")
-        print(user_id)
         try:
             # Check if cart already exists in database
             if user_id:
@@ -61,15 +64,16 @@ def add_to_cart(request, product_id):
             cart.save()
         try:
             # Try to check if item is in cart and rise quantity
-            cart_item = CartItem.objects.get(product=product, cart=cart)
-            cart_item.quantity += item_qnty
+            cart_item = CartItem.objects.get(product=product, cart=cart, item_size=size)
+            cart_item.quantity += get_item_qnty
             cart_item.save()
         except CartItem.DoesNotExist:
             # Insert item to DB
             cart_item = CartItem.objects.create(
                 product=product,
-                quantity=item_qnty,
-                cart=cart
+                quantity=get_item_qnty,
+                cart=cart,
+                item_size=size
             )
             cart_item.save()
     return redirect('cart_details')

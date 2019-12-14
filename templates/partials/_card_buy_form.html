@@ -10,7 +10,7 @@
         <div class="col form-group text-left">
             <!-- Size -->
             <span>Size</span>
-            <select name="size" class="browser-default custom-select font-weight-bold">
+            <select name="size" class="browser-default custom-select font-weight-bold" required>
                 <option class="font-weight-bold" value="" disabled selected>Pick size</option>
                 {% if product.total_stock == 0 %}
                     {% for size in size_chart %}

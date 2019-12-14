@@ -6,6 +6,9 @@
 <section id="login">
     <div class="container cart-home">
         <div class="row">
+            <div class="mt-2" style="width: 100%;" >
+                {% include 'partials/_messages.html' %}
+            </div>
             <div class="col-md-7 mx-auto">
                 <div class="card card-cart">
                     <div class="card-header">
@@ -20,7 +23,7 @@
                                     </a>
                                 </div>
                                 <div class="product-cart-title">
-                                    <a href="{% url 'product' item.product.id %}" class="">{{ item.product.name }}
+                                    <a href="{% url 'product' item.product.id %}" class="">{{ item.product.name }} &nbsp; {{item.item_size}}
                                     </a>
                                 </div>
                                 <div class="product-cart-price">
@@ -51,9 +54,12 @@
                             <i class="fas fa-gifts"></i>
                         </div>
                         <hr>
-                        <form action="" method="POST">
+                        <form action="" method="POST" 
+                        {% if total == 0 %}
+                            style="pointer-events: none;">
+                        {% endif %}
                             {% csrf_token %}
-                          <script
+                        <script
                             src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                             data-key="{{ data_key }}"
                             data-amount="{{ stripe_total }}"
@@ -65,7 +71,7 @@
                             data-shipping-address="true"
                             data-billing-address="true"
                             data-zip-code="true">
-                          </script>
+                        </script>
                         </form>
                         <a href="{% url 'all_products' %}" id="continue-btn" class="btn btn-secondary btn-block ">CONTINUE SHOPPING</a>
                     </div>
