@@ -12,11 +12,14 @@ def item_counter(request):
     if 'admin' not in request.path:
         user_id = _get_user_or_none(request)
         if user_id:
-            try:
-                cart = Cart.objects.filter(user=user_id)
-                cart_items = CartItem.objects.all().filter(cart=cart[:1])
-                for item in cart_items:
-                    item_count += item.quantity
-            except Cart.DoesNotExist:
-                item_count = 0
+            cart = Cart.objects.filter(user=user_id)
+        else:
+            art = Cart.objects.get(cart_id=_cart_id(request))
+        try:
+            
+            cart_items = CartItem.objects.all().filter(cart=cart[:1])
+            for item in cart_items:
+                item_count += item.quantity
+        except Cart.DoesNotExist:
+            item_count = 0
     return dict(item_count=item_count)
