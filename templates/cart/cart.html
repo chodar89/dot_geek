@@ -23,7 +23,10 @@
                                     </a>
                                 </div>
                                 <div class="product-cart-title">
-                                    <a href="{% url 'product' item.product.id %}" class="">{{ item.product.name }} &nbsp; <span class="font-weight-bolder">{{item.item_size}}</span>
+                                    <a href="{% url 'product' item.product.id %}" class="">{{ item.product.name }}
+                                    {% if item.item_size %}
+                                    <span class="font-weight-bolder">&nbsp; {{item.item_size}}</span>
+                                    {% endif %}
                                     </a>
                                 </div>
                                 <div class="product-cart-price">

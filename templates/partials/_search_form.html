@@ -14,16 +14,16 @@
             <div class="col-md-3 mb-3 mt-3">
                 <label class="sr-only">Brand</label>
                 <select name="brand" class="form-control">
-                    <option selected="true" disabled="disabled">All Brands</option>
+                    <option selected="true" value=''>All Brands</option>
                     {% for brand in get_brands %}
-                        <option value="{{brand.id}}">{{brand.brands}}</option>
+                        <option value="{{brand.id}}">{{brand.brand_name}}</option>
                     {% endfor %}
                 </select>
             </div>
             <div class="col-md-3 mb-3 mt-3 mr-3">
                 <label class="sr-only">Categories</label>
                 <select name="type" class="form-control">
-                    <option selected="true" disabled="disabled">All Categories</option>
+                    <option selected="true" value=''>All Categories</option>
                     {% for type in get_types %}
                         <option value="{{type.id}}">{{type.types}}</option>
                     {% endfor %}
@@ -33,6 +33,7 @@
                 <label class="sr-only">Price range</label>
                 <select name="price-range" class="form-control">
                     <option selected="true" disabled="disabled">Price range:</option>
+                    <option value="">All</option>
                     <option value="0-10">Up to £10</option>
                     <option value="10-20">£10-£20</option>
                     <option value="20-30">£20-£30</option>
