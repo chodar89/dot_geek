@@ -31,9 +31,9 @@
                                         £{{ item.product.price }} <p class="">x {{ item.quantity}}</p>
                                     </div>
                                     <div class="text-right">
-                                        <i class="fas fa-plus-square"></i>
-                                        <i class="fas fa-minus-square"></i>
-                                        <i class="fas fa-window-close"></i>
+                                        <a href="{% url 'increase_one_cart' item.id %}"><i class="fas fa-plus-square"></i></a>
+                                        <a href="{% url 'remove_one_cart' item.id %}"><i class="fas fa-minus-square"></i></a>
+                                        <a href="{% url 'delete_from_cart' item.id %}"><i class="fas fa-window-close"></i></a>
                                     </div>
                                 </div>
                             </div>

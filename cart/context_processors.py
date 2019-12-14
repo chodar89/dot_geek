@@ -14,7 +14,7 @@ def item_counter(request):
         if user_id:
             cart = Cart.objects.filter(user=user_id)
         else:
-            art = Cart.objects.get(cart_id=_cart_id(request))
+            cart = Cart.objects.get(cart_id=_cart_id(request))
         try:
             
             cart_items = CartItem.objects.all().filter(cart=cart[:1])

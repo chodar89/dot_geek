@@ -82,6 +82,36 @@ def add_to_cart(request, product_id):
     return redirect('cart_details')
 
 
+def remove_one_cart(request, item_id):
+    """
+    Remove one from cart with button
+    """
+    item = get_object_or_404(CartItem, id=item_id)
+    if item.quantity > 1:
+        item.quantity -= 1
+        item.save()
+    else:
+        item.delete()
+    return redirect(cart_details)
+
+def increase_one_cart(request, item_id):
+    """
+    Increase one from cart with button
+    """
+    item = get_object_or_404(CartItem, id=item_id)
+    item.quantity += 1
+    item.save()
+    return redirect(cart_details)
+
+def delete_from_cart(request, item_id):
+    """
+    Delete item from cart with button
+    """
+    item = get_object_or_404(CartItem, id=item_id)
+    item.delete()
+    return redirect(cart_details)
+
+
 def cart_details(request, total=0, counter=0, cart_items=None):
     """
     Render cart page
@@ -144,6 +174,8 @@ def cart_details(request, total=0, counter=0, cart_items=None):
             else:
                 if item.quantity > item.product.stock:
                     item.quantity = item.product.stock
+                    item.save()
+                    messages.error(request, f'We have only {item.product.stock} {item.product.name} in stock. Sorry.')
             total += (item.product.price * item.quantity)
             counter += item.quantity
     except ObjectDoesNotExist:
