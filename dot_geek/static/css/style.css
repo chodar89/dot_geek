@@ -65,6 +65,18 @@ body {
   margin: 15px;
 }
 
+/* Pagination */
+
+.page-item,
+.page-link {
+  color: var(--main-dark)!important;
+}
+
+.page-item.active .page-link {
+  background-color: var(--main-yellow)!important;
+  border-color: var(--main-dark);
+}
+
 /* Navbar */
 .navbar {
   padding: 0 1rem;

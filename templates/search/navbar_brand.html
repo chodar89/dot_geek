@@ -51,6 +51,48 @@
             </div>
             {% endfor %}
         </div>
+        <!-- Pagination -->
+        <div class="row">
+            <div class="container d-flex justify-content-center">
+                {% if search_products.has_other_pages %}
+                    <ul class="pagination">
+                        {% if search_products.has_previous %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page{{ search_products.previous_page_number }}" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                        {% else %}
+                            <li class="page-item disabled">
+                                <a class="page-link">&laquo;</a>
+                            </li>
+                        {% endif %}
+                        {% for i in search_products.paginator.page_range %}
+                            {% if search_products.number == i %}
+                                <li class="page-item active">
+                                    <a class="page-link">{{ i }}</a>
+                                </li>
+                            {% else %}
+                                <li class="page-item">
+                                    <a href="?page={{ i }}" class="page-link">{{ i }}</a>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                        {% if search_products.has_next %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ search_products.next_page_number }}" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        {% else %}
+                            <li class="page-item disabled">
+                                <a class="page-link" aria-label="Next">&raquo;</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                {% endif %}
+            </div>
+        </div>
     </div>
 </section>
 {% endblock %}

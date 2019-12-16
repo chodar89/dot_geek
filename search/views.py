@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
 
 from products.models import ProductBrand, ProductType, Product, SizeChart
@@ -9,7 +10,7 @@ def search(request):
     """ Render search page with resualts"""
 
     # Get all products ordered by - newest first
-    search_products = Product.objects.all().filter(is_for_sale=True).order_by('-created_at')
+    search_products = Product.objects.filter(is_for_sale=True).order_by('-created_at')
 
     # Keywords from search form
     if 'keywords' in request.GET:
@@ -51,16 +52,16 @@ def search(request):
         if price_range == "50+":
             search_products = search_products.filter(price__gte=50)
 
-    get_brands = ProductBrand.objects.all()
-
-    get_types = ProductType.objects.all()
-
     size_chart = SizeChart.objects.all()
 
+    paginator = Paginator(search_products, 9)
+
+    page = request.GET.get('page')
+
+    paged_search = paginator.get_page(page)
+
     context = {
-        "get_brands": get_brands,
-        "get_types": get_types,
-        "search_products": search_products,
+        "search_products": paged_search,
         "size_chart": size_chart,
     }
 
@@ -71,8 +72,6 @@ def navbar_brand(request, brand_id):
 
     get_brands = ProductBrand.objects.all()
 
-    get_types = ProductType.objects.all()
-
     size_chart = SizeChart.objects.all()
 
     get_nav_brand_name = get_brands.filter(id=brand_id).values('brand_name')
@@ -82,10 +81,14 @@ def navbar_brand(request, brand_id):
         is_for_sale=True).filter(Q(brand=brand_id)|
                                  Q(series__icontains=get_nav_brand_name)).order_by('-created_at')
 
+    paginator = Paginator(search_products, 9)
+
+    page = request.GET.get('page')
+
+    paged_search = paginator.get_page(page)
+
     context = {
-        "get_brands": get_brands,
-        "get_types": get_types,
-        "search_products": search_products,
+        "search_products": paged_search,
         "size_chart": size_chart,
     }
 
@@ -97,16 +100,16 @@ def navbar_type(request, type_id):
      # Get all filtered products ordered by(newest first)
     search_products = Product.objects.all().filter(is_for_sale=True).filter(product_type=type_id).order_by('-created_at')
 
-    get_brands = ProductBrand.objects.all()
-
-    get_types = ProductType.objects.all()
-
     size_chart = SizeChart.objects.all()
 
+    paginator = Paginator(search_products, 9)
+
+    page = request.GET.get('page')
+
+    paged_search = paginator.get_page(page)
+
     context = {
-        "get_brands": get_brands,
-        "get_types": get_types,
-        "search_products": search_products,
+        "search_products": paged_search,
         "size_chart": size_chart,
     }
 
