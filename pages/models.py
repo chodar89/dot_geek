@@ -7,3 +7,6 @@ class IndexCarousel(models.Model):
     heading = models.CharField(max_length=150, blank=True)
     paragraph = models.CharField(max_length=300, blank=True)
     first = ExclusiveBooleanField()
+
+    def __str__(self):
+        return self.heading
