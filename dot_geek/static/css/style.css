@@ -55,10 +55,15 @@ body {
   color: var(--main-white);
 }
 
+.out-stock-btn,
 .btn-secondary {
   background-color: var(--main-dark);
   border-color: var(--main-dark);
   color: var(--main-white);
+}
+
+.out-stock-btn {
+  color: var(--main-white)!important;
 }
 
 .message-container {

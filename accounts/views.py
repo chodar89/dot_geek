@@ -2,6 +2,8 @@ from django.shortcuts import render,redirect
 from django.contrib import messages, auth
 from django.contrib.auth.models import User
 
+from order.models import Order
+
 def register(request):
     """ Register function that check user name and email is it unique """
     if request.method == 'POST':
@@ -61,4 +63,9 @@ def logout(request):
 
 def dashboard(request):
     """ User dahsboard page """
-    return render(request, 'accounts/dashboard.html')
+    if not request.user.is_authenticated:
+        return redirect('index')
+    else:
+        get_orders = Order.objects.filter(user=request.user.id)
+        print(get_orders)
+        return render(request, 'accounts/dashboard.html')

@@ -1,6 +1,6 @@
 <form action="{% url 'add_to_cart' product.id %}" method="POST">
     {% csrf_token %}
-    {% if product.product_type.types == "Clothing" and product.apply_sizes == True %}
+    {% if product.product_type.types == "Clothing" %}
     <div class="form-row">
         <div class="col form-group text-left ">
             <!-- Qunatity -->
@@ -50,5 +50,9 @@
         </div>
     </div>
     {% endif %}
-    <button type="submit" class="btn btn-secondary btn-block">ADD TO CART</button>
+    {% if product.total_stock == 0 %}
+        <a class="btn btn-secondary btn-block out-stock-btn">OUT OF STOCK</a>
+    {% else %}
+        <button type="submit" class="btn btn-secondary btn-block">ADD TO CART</button>
+    {% endif %}
 </form>

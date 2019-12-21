@@ -15,33 +15,37 @@
                         <i class="fas fa-shopping-cart"></i> &nbsp;SHOPPING CART
                     </div>
                     <div class="card-body">
-                        {% for item in cart_items %}
-                            <div class="cart-product d-flex justify-content-between">
-                                <div class="cart-product-img">
-                                    <a href="{% url 'product' item.product.id %}" class="">
-                                        <img src="{{ item.product.photo_main.url }}" alt="Product photo">
-                                    </a>
-                                </div>
-                                <div class="product-cart-title">
-                                    <a href="{% url 'product' item.product.id %}" class="">{{ item.product.name }}
-                                    {% if item.item_size %}
-                                    <span class="font-weight-bolder">&nbsp; {{item.item_size}}</span>
-                                    {% endif %}
-                                    </a>
-                                </div>
-                                <div class="product-cart-price">
-                                    <div class="text-right font-weight-bolder">
-                                        £{{ item.product.price }} <p class="">x {{ item.quantity}}</p>
+                        {% if not cart_items %}
+                            <p>Your shopping cart is empty :(</p>
+                        {% else %}
+                            {% for item in cart_items %}
+                                <div class="cart-product d-flex justify-content-between">
+                                    <div class="cart-product-img">
+                                        <a href="{% url 'product' item.product.id %}" class="">
+                                            <img src="{{ item.product.photo_main.url }}" alt="Product photo">
+                                        </a>
                                     </div>
-                                    <div class="text-right">
-                                        <a href="{% url 'increase_one_cart' item.id %}"><i class="fas fa-plus-square"></i></a>
-                                        <a href="{% url 'remove_one_cart' item.id %}"><i class="fas fa-minus-square"></i></a>
-                                        <a href="{% url 'delete_from_cart' item.id %}"><i class="fas fa-window-close"></i></a>
+                                    <div class="product-cart-title">
+                                        <a href="{% url 'product' item.product.id %}" class="">{{ item.product.name }}
+                                        {% if item.item_size %}
+                                        <span class="font-weight-bolder">&nbsp; {{item.item_size}}</span>
+                                        {% endif %}
+                                        </a>
+                                    </div>
+                                    <div class="product-cart-price">
+                                        <div class="text-right font-weight-bolder">
+                                            £{{ item.product.price }} <p class="">x {{ item.quantity}}</p>
+                                        </div>
+                                        <div class="text-right">
+                                            <a href="{% url 'increase_one_cart' item.id %}"><i class="fas fa-plus-square"></i></a>
+                                            <a href="{% url 'remove_one_cart' item.id %}"><i class="fas fa-minus-square"></i></a>
+                                            <a href="{% url 'delete_from_cart' item.id %}"><i class="fas fa-window-close"></i></a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <hr>
-                        {% endfor %}
+                                <hr>
+                            {% endfor %}
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -63,11 +67,10 @@
                             <i class="fas fa-gifts"></i>
                         </div>
                         <hr>
-                        <form action="" method="POST" 
-                        {% if total == 0 %}
-                            style="pointer-events: none;">
-                        {% endif %}
-                            {% csrf_token %}
+                        {% if total == 0 and counter == 0 %}
+                        {% else %}
+                        <form action="" method="POST" >
+                        {% csrf_token %}
                         <script
                             src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                             data-key="{{ data_key }}"
@@ -82,6 +85,7 @@
                             data-zip-code="true">
                         </script>
                         </form>
+                        {% endif %}
                         <a href="{% url 'all_products' %}" id="continue-btn" class="btn btn-secondary btn-block ">CONTINUE SHOPPING</a>
                     </div>
                 </div>

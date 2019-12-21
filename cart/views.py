@@ -3,14 +3,18 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.contrib import messages
 
 from products.models import Product, SizeChart
+from order.models import Order, OrderItem
 from .models import Cart, CartItem
 from django.contrib.auth.models import User
-
 
 import stripe
 from django.conf import settings
 
+
 def _get_user_or_none(request):
+    """
+    Check if user is authenticated
+    """
     if request.user.is_authenticated:
         user_id_or_none = request.user.id
     else:
@@ -19,7 +23,9 @@ def _get_user_or_none(request):
 
 
 def _cart_id(request):
-    # Get cart session if not create one
+    """
+    Get cart session if not create one
+    """
     cart_id = request.session.get("cart_id", None)
     if cart_id is None:
         request.session.create()
@@ -28,8 +34,6 @@ def _cart_id(request):
         print('New Cart Id')
     return cart_id
 
-# def _check_clothing_stock(size, stock):
-#     if size == 
 
 def add_to_cart(request, product_id):
     """
@@ -59,17 +63,16 @@ def add_to_cart(request, product_id):
                 cart = Cart.objects.create(
                     cart_id=session_cart_id,
                     user=User(id=user_id)
-                    )
+                )
             else:
                 cart = Cart.objects.create(
                     cart_id=session_cart_id,
-                    )
-            cart.save()
+                )
         try:
             # Try to check if item is in cart and rise quantity
-            cart_item = CartItem.objects.get(product=product, cart=cart, item_size=size)
+            cart_item = CartItem.objects.get(
+                product=product, cart=cart, item_size=size)
             cart_item.quantity += get_item_qnty
-            cart_item.save()
         except CartItem.DoesNotExist:
             # Insert item to DB
             cart_item = CartItem.objects.create(
@@ -78,7 +81,6 @@ def add_to_cart(request, product_id):
                 cart=cart,
                 item_size=size
             )
-            cart_item.save()
     return redirect('cart_details')
 
 
@@ -94,6 +96,7 @@ def remove_one_cart(request, item_id):
         item.delete()
     return redirect(cart_details)
 
+
 def increase_one_cart(request, item_id):
     """
     Increase one from cart with button
@@ -102,6 +105,7 @@ def increase_one_cart(request, item_id):
     item.quantity += 1
     item.save()
     return redirect(cart_details)
+
 
 def delete_from_cart(request, item_id):
     """
@@ -115,7 +119,7 @@ def delete_from_cart(request, item_id):
 def cart_details(request, total=0, counter=0, cart_items=None):
     """
     Render cart page
-    Check all items in cart, count qnty and total price 
+    Check all items in cart, count qnty and total-price
     """
     user_id = _get_user_or_none(request)
     session_cart_id = _cart_id(request)
@@ -126,64 +130,127 @@ def cart_details(request, total=0, counter=0, cart_items=None):
             cart = Cart.objects.get(cart_id=session_cart_id)
         cart_items = CartItem.objects.filter(cart=cart, active=True)
         for item in cart_items:
+            # Check item stock quantity if clothing check size and related stock quantity
+            qnty = item.quantity
             if item.item_size:
                 size = item.item_size.size
-                qnty = item.quantity
-                stock_xs = item.product.stock_xs
-                stock_s = item.product.stock_s
-                stock_m = item.product.stock_m
-                stock_l = item.product.stock_l
-                stock_xl = item.product.stock_xl
-                stock_xxl = item.product.stock_xxl
-                stock_xxxl = item.product.stock_xxxl
                 if size == 'XS':
-                    if qnty > stock_xs:
-                        qnty = stock_xs
-                        item.save()
-                        messages.error(request, f'We have only {stock_xs} {item.product.name} in stock. Sorry.')
-                if size == 'S':
-                    if qnty > stock_s:
-                        qnty = stock_s
-                        item.save()
-                        messages.error(request, f'We have only {stock_s} {item.product.name} in stock. Sorry.')
-                if size == 'M':
-                    if qnty > stock_m:
-                        qnty = stock_m
-                        item.save()
-                        messages.error(request, f'We have only {stock_m} {item.product.name} in stock. Sorry.')
-                if size == 'L':
-                    if qnty > stock_l:
-                        qnty = stock_l
-                        item.save()
-                        messages.error(request, f'We have only {stock_l} {item.product.name} in stock. Sorry.')
-                if size == 'XL':
-                    if qnty > stock_xl:
-                        qnty = stock_xl
-                        item.save()
-                        messages.error(request, f'We have only {stock_xl} {item.product.name} in stock. Sorry.')
-                if size == 'XXL':
-                    if qnty > stock_xxl:
-                        qnty = stock_xxl
-                        item.save()
-                        messages.error(request, f'We have only {stock_xxl} {item.product.name} in stock. Sorry.')
-                if size == 'XXXL':
-                    if qnty > stock_xxxl:
-                        qnty = stock_xxxl
-                        item.save()
-                        messages.error(request, f'We have only {stock_xxxl} {item.product.name} in stock. Sorry.')
+                    product_stock = item.product.stock_xs
+                elif size == 'S':
+                    product_stock = item.product.stock_s
+                elif size == 'M':
+                    product_stock = item.product.stock_m
+                elif size == 'L':
+                    product_stock = item.product.stock_l
+                elif size == 'XL':
+                    product_stock = item.product.stock_xl
+                elif size == 'XXL':
+                    product_stock = item.product.stock_xxl
+                elif size == 'XXXL':
+                    product_stock = item.product.stock_xxxl
+                else:
+                    product_stock = item.product.stock
+                if qnty > product_stock:
+                    qnty = product_stock
+                    item.save()
+                    messages.error(request, f'We have only {product_stock} {item.product.name} in stock. Sorry.')
             else:
-                if item.quantity > item.product.stock:
+                product_stock = item.product.stock
+                if qnty > product_stock:
                     item.quantity = item.product.stock
                     item.save()
-                    messages.error(request, f'We have only {item.product.stock} {item.product.name} in stock. Sorry.')
-            total += (item.product.price * item.quantity)
-            counter += item.quantity
+                    messages.error(
+                        request, f'We have only {product_stock} {item.product.name} in stock. Sorry.')
+            total += (item.product.price * qnty)
+            counter += qnty
     except ObjectDoesNotExist:
         pass
+    # Stripe api settings
     stripe.api_key = settings.STRIPE_SECRET_KEY
     stripe_total = int(total * 100)
     description = 'DOT GEEK Shop - New Order'
     data_key = settings.STRIPE_PUBLISHABLE_KEY
+
+    if request.method == 'POST':
+        # If stripe pay get user data from stripe form
+        print(request.POST)
+        try:
+            token = request.POST['stripeToken']
+            email = request.POST['stripeEmail']
+            billing_name = request.POST['stripeBillingName']
+            billing_address1 = request.POST['stripeBillingAddressLine1']
+            billing_city = request.POST['stripeBillingAddressCity']
+            billing_postcode = request.POST['stripeBillingAddressZip']
+            billing_country = request.POST['stripeBillingAddressCountryCode']
+            shipping_name = request.POST['stripeBillingName']
+            shipping_address1 = request.POST['stripeShippingAddressLine1']
+            shipping_city = request.POST['stripeShippingAddressCity']
+            shipping_postcode = request.POST['stripeShippingAddressZip']
+            shipping_country = request.POST['stripeShippingAddressCountryCode']
+            customer = stripe.Customer.create(
+                email=email,
+                source=token
+            )
+            charge = stripe.Charge.create(
+                amount=stripe_total,
+                currency="gbp",
+                description=description,
+                customer=customer.id
+            )
+            # Create the order
+            try:
+                if user_id:
+                    order_details = Order.objects.create(
+                        token=token,
+                        total=total,
+                        user=User(id=user_id),
+                        email_address=email,
+                        billing_name=billing_name,
+                        billing_address1=billing_address1,
+                        billing_city=billing_city,
+                        billing_postcode=billing_postcode,
+                        billing_country=billing_country,
+                        shipping_name=shipping_name,
+                        shipping_address1=shipping_address1,
+                        shipping_city=shipping_city,
+                        shipping_postcode=shipping_postcode,
+                        shipping_country=shipping_country,
+                    )
+                else:
+                    order_details = Order.objects.create(
+                        token=token,
+                        total=total,
+                        email_address=email,
+                        billing_name=billing_name,
+                        billing_address1=billing_address1,
+                        billing_city=billing_city,
+                        billing_postcode=billing_postcode,
+                        billing_country=billing_country,
+                        shipping_name=shipping_name,
+                        shipping_address1=shipping_address1,
+                        shipping_city=shipping_city,
+                        shipping_postcode=shipping_postcode,
+                        shipping_country=shipping_country,
+                    )
+                for item in cart_items:
+                    OrderItem.objects.create(
+                        product=item.product.name,
+                        quantity=item.quantity,
+                        price=item.product.price,
+                        order=order_details,
+                        item_size=item.item_size
+                    )
+                    # Deducate product qnty from stock
+                    product = Product.objects.get(id=item.product.id)
+                    product.stock = int(product_stock - item.quantity)
+                    product.save()
+                    item.delete()
+                return redirect('index')
+            except ObjectDoesNotExist:
+                pass
+        except stripe.error.CardError as e:
+            # Stripe card error
+            return False, e
 
     context = {
         'cart_items': cart_items,

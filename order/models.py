@@ -1,7 +1,10 @@
 from django.db import models
+from products.models import SizeChart
+from django.contrib.auth.models import User
 
 class Order(models.Model):
     token = models.CharField(max_length=250, blank=True)
+    user = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE)
     total = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='GBP Total Order')
     email_address = models.EmailField(max_length=250, blank=True, verbose_name='Email Address')
     created_at = models.DateField(auto_now_add=True)
@@ -27,6 +30,7 @@ class OrderItem(models.Model):
     product = models.CharField(max_length=250)
     quantity = models.IntegerField()
     price = models.DecimalField(max_digits=5, decimal_places=2, verbose_name='GBP Price')
+    item_size = models.ForeignKey(SizeChart, blank=True, null=True, on_delete=models.CASCADE)
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
 
     def sub_total(self):

@@ -1,8 +1,7 @@
 from django.shortcuts import render
 
 from .models import IndexCarousel
-from products.models import Product, ProductType, SizeChart
-
+from products.models import Product, SizeChart
 
 
 def index(request):
@@ -10,7 +9,7 @@ def index(request):
 
     all_products = Product.objects.all().filter(is_for_sale=True)
 
-    new_in = all_products.order_by('-id')[:12]
+    new_in = all_products.order_by('-id')[:9]
 
     bestseller = all_products.order_by('-buys')[:6]
 
