@@ -1,9 +1,10 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render, redirect
 from django.contrib import messages, auth
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
 from order.models import Order
+
 
 def register(request):
     """ Register function that check user name and email is it unique """
@@ -15,7 +16,9 @@ def register(request):
         email = request.POST['email']
         password = request.POST['password']
         password2 = request.POST['password2']
-
+        if len(password) < 6:
+            messages.error(request, 'Password too short - minimum 6 characters')
+            return redirect('register')
         # Check passwords
         if password == password2:
             # Check username & email
@@ -30,13 +33,15 @@ def register(request):
                     user = User.objects.create_user(username=uname, password=password, email=email,
                                                     first_name=first_name, last_name=last_name)
                     user.save()
-                    messages.success(request, ' Thank you for creating an account. You can now log in!')
+                    messages.success(
+                        request, ' Thank you for creating an account. You can now log in!')
                     return redirect('login')
             return redirect('index')
         else:
             messages.error(request, 'Passwords do not match')
         return redirect('register')
     return render(request, 'accounts/register.html')
+
 
 def login(request):
     """ Login user authentication """
@@ -54,6 +59,7 @@ def login(request):
             messages.error(request, 'Wrong password or/and login')
             return redirect('login')
     return render(request, 'accounts/login.html')
+
 
 def logout(request):
     """ Simple logout """

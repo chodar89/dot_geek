@@ -56,7 +56,7 @@
                         <img class="card-img-top" src="{{ product.photo_main.url }}" alt="Card image cap">
                     </a>
                     <div class="card-img-overlay">
-                        {% if product.product_type.types == "Clothes" %}
+                        {% if product.product_type.types == "Clothing" %}
                             {% if product.total_stock == 0 %}
                                 <h2>
                                     <div class="badge badge-secondary">SOLD OUT!</div>
@@ -107,7 +107,7 @@
                         <img class="card-img-top" src="{{ product.photo_main.url }}" alt="Card image cap">
                     </a>
                     <div class="card-img-overlay">
-                        {% if product.product_type.types == "Clothes" %}
+                        {% if product.product_type.types == "Clothing" %}
                             {% if product.total_stock == 0 %}
                                 <h2>
                                     <div class="badge badge-secondary">SOLD OUT!</div>
