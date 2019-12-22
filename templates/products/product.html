@@ -6,7 +6,7 @@
     <div class="container">
         <a href="{% url 'all_products' %}" class="btn btn-light mb-4">Back To All Products</a>
         <div class="row img-container">
-            <div class="col-md-6 offset-md-2">
+            <div class="col-md-6 offset-md-2 left-card-product">
                 <!-- Main Image -->
                 <a href="{{ product.photo_main.url }}" data-lightbox="home-images">
                     <img src="{{ product.photo_main.url }}" alt="Main product photo" class="img-fluid rounded mb-3">
@@ -38,6 +38,9 @@
                 <!-- Product Info-Description -->
                 <div class="row product-info">
                     <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            {% include 'partials/_card_buy_form.html' %}
+                        </li>
                         <li class="list-group-item">
                                 <i class="fas fa-money-bill-wave"></i> Price:
                             <span class="float-right">£{{ product.price }}</span>

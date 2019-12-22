@@ -16,6 +16,9 @@ def register(request):
         email = request.POST['email']
         password = request.POST['password']
         password2 = request.POST['password2']
+        if len(uname) > 10:
+            messages.error(request, 'Username too long - maximum 10 characters')
+            return redirect('register')
         if len(password) < 6:
             messages.error(request, 'Password too short - minimum 6 characters')
             return redirect('register')

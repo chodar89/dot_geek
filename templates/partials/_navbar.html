@@ -3,7 +3,7 @@
 <!-- Top Bar -->
 <nav>
     <div class="top-nav fixed-top">
-        <div>
+        <div class="pacman-container">
             <img class="pacman" src="{% static 'img/pacman.png' %}" alt="pacman">
         </div>
         <div class="top-mid-nav">
@@ -20,7 +20,7 @@
                 <input type="hidden">
             </form>
             {% else %}
-            <a class="nav-link" href="{% url 'login' %}"><i class="fas fa-sign-in-alt"></i> LOGIN </a>
+            <a class="nav-link login-nav" href="{% url 'login' %}"><i class="fas fa-sign-in-alt"></i> LOGIN </a>
             <a class="nav-link" href="{% url 'register' %}"><i class="fas fa-user-plus"></i> REGISTER</a>
             {% endif  %}
         </div>
@@ -100,5 +100,10 @@
                 </li>
             </ul>
         </div>
+    </div>
+</nav>
+<nav>
+    <div class="mobile-nav-bar">
+
     </div>
 </nav>

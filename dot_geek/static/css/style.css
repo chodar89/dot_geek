@@ -146,8 +146,11 @@ nav > .container {
 }
 
 .navbar-toggler {
-  margin-top: 18px;
-  padding-bottom: 10px;
+  margin-top: 25px;
+}
+
+#logout {
+  display: none;
 }
 
 /* Index Page */
@@ -223,6 +226,11 @@ nav > .container {
 .fixed-card {
   position: fixed;
   width: 300px;
+  z-index: 10;
+}
+
+.list-group-item form {
+  display: none;
 }
 
 /* Cart */
@@ -461,7 +469,7 @@ footer {
   background-size: contain;
   background-repeat: no-repeat;
   height: 473px;
-  width: 499px;
+  width: 195px;
   top: -462px;
   left: 54px;
 }
@@ -533,6 +541,10 @@ footer {
   border-left: 2px solid var(--main-white);
 }
 
+.horizontal-divider {
+  display: none;
+}
+
 .address {
   text-align: left;
   font-size: 1rem;
@@ -543,6 +555,108 @@ footer {
 @media (max-width: 992px) {
   #all-products, #contact, #single-product,
   #register, #login  {
-  margin-top: 108px;
+    margin-top: 108px;
+  }
+
+  .left-card-product{
+    margin-left: 8%;
+  }
 }
+
+@media (max-width: 768px) {
+  .top-mid-nav {
+    display: none;
+  }
+
+  .left-card-product{
+    margin-left: 0;
+  }
+
+  .cart-container {
+    flex-direction: column-reverse;
+  }
+
+  .card-cart {
+    margin-top: 35px;
+  }
+
+  .img-container .card {
+    display: none;
+  }
+
+  .list-group-item select {
+    margin-top: 8px;
+  }
+
+  .list-group-item form {
+    display: unset;
+  }
 }
+
+@media (max-width: 480px) {
+  .pipe-plant,
+  .pipe-mario-plant {
+    display: none;
+  }
+
+  footer {
+    height: 100%;
+  }
+
+  .footer-middle {
+    flex-direction: column;
+  }
+
+  .divider {
+    border-top: 2px solid var(--main-white);
+    border-right: 0;
+    border-left: 0;
+    height: 4px;
+    width: 60%;
+    margin: auto;
+  }
+
+  .social-media,
+  .pay-with {
+    margin-bottom: 10px;
+  }
+
+  .address {
+    text-align: center;
+  }
+
+  .heading-paragraph {
+    font-size: 2.5rem;
+    padding: 0 55px;
+
+  }
+
+  .card-register-login,
+  .card-cart,
+  .card-checkout {
+    margin-top: 34px;
+  }
+
+  .top-nav {
+    justify-content: space-between;
+  }
+
+  .pacman-container {
+    display: none;
+  }
+
+  .login-nav {
+    margin-right: 50px!important;
+  }
+
+  .login-register {
+    justify-content: space-between;
+    margin: 0 10px;
+    width: 100%;
+  }
+
+  .login-register .nav-link {
+    margin: 0px;
+  }
+}
+
