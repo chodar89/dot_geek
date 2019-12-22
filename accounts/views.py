@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from django.contrib import messages, auth
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
 from order.models import Order
 
@@ -61,11 +62,12 @@ def logout(request):
         messages.success(request, 'You are logged out')
     return redirect('index')
 
+
+@login_required()
 def dashboard(request):
     """ User dahsboard page """
-    if not request.user.is_authenticated:
-        return redirect('index')
-    else:
-        get_orders = Order.objects.filter(user=request.user.id)
-        print(get_orders)
-        return render(request, 'accounts/dashboard.html')
+    get_orders = Order.objects.filter(user=request.user.id)
+    context = {
+        'get_orders': get_orders,
+    }
+    return render(request, 'accounts/dashboard.html', context)

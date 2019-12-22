@@ -4,6 +4,44 @@
 {% block content %}
 <section id="contact">
     {% include "partials/_sky.html" %}
-    <h1 class="text-center">Dashboard</h1>
+    <div class="row">
+        <div class="mt-2" style="width: 100%;" >
+            {% include 'partials/_messages.html' %}
+        </div>
+        <div class="col-md-10 mx-auto">
+            <div class="card card-cart">
+                <div class="card-header">
+                    <i class="fas fa-sort-amount-up"></i> &nbsp;DASHBOARD
+                </div>
+                <div class="card-body">
+                    {% if get_orders %}
+                        <table class='table table-striped'>
+                            <thead>
+                                <tr>
+                                    <th>Order Number</th>
+                                    <th>Order Date</th>
+                                    <th>Total Amount</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for order in get_orders %}
+                                    <tr>
+                                        <td>{{ order.id }}</td>
+                                        <td>{{ order.created_at|date:"d M Y" }}</td>
+                                        <td>{{ order.total }}</td>
+                                        <td><a href="{% url 'order' order.id %}">View order</a></td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    {% else %}
+                        <p class="text-center">You have no orders yet.</p>
+                        <a href="{% url 'all_products' %}" id="continue-btn" class="btn btn-secondary btn-block ">CONTINUE SHOPPING</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 {% endblock %}
