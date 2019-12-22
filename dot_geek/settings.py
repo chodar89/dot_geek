@@ -13,6 +13,8 @@ from django.contrib.messages import constants as messages
 
 import os
 
+import django_heroku
+
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -154,3 +156,6 @@ MESSAGE_TAGS = {
 
 STRIPE_PUBLISHABLE_KEY = os.getenv('STRIPE_PUBLISHABLE_KEY')
 STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY')
+
+# Activate Django-Heroku.
+django_heroku.settings(locals())

@@ -529,8 +529,13 @@ footer {
   text-align: center;
 }
 
-.social-media > i,
 .pay-with > i {
+  margin: 6px;
+}
+
+.social-media a {
+  text-decoration: none;
+  color: var(--main-white)!important;
   margin: 6px;
 }
 
