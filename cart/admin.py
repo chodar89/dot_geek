@@ -10,8 +10,8 @@ class CartAdmin(admin.ModelAdmin):
 
 
 class CartItemAdmin(admin.ModelAdmin):
-    list_display = ('id', 'cart')
-    list_display_links = ('id',)
+    list_display = ('id', 'cart', 'product')
+    list_display_links = ('id', 'cart')
 
 admin.site.register(Cart, CartAdmin)
 admin.site.register(CartItem, CartItemAdmin)

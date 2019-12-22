@@ -243,6 +243,7 @@ def cart_details(request, total=0, counter=0, cart_items=None):
                     # Deducate product qnty from stock
                     product = Product.objects.get(id=item.product.id)
                     product.stock = int(product_stock - item.quantity)
+                    product.buys = int(product.buys + item.quantity)
                     product.save()
                     item.delete()
                     request.session['thankyou'] = order_details.id

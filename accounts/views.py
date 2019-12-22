@@ -75,7 +75,7 @@ def logout(request):
 @login_required()
 def dashboard(request):
     """ User dahsboard page """
-    get_orders = Order.objects.filter(user=request.user.id)
+    get_orders = Order.objects.filter(user=request.user.id).order_by('-id')
     context = {
         'get_orders': get_orders,
     }
