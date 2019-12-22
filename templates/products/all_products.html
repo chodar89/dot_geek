@@ -17,23 +17,23 @@
                     </a>
                     <div class="card-img-overlay">
                         {% if product.product_type.types == "Clothes" %}
-                        {% if product.total_cloths_stock == 0 %}
-                        <h2>
-                            <div class="badge badge-secondary">SOLD OUT!</div>
-                        </h2>
-                        {% else %}
-                        <h2>
-                            <div class="badge badge-secondary">£{{ product.price}}</div>
-                        </h2>
-                        {% endif %}
+                            {% if product.total_stock == 0 %}
+                            <h2>
+                                <div class="badge badge-secondary">SOLD OUT!</div>
+                            </h2>
+                            {% else %}
+                            <h2>
+                                <div class="badge badge-secondary">£{{ product.price}}</div>
+                            </h2>
+                            {% endif %}
                         {% elif product.stock == 0 %}
-                        <h2>
-                            <div class="badge badge-secondary">SOLD OUT!</div>
-                        </h2>
+                            <h2>
+                                <div class="badge badge-secondary">SOLD OUT!</div>
+                            </h2>
                         {% else %}
-                        <h2>
-                            <div class="badge badge-secondary">£{{ product.price }}</div>
-                        </h2>
+                            <h2>
+                                <div class="badge badge-secondary">£{{ product.price }}</div>
+                            </h2>
                         {% endif %}
                     </div>
                     <div class="card-body d-flex flex-column">

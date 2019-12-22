@@ -67,24 +67,23 @@
                             <i class="fas fa-gifts"></i>
                         </div>
                         <hr>
-                        {% if total == 0 and counter == 0 %}
-                        {% else %}
+                        {% if total != 0 and counter != 0 %}
                         <form action="" method="POST" >
-                        {% csrf_token %}
-                        <script
-                            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                            data-key="{{ data_key }}"
-                            data-amount="{{ stripe_total }}"
-                            data-name="Dot Geek Shop"
-                            data-description="{{ description }}"
-                            data-image="{% static 'img/logo/dotgeek_black.png' %}"
-                            data-locale="auto"
-                            data-currency="gbp"
-                            data-shipping-address="true"
-                            data-billing-address="true"
-                            data-zip-code="true">
-                        </script>
-                        </form>
+                            {% csrf_token %}
+                            <script
+                                src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                                data-key="{{ data_key }}"
+                                data-amount="{{ stripe_total }}"
+                                data-name="Dot Geek Shop"
+                                data-description="{{ description }}"
+                                data-image="{% static 'img/logo/dotgeek_black.png' %}"
+                                data-locale="auto"
+                                data-currency="gbp"
+                                data-shipping-address="true"
+                                data-billing-address="true"
+                                data-zip-code="true">
+                            </script>
+                            </form>
                         {% endif %}
                         <a href="{% url 'all_products' %}" id="continue-btn" class="btn btn-secondary btn-block ">CONTINUE SHOPPING</a>
                     </div>

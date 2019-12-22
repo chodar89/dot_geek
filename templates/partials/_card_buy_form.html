@@ -1,46 +1,56 @@
 <form action="{% url 'add_to_cart' product.id %}" method="POST">
     {% csrf_token %}
     {% if product.product_type.types == "Clothing" %}
-    <div class="form-row">
-        <div class="col form-group text-left ">
-            <!-- Qunatity -->
-            <label for="quantity">Qunatity</label>
-            <input type="number" min="1" max="99" name="quantity" class="form-control font-weight-bold" value="1" required>
-        </div>
-        <div class="col form-group text-left">
-            <!-- Size -->
-            <span>Size</span>
-            <select name="size" class="browser-default custom-select font-weight-bold" required>
-                <option class="font-weight-bold" value="" disabled selected>Pick size</option>
-                {% if product.total_stock == 0 %}
-                    {% for size in size_chart %}
-                        <option class="font-weight-bold" value="{{size.id}}" disabled>{{size.size}}</option>
-                    {% endfor %}
-                {% else %}
-                    {% for size in size_chart %}
-                        <option class="font-weight-bold" value="{{size.id}}" 
-                        {% if product.stock_xs == 0 and size.size == 'XS' %}
-                            disabled
-                        {% elif product.stock_s == 0 and size.size == 'S' %}
-                            disabled
-                        {% elif product.stock_m == 0 and size.size == 'M' %}
-                            disabled
-                        {% elif product.stock_l == 0 and size.size == 'L' %}
-                            disabled
-                        {% elif product.stock_xl == 0 and size.size == 'XL' %}
-                            disabled
-                        {% elif product.stock_xxl == 0 and size.size == 'XXL' %}
-                            disabled
-                        {% elif product.stock_XXXL == 0 and size.size == 'XXXL' %}
-                            disabled
+        {% if product.stock == 0 %}
+            <div class="form-row">
+                <div class="col form-group text-left ">
+                    <!-- Qunatity -->
+                    <label for="quantity">Qunatity</label>
+                    <input type="number" min="1" max="99" name="quantity" class="form-control font-weight-bold" value="1" required>
+                </div>
+                <div class="col form-group text-left">
+                    <!-- Size -->
+                    <span>Size</span>
+                    <select name="size" class="browser-default custom-select font-weight-bold" required>
+                        <option class="font-weight-bold" value="" disabled selected>Pick size</option>
+                        {% if product.total_stock == 0 %}
+                            {% for size in size_chart %}
+                                <option class="font-weight-bold" value="{{size.id}}" disabled>{{size.size}}</option>
+                            {% endfor %}
                         {% else %}
+                            {% for size in size_chart %}
+                                <option class="font-weight-bold" value="{{size.id}}" 
+                                {% if product.stock_xs == 0 and size.size == 'XS' %}
+                                    disabled
+                                {% elif product.stock_s == 0 and size.size == 'S' %}
+                                    disabled
+                                {% elif product.stock_m == 0 and size.size == 'M' %}
+                                    disabled
+                                {% elif product.stock_l == 0 and size.size == 'L' %}
+                                    disabled
+                                {% elif product.stock_xl == 0 and size.size == 'XL' %}
+                                    disabled
+                                {% elif product.stock_xxl == 0 and size.size == 'XXL' %}
+                                    disabled
+                                {% elif product.stock_XXXL == 0 and size.size == 'XXXL' %}
+                                    disabled
+                                {% else %}
+                                {% endif %}
+                                >{{size.size}}</option>
+                            {% endfor %}
                         {% endif %}
-                        >{{size.size}}</option>
-                    {% endfor %}
-                {% endif %}
-            </select>
-        </div>
-    </div>
+                    </select>
+                </div>
+            </div>
+            {% else %}
+            <div class="form-row">
+                <div class="col form-group text-left">
+                    <!-- Qunatity -->
+                    <label for="quantity">Qunatity</label>
+                    <input type="number" min="1" max="99" name="quantity" class="form-control font-weight-bold" value="1" required>
+                </div>
+            </div>
+            {% endif %}
     {% else %}
     <div class="form-row">
         <div class="col form-group text-left">

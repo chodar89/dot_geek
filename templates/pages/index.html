@@ -57,7 +57,7 @@
                     </a>
                     <div class="card-img-overlay">
                         {% if product.product_type.types == "Clothes" %}
-                            {% if product.total_cloths_stock == 0 %}
+                            {% if product.total_stock == 0 %}
                                 <h2>
                                     <div class="badge badge-secondary">SOLD OUT!</div>
                                 </h2>
@@ -108,7 +108,7 @@
                     </a>
                     <div class="card-img-overlay">
                         {% if product.product_type.types == "Clothes" %}
-                            {% if product.total_cloths_stock == 0 %}
+                            {% if product.total_stock == 0 %}
                                 <h2>
                                     <div class="badge badge-secondary">SOLD OUT!</div>
                                 </h2>
