@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} | Thank You {% endblock %}
+{% block content %}
+<section id="contact">
+    {% include "partials/_sky.html" %}
+    <div class="row">
+        <div class="mt-2" style="width: 100%;" >
+            {% include 'partials/_messages.html' %}
+        </div>
+        <div class="col-md-10 mx-auto">
+            <div class="card card-cart">
+                <div class="card-header">
+                    <i class="far fa-smile-beam"></i> THANKS FOR YOUR ORDER
+                </div>
+                <div class="card-body">
+                    {% if order %}
+                        <p class="text-center font-weight-bold">Your order number is: {{ order }}</p>
+                        <p class="text-center">We have received your order and we will dispatch your items soon. In a few minutes, you should receive an email with confirmation and order details.</p>
+                    {% else %}
+                        <p class="text-center">Sorry something went wrong.</p>
+                    {% endif %}
+                    <a href="{% url 'all_products' %}" id="continue-btn" class="btn btn-secondary btn-block ">CONTINUE SHOPPING</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

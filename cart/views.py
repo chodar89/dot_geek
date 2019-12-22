@@ -94,7 +94,7 @@ def remove_one_cart(request, item_id):
         item.save()
     else:
         item.delete()
-    return redirect(cart_details)
+    return redirect('cart_details')
 
 
 def increase_one_cart(request, item_id):
@@ -104,7 +104,7 @@ def increase_one_cart(request, item_id):
     item = get_object_or_404(CartItem, id=item_id)
     item.quantity += 1
     item.save()
-    return redirect(cart_details)
+    return redirect('cart_details')
 
 
 def delete_from_cart(request, item_id):
@@ -113,7 +113,7 @@ def delete_from_cart(request, item_id):
     """
     item = get_object_or_404(CartItem, id=item_id)
     item.delete()
-    return redirect(cart_details)
+    return redirect('cart_details')
 
 
 def cart_details(request, total=0, counter=0, cart_items=None):
@@ -245,7 +245,8 @@ def cart_details(request, total=0, counter=0, cart_items=None):
                     product.stock = int(product_stock - item.quantity)
                     product.save()
                     item.delete()
-                return redirect('index')
+                    request.session['thankyou'] = order_details.id
+                return redirect('thankyou')
             except ObjectDoesNotExist:
                 pass
         except stripe.error.CardError as e:

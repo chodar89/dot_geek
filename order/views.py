@@ -12,3 +12,12 @@ def order(request, order_id):
     }
 
     return render(request, 'order/order.html', context)
+
+
+def thankyou(request):
+    order_id = request.session['thankyou']
+
+    context = {
+        'order': order_id,
+    }
+    return render(request, 'pages/thankyou.html', context)
