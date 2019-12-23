@@ -168,7 +168,7 @@ STATICFILES_DIRS = [
 ]
 
 STATICFILES_LOCATION = 'media'
-DEFAULT_FILE_STORAGE = 'custom_storage.MediaStorage'
+DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
 
 # Media Folder Settings
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
