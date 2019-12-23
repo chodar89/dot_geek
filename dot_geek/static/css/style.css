@@ -30,7 +30,7 @@ body {
 
 #all-products, #contact, #single-product,
 #register, #login, #search  {
-  margin-top: 112px;
+  margin-top: 108px;
   min-height: calc(100vh - 388px);
 }
 
@@ -64,6 +64,11 @@ body {
 
 .out-stock-btn {
   color: var(--main-white)!important;
+}
+
+#continue-btn {
+  max-width: 600px;
+  margin: auto;
 }
 
 .message-container {
@@ -351,6 +356,7 @@ nav > .container {
 
 /* Contact */
 
+
 /* Product Cards */
 
 .product-card {
@@ -587,6 +593,10 @@ footer {
 
   .img-container .card {
     display: none;
+  }
+
+  .search-field {
+    margin-left: 9px;
   }
 
   .list-group-item select {

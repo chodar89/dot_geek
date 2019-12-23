@@ -4,14 +4,14 @@
     </div>
     <form action="{% url 'search' %}">
         {% csrf_token %}
-        <div class="form-row d-flex justify-content-center">
+        <div class="form-row d-flex justify-content-center search-field">
             <div class="col-md-9 mb-3 mt-3 ml-3 keyword-div">
                 <label class="sr-only">Keywords</label>
                 <input type="text" placeholder="Search e.g.(series, character or item name)" name="keywords" class="form-control">
             </div>
         </div>
-        <div class="form-row d-flex justify-content-center">
-            <div class="col-md-3 mb-3 mt-3">
+        <div class="form-row d-flex justify-content-center search-field">
+            <div class="col-md-3 mb-3 mt-3 mr-3">
                 <label class="sr-only">Brand</label>
                 <select name="brand" class="form-control">
                     <option selected="true" value=''>All Brands</option>
