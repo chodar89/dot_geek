@@ -1,7 +1,9 @@
+<img src="dot_geek\static\img\logo\dotgeek_black.png" width="200">
+
 # DOT GEEK
 So this is my fourth and last project for CodeInstitute. It is e-commerce website for geeks but not only. Potiential customers will find a products from retro and legendary games, films, cartoons and comics. <br> https://dot-geek.herokuapp.com
 ## UX
-Website allows user to buy and browse all products that are in shop offer. User can create an account and pay securely for his shopping. As well thare is a cart tab where user can check what is in and check his shopping history (only for user that holds an account). App is responsive and friendly to users. Design is inspired by retro 8bit games.
+Website allows user to buy and browse all products that are in shop offer. User can create an account and pay securely for his shopping. As well thare is a cart tab where user can check what is in and adjust product amount or delete it. User can check his shopping history (only for user that holds an account). App is responsive and friendly to users. Design is inspired by retro 8bit games.
 ## Features
 - Customized Django Admin Panel
 - User dashboard
@@ -34,17 +36,18 @@ Website allows user to buy and browse all products that are in shop offer. User 
 - App is running and hosted on [Heroku](https://dot-geek.herokuapp.com)
 ### Steps to deploy
 #### Steps to deploy app on Heroku
-- Create an account on [heroku](https://heroku.com)
-- After sign up, login and create a new app with unique name:<br>
+- create an account on [heroku](https://heroku.com)
+- after sign up, login and create a new app with unique name:<br>
   New > Create new app<br>
   or create app from CLI - [manual](https://devcenter.heroku.com/articles/creating-apps)
-- You need to create requirements.txt file and the Procfile<br>
+- go to Resources tab and get <strong>Heroku Postgres</strong> add-on
+- you need to create requirements.txt file and the Procfile<br>
   From command line:
   ```
   $ pip freeze --local > requirements.txt
   $ echo "web: gunicorn your_app_name.wsgi:application" > Procfile
   ```
-- Push te code to <strong>GitHub</strong> and from <strong>Deploy Card</strong> in Heroku deploy your branch
+- push te code to <strong>GitHub</strong> and from <strong>Deploy Card</strong> in Heroku deploy your branch
 - Set up config vars. Go to <strong>Heroku > Settings</strong> tab and cicl <strong>Reveal Config Vars</strong><br>
 1. AWS_ACCESS_KEY_ID (only if you use AWS S3 Bucket)
 2. AWS_SECRET_ACCESS_KEY (only if you use AWS S3 Bucket)
@@ -53,6 +56,11 @@ Website allows user to buy and browse all products that are in shop offer. User 
 5. STRIPE_PUBLISHABLE_KEY (only if you use stripe payment)
 6. STRIPE_SECRET_KEY (only if you use stripe payment)
 ### Run app local
+#### Before start
+- if you would like to run app with the same settings than you will need to read how to set up [Stripe](https://stripe.com/) and [AWS S3](https://aws.amazon.com) buckets
+- you can check Stripe Django tutorial [here](https://testdriven.io/blog/django-stripe-tutorial/)
+- and AWS S3 tutorial [here](https://simpleisbetterthancomplex.com/tutorial/2017/08/01/how-to-setup-amazon-s3-in-a-django-project.html)
+#### How to run app on your local machine
 - install or update Python to version 3.x
 - create [virtual env](https://docs.python.org/3/tutorial/venv.html)
 - download all files to local dir
@@ -79,7 +87,7 @@ Website allows user to buy and browse all products that are in shop offer. User 
             }
         }
     ```
-- and delete other DATABASES setting line 100 in `<settings.py>`
+- and delete other DATABASES setting at line 100 in `<settings.py>`
 - in the same time you should install PostgreSQL and pgAdmin on your computer [link](https://www.postgresql.org)
 - once you set this up run <code>python manage.py createsuperuser</code> follow the command line and provide data
 - than you will need to do migrations to our DB `<python manage.py makemigrations>` and `<python manage.py migrate>`
