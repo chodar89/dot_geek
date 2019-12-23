@@ -167,7 +167,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'dot_geek/static')
 ]
 
-STATICFILES_LOCATION = 'media'
+MEDIAFILES_LOCATION = 'media'
 DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
 
 # Media Folder Settings
