@@ -29,7 +29,7 @@ body {
 }
 
 #all-products, #contact, #single-product,
-#register, #login, #search  {
+#register, #login, #search, #cart, #order  {
   margin-top: 108px;
   min-height: calc(100vh - 388px);
 }
@@ -565,7 +565,7 @@ footer {
 
 @media (max-width: 992px) {
   #all-products, #contact, #single-product,
-  #register, #login  {
+  #register, #login, #cart, #order  {
     margin-top: 108px;
   }
 
@@ -583,8 +583,16 @@ footer {
     margin-left: 0;
   }
 
-  .cart-container {
-    flex-direction: column-reverse;
+  .message-box {
+    order: 1;
+  }
+
+  .checkout-box {
+    order: 2;
+  }
+
+  .cart-box {
+    order: 3;
   }
 
   .card-cart {

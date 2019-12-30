@@ -14,21 +14,21 @@
                 <!-- Mini gallery with LightBox -->
                 <div class="row">
                     {% if product.photo_1 %}
-                    <div class="col-md-4">
+                    <div class="col-4 col-md-4">
                         <a href="{{ product.photo_1.url }}" data-lightbox="home-images">
                             <img src="{{ product.photo_1.url }}" alt="Product photo" class="img-fluid rounded">
                         </a>
                     </div>
                     {% endif %}
                     {% if product.photo_2 %}
-                    <div class="col-md-4">
+                    <div class="col-4 col-md-4">
                         <a href="{{ product.photo_2.url }}" data-lightbox="home-images">
                             <img src="{{ product.photo_2.url }}" alt="Product photo" class="img-fluid rounded">
                         </a>
                     </div>
                     {% endif %}
                     {% if product.photo_3 %}
-                    <div class="col-md-4">
+                    <div class="col-4 col-md-4">
                         <a href="{{ product.photo_3.url }}" data-lightbox="home-images">
                             <img src="{{ product.photo_3.url }}" alt="Product photo" class="img-fluid rounded">
                         </a>

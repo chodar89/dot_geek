@@ -154,7 +154,8 @@ def cart_details(request, total=0, counter=0, cart_items=None):
                     item.quantity = product_stock
                     qnty = product_stock
                     item.save()
-                    messages.error(request, f'We have only {product_stock} {item.product.name} in stock. Sorry.')
+                    messages.error(
+                        request, f'We have only {product_stock} {item.product.name} in stock. Sorry.')
             else:
                 product_stock = item.product.stock
                 if qnty > product_stock:
@@ -174,7 +175,7 @@ def cart_details(request, total=0, counter=0, cart_items=None):
     data_key = settings.STRIPE_PUBLISHABLE_KEY
 
     if request.method == 'POST':
-        # If stripe pay get user data from stripe form
+        # If stripe-pay, get user data from stripe form
         print(request.POST)
         try:
             token = request.POST['stripeToken']
