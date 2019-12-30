@@ -75,7 +75,7 @@ Website allows user to buy and browse all products that are in shop offer. User 
 4. HOST
 5. STRIPE_PUBLISHABLE_KEY
 6. STRIPE_SECRET_KEY
-- next uncomment in `<settings.py>`:
+- next uncomment in <strong>`settings.py`</strong>:
     ```
         DATABASES = {
             'default': {
@@ -87,13 +87,30 @@ Website allows user to buy and browse all products that are in shop offer. User 
             }
         }
     ```
-- and delete other DATABASES setting at line 100 in `<settings.py>`
+- and delete other DATABASES setting at line 100 in <strong>`settings.py`</strong>
 - in the same time you should install PostgreSQL and pgAdmin on your computer [link](https://www.postgresql.org)
-- once you set this up run <code>python manage.py createsuperuser</code> follow the command line and provide data
-- than you will need to do migrations to our DB `<python manage.py makemigrations>` and `<python manage.py migrate>`
-- if you dont want to use S3 bucket insted you would like to hold everything in local dirs, you need to comment out all AWS settings lines in <bold>settings.py</bold> plus <code>STATICFILES_LOCATION, STATICFILES_STORAGE, MEDIAFILES_LOCATION, DEFAULT_FILE_STORAGE</code>
-- than run `<python manage.py collectstatic>`
-- to run app `<python manage.py runserver>`
+- once you set this up run 
+  ```
+  $ python manage.py createsuperuser
+  ``` 
+- follow the command line and provide data
+- than you will need to do migrations to your DB run in terminal:
+  ```
+  $ python manage.py makemigrations
+  ``` 
+  and 
+  ```
+  $ python manage.py migrate
+  ```
+- if you dont want to use S3 bucket instead you would like to hold everything in local dirs, you need to comment out all AWS settings lines in <bold>settings.py</bold> plus <code>STATICFILES_LOCATION, STATICFILES_STORAGE, MEDIAFILES_LOCATION, DEFAULT_FILE_STORAGE</code>
+- to collect all static files run in terminal:
+  ```
+  $ python manage.py collectstatic
+  ```
+- finally run the app:
+  ```
+  $ python manage.py runserver
+  ```
 ### Credits
 - All vector graphic was created by Tobiasz Chodarewicz
 - Images downloaded from Unsplash, Pixabay and Pexels

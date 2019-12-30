@@ -151,6 +151,7 @@ def cart_details(request, total=0, counter=0, cart_items=None):
                 else:
                     product_stock = item.product.stock
                 if qnty > product_stock:
+                    item.quantity = product_stock
                     qnty = product_stock
                     item.save()
                     messages.error(request, f'We have only {product_stock} {item.product.name} in stock. Sorry.')
@@ -158,6 +159,7 @@ def cart_details(request, total=0, counter=0, cart_items=None):
                 product_stock = item.product.stock
                 if qnty > product_stock:
                     item.quantity = item.product.stock
+                    qnty = product_stock
                     item.save()
                     messages.error(
                         request, f'We have only {product_stock} {item.product.name} in stock. Sorry.')
