@@ -1,14 +1,19 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib import messages
+from django.conf import settings
+from django.contrib.auth.models import User
+from django.template.loader import get_template
+from django.core.mail import EmailMessage
+
+import stripe
 
 from products.models import Product, SizeChart
 from order.models import Order, OrderItem
 from .models import Cart, CartItem
-from django.contrib.auth.models import User
 
-import stripe
-from django.conf import settings
+
+
 
 
 def _get_user_or_none(request):
@@ -250,6 +255,7 @@ def cart_details(request, total=0, counter=0, cart_items=None):
                     product.save()
                     item.delete()
                     request.session['thankyou'] = order_details.id
+                    send_order_email(order_details.id)
                 return redirect('thankyou')
             except ObjectDoesNotExist:
                 pass
@@ -266,3 +272,22 @@ def cart_details(request, total=0, counter=0, cart_items=None):
         'description': description
     }
     return render(request, 'cart/cart.html', context)
+
+def send_order_email(order_id):
+    """
+    Send order template email to customer
+    """
+    order = Order.objects.get(id=order_id)
+    order_items = OrderItem.objects.filter(order=order)
+    if order is not None:
+        subject = "DOT GEEK Store - Your order #{}".format(order.id)
+        to = ['{}'.format(order.email_address)]
+        from_email = 'dotgeekstore@gmail.com'
+        context = {
+            'order': order,
+            'order_items': order_items,
+        }
+        email = get_template('emails/email_order.html').render(context)
+        msg = EmailMessage(subject, email, to=to, from_email=from_email)
+        msg.content_subtype = 'html'
+        msg.send()
