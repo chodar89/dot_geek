@@ -139,20 +139,21 @@ USE_TZ = True
 
 # AWS Bucket config
 
-AWS_S3_OBJECT_PARAMETERS = {
-    'Expires': 'Thu, 31 Dec 2100 20:00:00 GMT',
-    'CacheControl': 'max-age=94608000',
-}
+# AWS_S3_OBJECT_PARAMETERS = {
+#     'Expires': 'Thu, 31 Dec 2100 20:00:00 GMT',
+#     'CacheControl': 'max-age=94608000',
+# }
 
-AWS_DEFAULT_ACL = None
-AWS_STORAGE_BUCKET_NAME = 'dot-geek'
-AWS_S3_REGION_NAME = 'eu-west-2'
-AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
-AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+# AWS_DEFAULT_ACL = None
+# AWS_STORAGE_BUCKET_NAME = 'dot-geek'
+# AWS_S3_REGION_NAME = 'eu-west-2'
+# AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
+# AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
+# AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 
 STATICFILES_LOCATION = 'static'
-STATICFILES_STORAGE = 'custom_storages.StaticStorage'
+# STATICFILES_STORAGE = 'custom_storages.StaticStorage'
+STATICFILES_STORAGE = 'static'
 
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
@@ -171,10 +172,21 @@ MEDIAFILES_LOCATION = 'media'
 DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
 
 # Media Folder Settings
+
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
+# EMAIL SETTINGS
+
+EMAIL_HOST = os.getenv('EMAIL_HOST')
+EMAIL_PORT = os.getenv('EMAIL_PORT')
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS')
+
+
 # Messages
+
 MESSAGE_TAGS = {
     messages.ERROR: 'danger',
     messages.SUCCESS: 'success',
