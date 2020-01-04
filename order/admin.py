@@ -19,18 +19,20 @@ class OrderItemAdmin(admin.TabularInline):
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ('id', 'billing_name', 'email_address', 'user', 'created_at')
+    list_display = ('id', 'billing_name',
+                    'email_address', 'user', 'created_at')
     list_display_links = ('id', 'billing_name', 'email_address')
     search_fields = ('id', 'billing_name', 'email_address', 'user__username')
-    readonly_fields = ('id', 'token', 'total', 'email_address', 'created_at', 'billing_name', 'billing_address1', 'billing_city',
-                       'billing_postcode', 'billing_country', 'shipping_name', 'shipping_address1', 'shipping_city', 'shipping_postcode', 'shipping_country')
+    readonly_fields = ('id', 'token', 'total', 'email_address', 'created_at', 'billing_name', 'billing_address1', 
+                       'billing_city', 'billing_postcode', 'billing_country', 'shipping_name', 'shipping_address1', 
+                       'shipping_city', 'shipping_postcode', 'shipping_country')
     fieldsets = [
         ('ORDER INFORMATION', {'fields': [
-         'id', 'token', 'total', 'created_at', 'email_address']}),
+            'id', 'token', 'total', 'created_at', 'email_address']}),
         ('BILLING INFORMATION', {'fields': [
-         'billing_name', 'billing_address1', 'billing_city', 'billing_postcode', 'billing_country']}),
+            'billing_name', 'billing_address1', 'billing_city', 'billing_postcode', 'billing_country']}),
         ('SHIPPING INFORMATION', {'fields': [
-         'shipping_name', 'shipping_address1', 'shipping_city', 'shipping_postcode', 'shipping_country']}),
+            'shipping_name', 'shipping_address1', 'shipping_city', 'shipping_postcode', 'shipping_country']}),
     ]
 
     inlines = [

@@ -1,5 +1,3 @@
-from django.core.exceptions import ObjectDoesNotExist
-
 from products.models import ProductBrand, ProductType
 
 

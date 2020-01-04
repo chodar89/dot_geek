@@ -4,28 +4,30 @@
 {% block content %}
 <section id="contact">
     {% include "partials/_sky.html" %}
-    <div class="row">
-        <div class="mt-2" style="width: 100%;" >
-            {% include 'partials/_messages.html' %}
-        </div>
-        <div class="col-md-10 mx-auto">
-            <div class="card card-cart">
-                <div class="card-header">
-                    <i class="far fa-envelope"></i> CONTACT
-                </div>
-                <div class="card-body d-flex flex-column text-center">
-
-                    <p class="font-weight-bold">Address:</p>
-                    <p>
-                        DOT GEEK <br>
-                        65 Glandovey Terrace <br>
-                        PL12 0UG <br>
-                        +44 78 1464 5328
-                    </p>
-                    <p class="font-weight-bold">Email:</p>
-                    <p>customers@dotgeek.com</p>
-
-                    <a href="{% url 'all_products' %}" id="continue-btn" class="btn btn-secondary btn-block ">CONTINUE SHOPPING</a>
+    <div class="container">
+        <div class="row">
+            <div class="mt-2" style="width: 100%;" >
+                {% include 'partials/_messages.html' %}
+            </div>
+            <div class="col-md-10 mx-auto">
+                <div class="card card-cart">
+                    <div class="card-header">
+                        <i class="far fa-envelope"></i> CONTACT
+                    </div>
+                    <div class="card-body d-flex flex-column text-center">
+    
+                        <p class="font-weight-bold">Address:</p>
+                        <p>
+                            DOT GEEK <br>
+                            65 Glandovey Terrace <br>
+                            PL12 0UG <br>
+                            +44 78 1464 5328
+                        </p>
+                        <p class="font-weight-bold">Email:</p>
+                        <p>customers@dotgeek.com</p>
+    
+                        <a href="{% url 'all_products' %}" id="continue-btn" class="btn btn-secondary btn-block ">CONTINUE SHOPPING</a>
+                    </div>
                 </div>
             </div>
         </div>

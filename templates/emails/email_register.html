@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>New account - DOT GEEK Store </title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Noto+Sans+TC:100,300,400,500,700,900&display=swap');
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background: var(--main-white);
+            width: 80%;
+            margin: auto;
+          }
+        .container {
+            border: 4px solid black;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+        .top-div {
+            width: 100%;
+            background-color: #ed6a5a;
+            color: white;
+            padding: 2px 0;
+            border-radius: 10px 10px 0 0;
+        }
+        hr {
+            width: 60%;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <center>
+            <div class="top-div">
+                <h1>Thank you for creating an account with DOT GEEK!</h1>
+            </div>
+            <h2>Below you will find your details.</h2>
+            <br>
+            <hr>
+            <p>Name: {{ user.first_name }} {{ user.last_name }}<br>
+                Login: {{ user.username }}<br>
+                Email: {{ user.email }}
+            </p>
+            <p>Now you can <a href="https://dot-geek.herokuapp.com/accounts/login">sign in</a> with your login and password.</p>
+        </center>
+    </div>
+</body>
+</html>

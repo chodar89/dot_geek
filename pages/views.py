@@ -1,10 +1,13 @@
 from django.shortcuts import render
 
-from .models import IndexCarousel
 from products.models import Product, SizeChart
+from .models import IndexCarousel
 
 
 def index(request):
+    """
+    Render index page with carousel imgs, new in and bestseller products
+    """
     carousels = IndexCarousel.objects.all()
 
     all_products = Product.objects.all().filter(is_for_sale=True)
@@ -24,5 +27,9 @@ def index(request):
 
     return render(request, 'pages/index.html', context)
 
+
 def contact(request):
+    """
+    Render contact page
+    """
     return render(request, 'pages/contact.html')

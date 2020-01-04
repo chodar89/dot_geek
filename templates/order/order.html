@@ -4,47 +4,49 @@
 {% block content %}
 <section id="order">
     {% include "partials/_sky.html" %}
-    <div class="row">
-        <div class="mt-2" style="width: 100%;" >
-            {% include 'partials/_messages.html' %}
-        </div>
-        <div class="col-md-10 mx-auto">
-            <div class="card card-cart">
-                <div class="card-header">
-                    ORDER No {{ order_number }}
-                </div>
-                <div class="card-body">
-                    {% if get_order_items %}
-                        <table class='table table-striped'>
-                            <thead>
-                                <tr>
-                                    <th>Product Name</th>
-                                    <th>Size</th>
-                                    <th>Quantity</th>
-                                    <th>Price</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for item in get_order_items %}
+    <div class="container">
+        <div class="row">
+            <div class="mt-2" style="width: 100%;" >
+                {% include 'partials/_messages.html' %}
+            </div>
+            <div class="col-md-10 mx-auto">
+                <div class="card card-cart">
+                    <div class="card-header">
+                        ORDER No {{ order_number }}
+                    </div>
+                    <div class="card-body">
+                        {% if get_order_items %}
+                            <table class='table table-striped'>
+                                <thead>
                                     <tr>
-                                        <td>{{ item.product }}</td>
-                                        <td>
-                                            {% if item.item_size %}
-                                                {{ item.item_size}}
-                                            {% else %}
-                                                -
-                                            {% endif %}
-                                        </td>
-                                        <td>{{ item.quantity }}</td>
-                                        <td>{{ item.price }}</td>
+                                        <th>Product Name</th>
+                                        <th>Size</th>
+                                        <th>Quantity</th>
+                                        <th>Price</th>
                                     </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    {% else %}
-                        <p class="text-center">There is a problem with your order details.</p>
-                    {% endif %}
-                    <a href="{% url 'dashboard' %}" id="continue-btn" class="btn btn-secondary btn-block ">GO TO DASHBOARD</a>
+                                </thead>
+                                <tbody>
+                                    {% for item in get_order_items %}
+                                        <tr>
+                                            <td>{{ item.product }}</td>
+                                            <td>
+                                                {% if item.item_size %}
+                                                    {{ item.item_size}}
+                                                {% else %}
+                                                    -
+                                                {% endif %}
+                                            </td>
+                                            <td>{{ item.quantity }}</td>
+                                            <td>{{ item.price }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        {% else %}
+                            <p class="text-center">There is a problem with your order details.</p>
+                        {% endif %}
+                        <a href="{% url 'dashboard' %}" id="continue-btn" class="btn btn-secondary btn-block ">GO TO DASHBOARD</a>
+                    </div>
                 </div>
             </div>
         </div>

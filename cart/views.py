@@ -13,9 +13,6 @@ from order.models import Order, OrderItem
 from .models import Cart, CartItem
 
 
-
-
-
 def _get_user_or_none(request):
     """
     Check if user is authenticated
@@ -281,13 +278,13 @@ def send_order_email(order_id):
     order_items = OrderItem.objects.filter(order=order)
     if order is not None:
         subject = "DOT GEEK Store - Your order #{}".format(order.id)
-        to = ['{}'.format(order.email_address)]
+        email_to = ['{}'.format(order.email_address)]
         from_email = 'dotgeekstore@gmail.com'
         context = {
             'order': order,
             'order_items': order_items,
         }
         email = get_template('emails/email_order.html').render(context)
-        msg = EmailMessage(subject, email, to=to, from_email=from_email)
+        msg = EmailMessage(subject, email, to=email_to, from_email=from_email)
         msg.content_subtype = 'html'
         msg.send()

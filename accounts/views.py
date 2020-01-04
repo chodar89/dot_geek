@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib import messages, auth
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.template.loader import get_template
+from django.core.mail import EmailMessage
 
 from order.models import Order
 
@@ -36,10 +38,11 @@ def register(request):
                     user = User.objects.create_user(username=uname, password=password, email=email,
                                                     first_name=first_name, last_name=last_name)
                     user.save()
+                    send_register_email(user.id)  
                     messages.success(
                         request, ' Thank you for creating an account. You can now log in!')
                     return redirect('login')
-            return redirect('index')
+            return redirect('register')
         else:
             messages.error(request, 'Passwords do not match')
         return redirect('register')
@@ -80,3 +83,21 @@ def dashboard(request):
         'get_orders': get_orders,
     }
     return render(request, 'accounts/dashboard.html', context)
+
+
+def send_register_email(user_id):
+    """
+    Send confirmation registration template email to customer
+    """
+    user = User.objects.get(id=user_id)
+    if user is not None:
+        subject = "DOT GEEK Store - New account"
+        email_to = ['{}'.format(user.email)]
+        from_email = 'dotgeekstore@gmail.com'
+        context = {
+            'user': user,
+        }
+        email = get_template('emails/email_register.html').render(context)
+        msg = EmailMessage(subject, email, to=email_to, from_email=from_email)
+        msg.content_subtype = 'html'
+        msg.send()

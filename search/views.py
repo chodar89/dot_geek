@@ -1,24 +1,24 @@
 from django.shortcuts import render
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.core.paginator import Paginator
 from django.db.models import Q
 
-from products.models import ProductBrand, ProductType, Product, SizeChart
+from products.models import ProductBrand, Product, SizeChart
 
-# Create your views here.
 
 def search(request):
     """ Render search page with resualts"""
 
     # Get all products ordered by - newest first
-    search_products = Product.objects.filter(is_for_sale=True).order_by('-created_at')
+    search_products = Product.objects.filter(
+        is_for_sale=True).order_by('-created_at')
 
     # Keywords from search form
     if 'keywords' in request.GET:
         keywords = request.GET['keywords']
         # If it's not empty string
         if keywords:
-            search_products = search_products.filter(Q(description__icontains=keywords)|
-                                                     Q(series__icontains=keywords)|
+            search_products = search_products.filter(Q(description__icontains=keywords) |
+                                                     Q(series__icontains=keywords) |
                                                      Q(character__icontains=keywords))
 
     # Brand from select search form
@@ -40,15 +40,20 @@ def search(request):
         price_range = request.GET['price-range']
         # If it's not empty
         if price_range == "0-10":
-            search_products = search_products.filter(price__gte=0, price__lte=10)
+            search_products = search_products.filter(
+                price__gte=0, price__lte=10)
         if price_range == "10-20":
-            search_products = search_products.filter(price__gte=10, price__lte=20)
+            search_products = search_products.filter(
+                price__gte=10, price__lte=20)
         if price_range == "20-30":
-            search_products = search_products.filter(price__gte=20, price__lte=30)
+            search_products = search_products.filter(
+                price__gte=20, price__lte=30)
         if price_range == "30-40":
-            search_products = search_products.filter(price__gte=30, price__lte=40)
+            search_products = search_products.filter(
+                price__gte=30, price__lte=40)
         if price_range == "40-50":
-            search_products = search_products.filter(price__gte=40, price__lte=50)
+            search_products = search_products.filter(
+                price__gte=40, price__lte=50)
         if price_range == "50+":
             search_products = search_products.filter(price__gte=50)
 
@@ -67,6 +72,7 @@ def search(request):
 
     return render(request, 'search/search.html', context)
 
+
 def navbar_brand(request, brand_id):
     """ Get all products with brand id from dropdown navbar """
 
@@ -78,7 +84,7 @@ def navbar_brand(request, brand_id):
 
     # Get all filtered products ordered by(newest first)
     search_products = Product.objects.all().filter(
-        is_for_sale=True).filter(Q(brand=brand_id)|
+        is_for_sale=True).filter(Q(brand=brand_id) |
                                  Q(series__icontains=get_nav_brand_name)).order_by('-created_at')
 
     paginator = Paginator(search_products, 9)
@@ -94,11 +100,13 @@ def navbar_brand(request, brand_id):
 
     return render(request, 'search/navbar_brand.html', context)
 
+
 def navbar_type(request, type_id):
     """ Get all products with category id from dropdown navbar """
 
-     # Get all filtered products ordered by(newest first)
-    search_products = Product.objects.all().filter(is_for_sale=True).filter(product_type=type_id).order_by('-created_at')
+    # Get all filtered products ordered by(newest first)
+    search_products = Product.objects.all().filter(is_for_sale=True).filter(
+        product_type=type_id).order_by('-created_at')
 
     size_chart = SizeChart.objects.all()
 

@@ -29,7 +29,7 @@ body {
 }
 
 #all-products, #contact, #single-product,
-#register, #login, #search, #cart, #order  {
+#register, #login, #search, #cart, #order, #dashboard  {
   margin-top: 108px;
   min-height: calc(100vh - 388px);
 }
@@ -565,7 +565,7 @@ footer {
 
 @media (max-width: 992px) {
   #all-products, #contact, #single-product,
-  #register, #login, #cart, #order  {
+  #register, #login, #cart, #order, #dashboard  {
     margin-top: 108px;
   }
 

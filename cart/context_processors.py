@@ -1,5 +1,3 @@
-from django.core.exceptions import ObjectDoesNotExist
-
 from cart.models import Cart, CartItem
 from cart.views import _cart_id, _get_user_or_none
 
@@ -20,7 +18,7 @@ def item_counter(request):
                 cart = Cart.objects.get(cart_id=_cart_id(request))
             except Cart.DoesNotExist:
                 cart = Cart.objects.create(
-                        cart_id=_cart_id(request)
+                    cart_id=_cart_id(request)
                     )
                 cart.save()
         try:
