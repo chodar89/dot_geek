@@ -20,7 +20,6 @@
                                 <thead>
                                     <tr>
                                         <th>Product Name</th>
-                                        <th>Size</th>
                                         <th>Quantity</th>
                                         <th>Price</th>
                                     </tr>
@@ -28,12 +27,10 @@
                                 <tbody>
                                     {% for item in get_order_items %}
                                         <tr>
-                                            <td>{{ item.product }}</td>
                                             <td>
+                                                {{ item.product }}
                                                 {% if item.item_size %}
-                                                    {{ item.item_size}}
-                                                {% else %}
-                                                    -
+                                                    - {{ item.item_size}}
                                                 {% endif %}
                                             </td>
                                             <td>{{ item.quantity }}</td>

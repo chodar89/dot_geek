@@ -20,7 +20,7 @@
                                 <thead>
                                     <tr>
                                         <th>Order Number</th>
-                                        <th>Order Date</th>
+                                        <th class="d-none d-sm-block">Order Date</th>
                                         <th>Total Amount</th>
                                         <th>Action</th>
                                     </tr>
@@ -29,7 +29,7 @@
                                     {% for order in get_orders %}
                                         <tr>
                                             <td>{{ order.id }}</td>
-                                            <td>{{ order.created_at|date:"d M Y" }}</td>
+                                            <td class="d-none d-sm-block">{{ order.created_at|date:"d M Y" }}</td>
                                             <td>{{ order.total }}</td>
                                             <td><a class="text-decoration-none font-weight-bold text-success" href="{% url 'order' order.id %}">View order</a></td>
                                         </tr>

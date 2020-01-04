@@ -22,7 +22,7 @@ def item_counter(request):
                     )
                 cart.save()
         try:
-            cart_items = CartItem.objects.all().filter(cart=cart)[:1]
+            cart_items = CartItem.objects.all().filter(cart=cart)
             for item in cart_items:
                 item_count += item.quantity
         except Cart.DoesNotExist:
