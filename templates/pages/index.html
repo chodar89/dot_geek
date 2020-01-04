@@ -6,23 +6,26 @@
 <header>
     {% if carousels %}
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-        <!-- <ol class="carousel-indicators">
-                {% for carousel in carousels %}
-                    <li data-target="#carouselExampleIndicators" data-slide-to=" {{ forloop.counter }}" 
-                    class=""></li>
-                {% endfor %}
-            </ol> -->
         <div class="carousel-inner" role="listbox">
             <!-- Slide Carusel Img in Header -->
             {% for carousel in carousels %}
-            <div {% if carousel.first %} id="first" class="carousel-item active" {% else %} id="rest-carousel"
-                class="carousel-item" {% endif %} style="background-image: url({{ carousel.image.url }})"
-                alt="carousel-image">
-                <div class="carousel-caption d-md-block">
-                    <h3 class="display-4">{{ carousel.heading }}</h3>
-                    <p class="lead">{{ carousel.paragraph }}</p>
+                <div
+                    {% if carousel.first %} 
+                        id="first" class="carousel-item active"
+                    {% else %} 
+                    id="rest-carousel" class="carousel-item"
+                    {% endif %}
+                    style="background-image: url({{ carousel.image.url }})"
+                    alt="carousel-image"
+                >
+                <a href="{% url 'carousel_search' carousel.id %}">
+                    <div style="width: 100%; height: 100%;"></div>
+                    <div class="carousel-caption d-md-block">
+                        <h3 class="display-4">{{ carousel.heading }}</h3>
+                        <p class="lead">{{ carousel.paragraph }}</p>
+                    </div>
+                </a>
                 </div>
-            </div>
             {% endfor %}
         </div>
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">

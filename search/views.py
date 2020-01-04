@@ -3,7 +3,7 @@ from django.core.paginator import Paginator
 from django.db.models import Q
 
 from products.models import ProductBrand, Product, SizeChart
-
+from pages.models import IndexCarousel
 
 def search(request):
     """ Render search page with resualts"""
@@ -122,3 +122,25 @@ def navbar_type(request, type_id):
     }
 
     return render(request, 'search/navbar_type.html', context)
+
+
+def carousel_search(request, carousel_id):
+    """ Get all products with category id from dropdown navbar """
+
+    # Get all filtered products ordered by(newest first)
+    search_products = Product.objects.all().filter(is_for_sale=True).filter(carousel=carousel_id).order_by('-created_at')
+
+    size_chart = SizeChart.objects.all()
+
+    paginator = Paginator(search_products, 9)
+
+    page = request.GET.get('page')
+
+    paged_search = paginator.get_page(page)
+
+    context = {
+        "search_products": paged_search,
+        "size_chart": size_chart,
+    }
+
+    return render(request, 'search/carousel_search.html', context)

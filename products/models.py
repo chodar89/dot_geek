@@ -1,6 +1,8 @@
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 
+from pages.models import IndexCarousel
+
 
 class ProductType(models.Model):
     """ Product types model with option to show in the dropdown nav bar """
@@ -41,6 +43,7 @@ class Product(models.Model):
     series = models.TextField(max_length=100, blank=True)
     description = models.TextField(max_length=500, blank=True)
     short_description = models.TextField(max_length=180, blank=True)
+    carousel = models.ForeignKey(IndexCarousel, blank=True, null=True, on_delete=models.CASCADE)
     buys = models.IntegerField(default=0, validators=[MinValueValidator(0)])
     price = models.DecimalField(
         max_digits=5, decimal_places=2, verbose_name='GBP Price')

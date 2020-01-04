@@ -3,10 +3,10 @@ from django.contrib import admin
 from .models import Product, ProductType, SizeChart, ProductBrand
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'product_type', 'brand', 'price', 'stock', 'buys', 'is_for_sale')
+    list_display = ('id', 'name', 'product_type', 'brand', 'price', 'carousel', 'buys', 'is_for_sale')
     list_display_links = ('id', 'name')
     list_filter = ('product_type', 'brand')
-    list_editable = ('is_for_sale', 'stock', 'price')
+    list_editable = ('is_for_sale', 'carousel', 'price')
     search_fields = ('name', 'description', 'series', 'character', 'short_description')
     readonly_fields = ('created_at',)
     list_per_page = 50
