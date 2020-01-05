@@ -3,7 +3,6 @@ from django.urls import reverse, resolve
 
 from pages.views import index, contact
 
-print('xxx')
 
 class TestPagesUrls(SimpleTestCase):
 
