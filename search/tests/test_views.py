@@ -13,22 +13,22 @@ class TestSearchViews(TestCase):
         self.navbar_type_url = reverse('navbar_type', args=[1])
         self.navbar_brand_url = reverse('navbar_brand', args=[1])
         self.carousel_search_url = reverse('carousel_search', args=[1])
-        product_brand_1 = ProductBrand.objects.create(
+        ProductBrand.objects.create(
             id=1,
             brand_name='brand_test_1',
             is_in_navbar_menu=True
         )
-        product_type_1 = ProductType.objects.create(
+        ProductType.objects.create(
             id=1,
             types='type_test_1',
             is_in_navbar_menu=True
         )
-        carousel_1 = IndexCarousel.objects.create(
+        IndexCarousel.objects.create(
             id=1,
             image='photo',
             first=True
         )
-        product_1 = Product.objects.create(
+        Product.objects.create(
             product_type=ProductType(id=1),
             name='product_test_1',
             brand=ProductBrand(id=1),
@@ -70,6 +70,7 @@ class TestSearchViews(TestCase):
     def test_carousel_search_get(self):
         response = self.client.get(self.carousel_search_url)
 
+        # Check status code and does it use correct template
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'search/carousel_search.html')
         # Check if search product query (from view) match to type ID that was passed in view
