@@ -32,6 +32,14 @@ Website allows user to buy and browse all products that are in shop offer. User 
 - jQuery
 - CorelDraw
 - AWS S3 Bucket
+## Testing
+### Auto Test
+- urls tested with Django build in test framework
+- views testet with Django build in test framework
+### Manual Test
+- tested manualy by: adding, editing, deleting records from database
+- tested on different devices with iOS, Android, Windows and Macintosh system
+- tested on Chrome, Opera, Mozilla and Safari browsers
 ## Deployment
 - App is running and hosted on [Heroku](https://dot-geek.herokuapp.com)
 ### Steps to deploy

@@ -1,13 +1,6 @@
-language: python # => 1
-    python: # => 2
-      - 3.7.5
-    services: # => 3
-      - postgresql
-    env: # => 4
-      - DJANGO=3.0 DB=postgresql
-    install: # => 5
-      - pip install -r requirements.txt
-    before_script: # => 6
-      - psql -c 'create database dot_geek_test;' -U postgres
-    script: # => 7
-      - python manage.py test
+language: python
+python:
+- '3.7.5'
+install: "pip3 install -r requirements.txt"
+script:
+- SECRET_KEY="whatever" ./manage.py test
