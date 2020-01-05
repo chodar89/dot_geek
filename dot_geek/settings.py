@@ -100,9 +100,20 @@ WSGI_APPLICATION = 'dot_geek.wsgi.application'
 #     }
 # }
 
-DATABASES = {
-    'default': dj_database_url.parse(os.getenv('DATABASE_URL'))
-}
+if 'DATABASE_URL' in os.environ:
+    DATABASES = {
+        'default': dj_database_url.parse(os.getenv('DATABASE_URL'))
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': 'dot_geek',
+            'TEST': {
+                'ENGINE': 'django.db.backends.sqlite3',
+            }
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
