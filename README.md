@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/chodar89/dot_geek.svg?branch=master)](https://travis-ci.com/chodar89/dot_geek)
+[![Build Status](https://travis-ci.com/chodar89/dot_geek.svg?branch=master)](https://travis-ci.com/chodar89/dot_geek)<br>
 <img src="dot_geek\static\img\logo\dotgeek_black.png" width="200">
 
 # DOT GEEK
