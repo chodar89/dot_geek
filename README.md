@@ -36,11 +36,13 @@ Website allows user to buy and browse all products that are in shop offer. User 
 ## Testing
 ### Auto Test
 - urls tested with Django build in test framework
-- views testet with Django build in test framework
+- views tested with Django build in test framework
+- build and tested with Travic CI (Travis badge at the top of the page)
 ### Manual Test
-- tested manualy by: adding, editing, deleting records from database
-- tested on different devices with iOS, Android, Windows and Macintosh system
-- tested on Chrome, Opera, Mozilla and Safari browsers
+- tested manually by: adding, editing, deleting records from database
+- tested on different devices with iOS(13), Android(10), Windows(10) and Macintosh(10.15) system
+- tested on Chrome(79.0.3945.88), Opera(65.0.3467.78), Mozilla(71.0 (64-bit)) and Safari browsers
+- simulated on different mobile/pc devices with Device Mode in Dev Tools mode
 ## Deployment
 - App is running and hosted on [Heroku](https://dot-geek.herokuapp.com)
 ### Steps to deploy
@@ -66,7 +68,7 @@ Website allows user to buy and browse all products that are in shop offer. User 
 6. STRIPE_SECRET_KEY (only if you use stripe payment)
 ### Run app local
 #### Before start
-- if you would like to run app with the same settings than you will need to read how to set up [Stripe](https://stripe.com/) and [AWS S3](https://aws.amazon.com) buckets
+- if you would like to run app with the same settings, than you will need to read how to set up [Stripe](https://stripe.com/) and [AWS S3](https://aws.amazon.com) buckets
 - you can check Stripe Django tutorial [here](https://testdriven.io/blog/django-stripe-tutorial/)
 - and AWS S3 tutorial [here](https://simpleisbetterthancomplex.com/tutorial/2017/08/01/how-to-setup-amazon-s3-in-a-django-project.html)
 #### How to run app on your local machine

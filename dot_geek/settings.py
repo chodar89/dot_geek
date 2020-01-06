@@ -87,6 +87,8 @@ WSGI_APPLICATION = 'dot_geek.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
+
+# Local DB settings
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
@@ -105,6 +107,7 @@ if 'DATABASE_URL' in os.environ:
         'default': dj_database_url.parse(os.getenv('DATABASE_URL'))
     }
 else:
+    # Database for testing
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
