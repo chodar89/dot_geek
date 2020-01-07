@@ -98,7 +98,7 @@ Website allows user to buy and browse all products that are in shop offer. User 
             }
         }
     ```
-- and delete other DATABASES setting at line 100 in <strong>`settings.py`</strong>
+- and comment out other DATABASES setting at line 105 in <strong>`settings.py`</strong>
 - in the same time you should install PostgreSQL and pgAdmin on your computer [link](https://www.postgresql.org)
 - once you set this up run 
   ```
