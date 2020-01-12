@@ -155,7 +155,6 @@ def cart_details(request, total=0, counter=0, cart_items=None):
 
     if request.method == 'POST':
         # If stripe-pay, get user data from stripe form
-        print(request.POST)
         try:
             token = request.POST['stripeToken']
             email = request.POST['stripeEmail']
@@ -181,39 +180,24 @@ def cart_details(request, total=0, counter=0, cart_items=None):
             )
             # Create the order
             try:
+                order_details = Order.objects.create(
+                    token=token,
+                    total=total,
+                    email_address=email,
+                    billing_name=billing_name,
+                    billing_address1=billing_address1,
+                    billing_city=billing_city,
+                    billing_postcode=billing_postcode,
+                    billing_country=billing_country,
+                    shipping_name=shipping_name,
+                    shipping_address1=shipping_address1,
+                    shipping_city=shipping_city,
+                    shipping_postcode=shipping_postcode,
+                    shipping_country=shipping_country,
+                )
                 if user_id:
-                    order_details = Order.objects.create(
-                        token=token,
-                        total=total,
-                        user=User(id=user_id),
-                        email_address=email,
-                        billing_name=billing_name,
-                        billing_address1=billing_address1,
-                        billing_city=billing_city,
-                        billing_postcode=billing_postcode,
-                        billing_country=billing_country,
-                        shipping_name=shipping_name,
-                        shipping_address1=shipping_address1,
-                        shipping_city=shipping_city,
-                        shipping_postcode=shipping_postcode,
-                        shipping_country=shipping_country,
-                    )
-                else:
-                    order_details = Order.objects.create(
-                        token=token,
-                        total=total,
-                        email_address=email,
-                        billing_name=billing_name,
-                        billing_address1=billing_address1,
-                        billing_city=billing_city,
-                        billing_postcode=billing_postcode,
-                        billing_country=billing_country,
-                        shipping_name=shipping_name,
-                        shipping_address1=shipping_address1,
-                        shipping_city=shipping_city,
-                        shipping_postcode=shipping_postcode,
-                        shipping_country=shipping_country,
-                    )
+                    order_details.user = User(id=user_id)
+                    order_details.save()
                 for item in cart_items:
                     OrderItem.objects.create(
                         product=item.product.name,
