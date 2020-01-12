@@ -8,7 +8,7 @@ class OrderItemAdmin(admin.TabularInline):
     model = OrderItem
     fieldsets = [
         ('Product', {'fields': ['product'], }),
-        ('Qynatity', {'fields': ['quantity'], }),
+        ('Quantity', {'fields': ['quantity'], }),
         ('Size', {'fields': ['item_size'], }),
         ('Price', {'fields': ['price'], }),
     ]
