@@ -10,7 +10,7 @@ import stripe
 
 from products.models import Product, SizeChart
 from order.models import Order, OrderItem
-from .utility import _cart_id, _get_user_or_none
+from .utility import _cart_id, _get_user_or_none, _get_product_stock
 from .models import Cart, CartItem
 
 
@@ -113,22 +113,7 @@ def cart_details(request, total=0, counter=0, cart_items=None):
             qnty = item.quantity
             if item.item_size:
                 size = item.item_size.size
-                if size == 'XS':
-                    product_stock = item.product.stock_xs
-                elif size == 'S':
-                    product_stock = item.product.stock_s
-                elif size == 'M':
-                    product_stock = item.product.stock_m
-                elif size == 'L':
-                    product_stock = item.product.stock_l
-                elif size == 'XL':
-                    product_stock = item.product.stock_xl
-                elif size == 'XXL':
-                    product_stock = item.product.stock_xxl
-                elif size == 'XXXL':
-                    product_stock = item.product.stock_xxxl
-                else:
-                    product_stock = item.product.stock
+                product_stock = _get_product_stock(size, item)
                 if qnty > product_stock:
                     item.quantity = product_stock
                     qnty = product_stock

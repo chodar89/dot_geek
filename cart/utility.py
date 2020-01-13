@@ -24,3 +24,23 @@ def _cart_id(request):
         request.session['cart_id'] = request.session.session_key
         cart_id = request.session['cart_id']
     return cart_id
+
+
+def _get_product_stock(size, i):
+    if size == 'XS':
+        product_stock = i.product.stock_xs
+    elif size == 'S':
+        product_stock = i.product.stock_s
+    elif size == 'M':
+        product_stock = i.product.stock_m
+    elif size == 'L':
+        product_stock = i.product.stock_l
+    elif size == 'XL':
+        product_stock = i.product.stock_xl
+    elif size == 'XXL':
+        product_stock = i.product.stock_xxl
+    elif size == 'XXXL':
+        product_stock = i.product.stock_xxxl
+    else:
+        product_stock = i.product.stock
+    return product_stock
