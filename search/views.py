@@ -3,7 +3,7 @@ from django.core.paginator import Paginator
 from django.db.models import Q
 
 from products.models import ProductBrand, Product, SizeChart
-from pages.models import IndexCarousel
+from .utility import _get_price
 
 def search(request):
     """ Render search page with resualts"""
@@ -39,23 +39,13 @@ def search(request):
     if 'price-range' in request.GET:
         price_range = request.GET['price-range']
         # If it's not empty
-        if price_range == "0-10":
+        gte, lte = _get_price(price_range)
+        if lte != 0:
             search_products = search_products.filter(
-                price__gte=0, price__lte=10)
-        if price_range == "10-20":
+                price__gte=gte, price__lte=lte)
+        else:
             search_products = search_products.filter(
-                price__gte=10, price__lte=20)
-        if price_range == "20-30":
-            search_products = search_products.filter(
-                price__gte=20, price__lte=30)
-        if price_range == "30-40":
-            search_products = search_products.filter(
-                price__gte=30, price__lte=40)
-        if price_range == "40-50":
-            search_products = search_products.filter(
-                price__gte=40, price__lte=50)
-        if price_range == "50+":
-            search_products = search_products.filter(price__gte=50)
+                price__gte=gte)
 
     size_chart = SizeChart.objects.all()
 
