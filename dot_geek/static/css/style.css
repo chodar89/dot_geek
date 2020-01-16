@@ -356,7 +356,7 @@ nav > .container {
 
 /* Reset */
 
-#reset, form {
+#reset, input {
   width: 100%;
 }
 
