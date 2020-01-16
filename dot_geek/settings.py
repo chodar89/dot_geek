@@ -88,20 +88,6 @@ WSGI_APPLICATION = 'dot_geek.wsgi.application'
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 
-# Local DB settings
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'dot_geek',
-#         'USER': os.getenv('USER'),
-#         'PASSWORD': os.getenv('PASSWORD'),
-#         'HOST': os.getenv('HOST'),
-#         'TEST': {
-#             'ENGINE': 'django.db.backends.sqlite3',
-#         }
-#     }
-# }
-
 if 'DATABASE_URL' in os.environ:
     DATABASES = {
         'default': dj_database_url.parse(os.getenv('DATABASE_URL'))
@@ -110,8 +96,11 @@ else:
     # Database for testing
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
+            'ENGINE': 'django.db.backends.postgresql',
             'NAME': 'dot_geek',
+            'USER': os.getenv('USER'),
+            'PASSWORD': os.getenv('PASSWORD'),
+            'HOST': os.getenv('HOST'),
             'TEST': {
                 'ENGINE': 'django.db.backends.sqlite3',
             }

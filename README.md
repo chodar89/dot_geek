@@ -5,6 +5,9 @@
 So this is my fourth and last project for CodeInstitute. It is e-commerce website for geeks but not only. Potiential customers will find a products from retro and legendary games, films, cartoons and comics. <br> https://dot-geek.herokuapp.com
 ## UX
 Website allows user to buy and browse all products that are in shop offer. User can create an account and pay securely for his shopping. As well thare is a cart tab where user can check what is in and adjust product amount or delete it. User can check his shopping history (only for user that holds an account). App is responsive and friendly to users. Design is inspired by retro 8bit games.
+## Mockup and DB structure
+- Database schema structure can be found [here](https://dbdiagram.io/d/5d8b50f6ff5115114db49d17)
+- Mockup is hosted with Adobe XD [link](https://xd.adobe.com/spec/cf7ca274-c296-4b73-7515-36372375f89c-b94d/)
 ## Features
 - Customized Django Admin Panel
 - User dashboard
@@ -33,6 +36,9 @@ Website allows user to buy and browse all products that are in shop offer. User 
 - jQuery
 - CorelDraw
 - AWS S3 Bucket
+- Travis CI
+- Adobe XD
+- dbdiagram.io
 ## Testing
 ### Auto Test
 - urls tested with Django build in test framework
@@ -89,15 +95,25 @@ Website allows user to buy and browse all products that are in shop offer. User 
 4. HOST
 5. STRIPE_PUBLISHABLE_KEY
 6. STRIPE_SECRET_KEY
-- next uncomment in <strong>`settings.py`</strong>:
+- in <strong>`settings.py`</strong> we have statement that checks if we are in dev mode, see belowe<br>
+  if you would like to use local DB than just remove or do not add 'DATABASE_URL' to your env file.
     ```
+    if 'DATABASE_URL' in os.environ:
+        DATABASES = {
+            'default': dj_database_url.parse(os.getenv('DATABASE_URL'))
+        }
+    else:
+        # Database for testing
         DATABASES = {
             'default': {
                 'ENGINE': 'django.db.backends.postgresql',
                 'NAME': 'dot_geek',
                 'USER': os.getenv('USER'),
                 'PASSWORD': os.getenv('PASSWORD'),
-                'HOST': os.getenv('HOST')
+                'HOST': os.getenv('HOST'),
+                'TEST': {
+                    'ENGINE': 'django.db.backends.sqlite3',
+                }
             }
         }
     ```
@@ -129,3 +145,4 @@ Website allows user to buy and browse all products that are in shop offer. User 
 - All vector graphic was created by Tobiasz Chodarewicz
 - Images downloaded from Unsplash, Pixabay and Pexels
 - Products from Pop Vinyl page and Wish
+- Password reset, from tutorial that can be found [here](https://medium.com/@renjithsraj/how-to-reset-password-in-django-bd5e1d6ed652)
