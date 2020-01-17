@@ -93,10 +93,10 @@ if 'DATABASE_URL' in os.environ:
         'default': dj_database_url.parse(os.getenv('DATABASE_URL'))
     }
 else:
-    # Database for testing
+    # Local DB
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.postgresql',
+            'ENGINE': os.getenv('ENGINE'),
             'NAME': 'dot_geek',
             'USER': os.getenv('USER'),
             'PASSWORD': os.getenv('PASSWORD'),
