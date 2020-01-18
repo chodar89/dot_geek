@@ -38,7 +38,7 @@ def register(request):
                     user = User.objects.create_user(username=uname, password=password, email=email,
                                                     first_name=first_name, last_name=last_name)
                     user.save()
-                    send_register_email(user.id)  
+                    send_register_email(user.id)
                     messages.success(
                         request, ' Thank you for creating an account. You can now log in!')
                     return redirect('login')
