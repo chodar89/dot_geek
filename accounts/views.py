@@ -10,6 +10,8 @@ from order.models import Order
 
 def register(request):
     """ Register function that check user name and email is it unique """
+    if request.user.is_authenticated:
+        return redirect('index')
     if request.method == 'POST':
         # Get values from registration form
         first_name = request.POST['first_name']
@@ -51,6 +53,8 @@ def register(request):
 
 def login(request):
     """ Login user authentication """
+    if request.user.is_authenticated:
+        return redirect('index')
     if request.method == 'POST':
         uname = request.POST['uname']
         password = request.POST['password']
