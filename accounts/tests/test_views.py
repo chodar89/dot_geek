@@ -51,3 +51,16 @@ class TestAccountsViews(TestCase):
         response = self.client.get(self.dashboard_url)
         # Check status code if user is signed in
         self.assertEqual(response.status_code, 200)
+
+    def test_register_post(self):
+        response = self.client.post(self.register_url, 
+        {'first_name': 'Adam', 'last_name': 'Smith', 'uname': 'adamsmith', 'email': 'adam@smith.com', 'password': 'adamsmith', 'password2': 'adamsmith'})
+        self.assertEqual(response.status_code, 302)
+        get_user = User.objects.filter(username='adamsmith').values('username').get().get('username')
+        self.assertEqual(get_user, 'adamsmith')
+
+    def test_register_post_check_template(self):
+        response = self.client.post(self.register_url, 
+        {'first_name': 'Adam', 'last_name': 'Smith', 'uname': 'adamsmith', 'email': 'adam@smith.com', 'password': 'adamsmith', 'password2': 'adamsmith'}, follow=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'accounts/login.html')
