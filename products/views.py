@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
-from .models import Product, SizeChart, ProductBrand
+from .models import Product, SizeChart, ProductBrand, ProductType
 
 
 def all_products(request):
@@ -32,10 +32,15 @@ def product(request, product_id):
     get_product = get_object_or_404(Product, pk=product_id)
 
     size_chart = SizeChart.objects.all()
+    try:
+        get_type = ProductType.objects.get(id=get_product.product_type.id)
+    except ProductType.DoesNotExist:
+        get_type = None
 
     context = {
         'product': get_product,
         'size_chart': size_chart,
+        'type': get_type
     }
 
     return render(request, 'products/product.html', context)

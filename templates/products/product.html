@@ -4,7 +4,20 @@
 <section id="single-product">
     {% include "partials/_sky.html" %}
     <div class="container">
-        <a href="{% url 'all_products' %}" class="btn btn-light mb-4">Back To All Products</a>
+        <!-- Breadcrumb -->
+        <div id="bc" class="container">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a class="font-weight-bold" href="{% url 'index' %}">Home</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a class="font-weight-bold" href="{% url 'navbar_type' type.id %}">{{ type.types }}</a>
+                </li>
+                <li class="breadcrumb-item active">{{ product.name }}</li>
+            </ol>
+        </div>
+        <!-- 'Go Back to ...' button  for small screens -->
+        <a id="back-btn" href="{% url 'navbar_type' type.id %}" class="btn btn-light mb-4 font-weight-bold">Go back to <span>{{ type.types }}</span></a>
         <div class="row img-container">
             <div class="col-md-6 offset-md-2 left-card-product">
                 <!-- Main Image -->
