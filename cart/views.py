@@ -10,7 +10,7 @@ import stripe
 
 from products.models import Product, SizeChart
 from order.models import Order, OrderItem
-from .utility import _cart_id, _get_user_or_none, _get_product_stock
+from .utility import _cart_id, _get_user_or_none, _get_product_stock, _charge
 from .models import Cart, CartItem
 
 
@@ -161,13 +161,7 @@ def cart_details(request, total=0, counter=0, cart_items=None):
                 email=email,
                 source=token
             )
-            charge = stripe.Charge.create(
-                amount=stripe_total,
-                currency="gbp",
-                description=description,
-                customer=customer.id
-            )
-            # Create the order
+            _charge(stripe_total, description, customer)
             try:
                 order_details = Order.objects.create(
                     token=token,

@@ -2,6 +2,8 @@
 Utility functions for cart views
 """
 
+import stripe
+
 
 def _get_user_or_none(request):
     """
@@ -44,3 +46,12 @@ def _get_product_stock(size, i):
     else:
         product_stock = i.product.stock
     return product_stock
+
+def _charge(total, description, customer):
+    charge = stripe.Charge.create(
+        amount=total,
+        currency="gbp",
+        description=description,
+        customer=customer.id
+    )
+    return charge
