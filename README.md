@@ -5,6 +5,26 @@
 So this is my fourth and last project for CodeInstitute. It is e-commerce website for geeks but not only. Potiential customers will find a products from retro and legendary games, films, cartoons and comics. <br> https://dot-geek.herokuapp.com
 ## UX
 Website allows user to buy and browse all products that are in shop offer. User can create an account and pay securely for his shopping. As well thare is a cart tab where user can check what is in and adjust product amount or delete it. User can check his shopping history (only for user that holds an account). App is responsive and friendly to users. Design is inspired by retro 8bit games. All vector graphic was created with CorelDraw.
+## User Stories
+1. Customer/User. As a user:
+- I would like to have an option to register and login.
+- I would like to have a feedback when I am registred/login/logout via any message on the page.
+- I would like to reset my password if I forgot it via my registration email
+- I want to have an option to search for an items/products that I am interested in via search option.
+- I would like to have an option to click an item and check details of this product and have gallery for it via it's own page.
+- I want to have a cart that can restore my shopping on the same computer even that I am a guest.
+- I want to have a cart that can restore my shopping when I am registred on the page on any device.
+- I would like to have an option to adjust shopping items by buttons in the shopping cart page [Video](https://drive.google.com/file/d/1Ds_UxLdtKUup8J3yR_hzDW3he4EvPMUr/view)
+- I would likte to have a feedback after my purchase is done via message on the page an email with order number.
+- I would like to see my order if I am registred user via my dashboard page.
+- I want to see if product is in stock or outofstock by nice feedback on the product page.
+1. Admin/User. As an admin:\
+- [Video](https://drive.google.com/file/d/1R1hrQ3YpQK1moxqoPHH9xu-ImHMv_GPl/view) This is a video that shows how admin panel works
+- I want to have an option to add product and decide is it for sale or no without deleting it from DB via admin panel.
+- I want to decide what is and what is first in the main img carousel
+- I want to see orders with order items via admin panel
+- I want to decide what is in dropdwon nav bar via admin panel
+- I would like to have an option to change price without going in too every single product.
 ## Mockup and DB structure
 - Database schema structure can be found [here](https://dbdiagram.io/d/5d8b50f6ff5115114db49d17)
 - Mockup is hosted with Adobe XD [link](https://xd.adobe.com/spec/cf7ca274-c296-4b73-7515-36372375f89c-b94d/)
@@ -42,7 +62,9 @@ Website allows user to buy and browse all products that are in shop offer. User 
 ## Testing
 ### Auto Test
 - urls tested with Django build in test framework
-- views tested with Django build in test framework (status codes, templates, and most of the function and database models)
+- tested all views status codes and is correct templated used
+- created temp DB and tested register process and login process with dashboard page
+- with temp SQLite DB tested add to cart, delete from cart, increase one in cart, and remove one from cart.
 - build and tested with Travic CI (Travis badge at the top of the page)
 ### Manual Test
 - tested manually by: adding, editing, deleting records from database

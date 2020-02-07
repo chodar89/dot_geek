@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.core.paginator import Paginator
 
-from .models import Product, SizeChart, ProductBrand, ProductType
+from .models import Product, SizeChart, ProductType
 
 
 def all_products(request):
