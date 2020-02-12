@@ -1,7 +1,6 @@
 from cart.models import Cart, CartItem
 from cart.views import _cart_id, _get_user_or_none
 
-
 def item_counter(request):
     """
     Cart item counter for navbar, get user cart if logged,
@@ -12,18 +11,43 @@ def item_counter(request):
     if 'admin' not in request.path:
         user_id = _get_user_or_none(request)
         if user_id:
-            cart = Cart.objects.filter(user=user_id)[:1]
+            try:
+                cart = Cart.objects.get(user=user_id)
+            except Cart.DoesNotExist:
+                user_cart = Cart.objects.filter(cart_id=_cart_id(request))
+                if user_cart:
+                    user_cart.update(user=user_id)
+                    cart = Cart.objects.get(user=user_id)
+                else:
+                    cart = Cart.objects.create(
+                        cart_id=_cart_id(request),
+                        user=user_id
+                    )
             try:
                 # Get all items from session cart and assign
                 # to user cart when user logged in.
                 cart_session = Cart.objects.get(cart_id=_cart_id(request))
-                cart_session_items = CartItem.objects.all().filter(cart=cart_session)
-                get_cart_id = cart.get()
+                cart_session_items = CartItem.objects.filter(cart=cart_session)
+                user_cart_items = CartItem.objects.filter(cart=cart)
                 for item in cart_session_items:
-                    item.cart = get_cart_id
-                    item.save()
+                    try:
+                        user_cart_item = user_cart_items.get(product=item.product)
+                        user_cart_item.quantity += item.quantity
+                        user_cart_item.save()
+                        item.delete()
+                    except CartItem.DoesNotExist:
+                        item.cart = cart
+                        item.save()
             except Cart.DoesNotExist:
-                pass
+                user_cart = Cart.objects.filter(cart_id=_cart_id(request))
+                if user_cart:
+                    user_cart.update(user=user_id)
+                    cart = Cart.objects.get(user=user_id)
+                else:
+                    cart = Cart.objects.create(
+                        cart_id=_cart_id(request),
+                        user=user_id.id
+                    )
         else:
             try:
                 cart = Cart.objects.get(cart_id=_cart_id(request))
@@ -33,7 +57,7 @@ def item_counter(request):
                     )
                 cart.save()
         try:
-            cart_items = CartItem.objects.all().filter(cart=cart)
+            cart_items = CartItem.objects.filter(cart=cart)
             for item in cart_items:
                 item_count += item.quantity
         except Cart.DoesNotExist:

@@ -38,15 +38,10 @@ def add_to_cart(request, product_id):
         except Cart.DoesNotExist:
             # Insert data to DB
             if user_id:
-                user_cart = Cart.objects.filter(cart_id=session_cart_id)
-                if user_cart:
-                    user_cart.update(user=user_id)
-                    cart = Cart.objects.get(user=user_id)
-                else:
-                    cart = Cart.objects.create(
-                        cart_id=session_cart_id,
-                        user=User(id=user_id)
-                    )
+                cart = Cart.objects.create(
+                    cart_id=session_cart_id,
+                    user=User(id=user_id)
+                )
             else:
                 cart = Cart.objects.create(
                     cart_id=session_cart_id,
