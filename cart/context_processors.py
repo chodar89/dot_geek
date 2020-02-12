@@ -1,4 +1,5 @@
 from cart.models import Cart, CartItem
+from django.contrib.auth.models import User
 from cart.views import _cart_id, _get_user_or_none
 
 def item_counter(request):
@@ -11,18 +12,19 @@ def item_counter(request):
     if 'admin' not in request.path:
         user_id = _get_user_or_none(request)
         if user_id:
+            user = User.objects.get(id=user_id)
             try:
-                cart = Cart.objects.get(user=user_id)
+                cart = Cart.objects.get(user=user)
             except Cart.DoesNotExist:
                 user_cart = Cart.objects.filter(cart_id=_cart_id(request))
                 if user_cart:
-                    user_cart.update(user=user_id)
-                    cart = Cart.objects.get(user=user_id)
+                    user_cart.update(user=user)
                 else:
-                    cart = Cart.objects.create(
+                    user_cart = Cart.objects.create(
                         cart_id=_cart_id(request),
-                        user=user_id
+                        user=user
                     )
+                cart = Cart.objects.get(user=user)
             try:
                 # Get all items from session cart and assign
                 # to user cart when user logged in.
@@ -32,21 +34,21 @@ def item_counter(request):
                 for item in cart_session_items:
                     try:
                         user_cart_item = user_cart_items.get(product=item.product)
-                        user_cart_item.quantity += item.quantity
-                        user_cart_item.save()
-                        item.delete()
+                        item.quantity += user_cart_item.quantity
+                        item.cart = cart
+                        item.save()
                     except CartItem.DoesNotExist:
                         item.cart = cart
                         item.save()
             except Cart.DoesNotExist:
                 user_cart = Cart.objects.filter(cart_id=_cart_id(request))
                 if user_cart:
-                    user_cart.update(user=user_id)
-                    cart = Cart.objects.get(user=user_id)
+                    user_cart.update(user=user)
+                    cart = Cart.objects.get(user=user)
                 else:
                     cart = Cart.objects.create(
                         cart_id=_cart_id(request),
-                        user=user_id.id
+                        user=user
                     )
         else:
             try:

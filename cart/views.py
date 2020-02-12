@@ -47,10 +47,11 @@ def add_to_cart(request, product_id):
                     cart_id=session_cart_id,
                 )
         try:
-            # Try to check if item is in cart and rise quantity
+            # Try to check if item is in the cart and rise quantity
             cart_item = CartItem.objects.get(
                 product=product, cart=cart, item_size=size)
             cart_item.quantity += get_item_qnty
+            cart_item.save()
         except CartItem.DoesNotExist:
             # Insert item to DB
             cart_item = CartItem.objects.create(
@@ -59,6 +60,7 @@ def add_to_cart(request, product_id):
                 cart=cart,
                 item_size=size
             )
+            cart_item.save()
     return redirect('cart_details')
 
 
