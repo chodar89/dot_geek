@@ -31,25 +31,18 @@ def item_counter(request):
                 cart_session = Cart.objects.get(cart_id=_cart_id(request))
                 cart_session_items = CartItem.objects.filter(cart=cart_session)
                 user_cart_items = CartItem.objects.filter(cart=cart)
-                for item in cart_session_items:
-                    try:
-                        user_cart_item = user_cart_items.get(product=item.product)
-                        item.quantity += user_cart_item.quantity
-                        item.cart = cart
-                        item.save()
-                    except CartItem.DoesNotExist:
-                        item.cart = cart
-                        item.save()
+                if cart_session != cart:
+                    for item in cart_session_items:
+                        try:
+                            user_cart_item = user_cart_items.get(product=item.product)
+                            user_cart_item.quantity += item.quantity
+                            item.delete()
+                            user_cart_item.save()
+                        except CartItem.DoesNotExist:
+                            item.cart = cart
+                            item.save()
             except Cart.DoesNotExist:
-                user_cart = Cart.objects.filter(cart_id=_cart_id(request))
-                if user_cart:
-                    user_cart.update(user=user)
-                    cart = Cart.objects.get(user=user)
-                else:
-                    cart = Cart.objects.create(
-                        cart_id=_cart_id(request),
-                        user=user
-                    )
+                pass
         else:
             try:
                 cart = Cart.objects.get(cart_id=_cart_id(request))
