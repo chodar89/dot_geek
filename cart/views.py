@@ -108,7 +108,7 @@ def cart_details(request, total=0, counter=0, cart_items=None):
             cart = Cart.objects.get(user=user_id)
         else:
             cart = Cart.objects.get(cart_id=session_cart_id)
-        cart_items = CartItem.objects.filter(cart=cart, active=True)
+        cart_items = CartItem.objects.filter(cart=cart, active=True).order_by('-id')
         for item in cart_items:
             # Check item stock quantity if clothing check size and related stock quantity
             qnty = item.quantity
