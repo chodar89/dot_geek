@@ -10,3 +10,4 @@ venv_geek
 /media
 .vscode
 .env
+/static
