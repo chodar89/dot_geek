@@ -27,6 +27,7 @@ Website allows user to buy and browse all products that are in shop offer. User 
 - I would like to have an option to change price without going in too every single product.
 ## Mockup and DB structure
 - [Admin Panel Video](https://www.youtube.com/watch?v=7PIUYP_sfno)
+- [App overview](https://drive.google.com/file/d/1AWLIc07KaIVx7QEYhff_okDDGqbieKDy/view)
 - Database schema structure can be found [here](https://dbdiagram.io/d/5d8b50f6ff5115114db49d17)
 - Mockup is hosted with Adobe XD [link](https://xd.adobe.com/spec/cf7ca274-c296-4b73-7515-36372375f89c-b94d/)
 ## Features
@@ -46,7 +47,7 @@ Website allows user to buy and browse all products that are in shop offer. User 
 - HTML
 - CSS
 - JavaScript
-- Django 2.2.6
+- Django 3.0.3
 - Python 3.7.5
 - PostgreSQL
 - pgAdmin4
@@ -63,10 +64,14 @@ Website allows user to buy and browse all products that are in shop offer. User 
 ## Testing
 ### Auto Test
 - urls tested with Django build in test framework
-- tested all views status codes and is correct templated used
-- created temp DB and tested register process and login process with dashboard page
-- with temp SQLite DB tested add to cart, delete from cart, increase one in cart, and remove one from cart.
-- build and tested with Travic CI (Travis badge at the top of the page)
+- tested all views status codes and is correct template used
+- created temp DB and tested register process and login process and dashboard page
+- build tested with Travic CI (Travis badge at the top of the page)
+- get product or 404 tested if raises 404 page if product not found, as well tested query of product exists
+- filter and get all products from DB
+- tested context data for dropdwon search queries
+- tested dashboard get order item data
+- tested cart (add, increase, remove, delete qnty/item from DB) with temp SQLite DB 
 ### Manual Test
 - tested manually by: adding, editing, deleting records from database
 - tested on different devices with iOS(13), Android(10), Windows(10) and Macintosh(10.15) system

@@ -151,10 +151,10 @@ nav > .container {
 }
 
 .login-register a {
-  color: var(--main-dark);
-  padding: 0;
-  margin-right: 17px;
-  font-weight: 800;
+  color: var(--main-dark)!important;
+  padding: 0!important;
+  margin-right: 17px!important;
+  font-weight: 800!important;
   transition: 0.5s ease-in-out;
 }
 
