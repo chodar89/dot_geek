@@ -80,7 +80,8 @@ Website allows user to buy and browse all products that are in shop offer. User 
 ## Deployment
 - App is running and hosted on [Heroku](https://dot-geek.herokuapp.com)
 ### Steps to deploy
-- Static files are in dot-geek app folder
+#### Static files
+- Static files are in dot-geek app folder:<br> <strong>`dot-geek/static`</strong>
 #### Database pre set values
 - only Size Chart requires pre set data
 - insert sizes in brackets (CAPITAL LETTERS!) to Size Chart table: ('XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL')
